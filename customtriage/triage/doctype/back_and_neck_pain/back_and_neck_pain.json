@@ -1,0 +1,716 @@
+{
+ "actions": [],
+ "autoname": "format:BNP{###}",
+ "creation": "2025-10-11 18:20:49.360061",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_tab",
+  "basic_info",
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_rhwj",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "exercises_morethen_5days",
+  "sudden_onset_back_pain",
+  "numbness_or_tingling_of_legs_or_hands",
+  "weakness_in_the_legs_or_hands",
+  "any_bowel_or_bladder_dysfunction",
+  "any_abnormal_gait",
+  "any_fever_or_unexplained_weight_loss",
+  "any_history_of_trauma_or_fall",
+  "none_back_neck_pain",
+  "back_and_neck_pain",
+  "section_break_dkpy",
+  "present_complaints_column",
+  "do_you_have",
+  "since_when_symptom",
+  "which_part",
+  "neck",
+  "upper_back_chest_level",
+  "lower_back",
+  "neck_other",
+  "other_describe",
+  "paint_felt",
+  "morning",
+  "evening",
+  "night",
+  "constant",
+  "other_painfelt",
+  "descrive_ifother",
+  "pain_radiate",
+  "backpain_radiates",
+  "buttock",
+  "legs",
+  "arms",
+  "abdomen",
+  "other_neckpain",
+  "other_backpain",
+  "twisted_back",
+  "what_worsens",
+  "postural_change",
+  "sneezing",
+  "activities",
+  "pain_worse_at_rest",
+  "none",
+  "unsure",
+  "severity_pain",
+  "high_pillow",
+  "sleeping_mattress",
+  "yes_describe_mattress",
+  "column_break_ibec",
+  "check_eizy",
+  "h5associated_complaintsh5",
+  "following_complaints",
+  "affecting_right",
+  "affecting_left",
+  "affecting_both",
+  "urine_leakage",
+  "gait_abnormalities",
+  "muscle_spasm",
+  "backpain_fever",
+  "sweating",
+  "weight_change",
+  "abdominal_pain",
+  "none2",
+  "if_weight_change",
+  "since_when",
+  "abdomen_part",
+  "past_history",
+  "any_surgery",
+  "scan_report",
+  "accident_history",
+  "h5occupation_historyh5",
+  "standing_hours",
+  "lifting_heavy",
+  "stressful_job",
+  "gym_frequently",
+  "section_break_cvvz",
+  "check_mtyy",
+  "h5family_historyh5",
+  "family_issues",
+  "arthritis_history",
+  "physical",
+  "posture_gait",
+  "lab_test",
+  "previous_labreports",
+  "upload_report"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "basic_info",
+   "fieldtype": "Section Break",
+   "label": "Basic Information of the Patient"
+  },
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_rhwj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "exercises_morethen_5days",
+   "fieldtype": "Check",
+   "label": "Any back or neck pain not subsiding with pain killer or basic excercises more than 5 days "
+  },
+  {
+   "default": "0",
+   "fieldname": "sudden_onset_back_pain",
+   "fieldtype": "Check",
+   "label": "Sudden onset back pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "numbness_or_tingling_of_legs_or_hands",
+   "fieldtype": "Check",
+   "label": "Numbness or tingling of legs or hands"
+  },
+  {
+   "default": "0",
+   "fieldname": "weakness_in_the_legs_or_hands",
+   "fieldtype": "Check",
+   "label": "Weakness in the legs or hands"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_bowel_or_bladder_dysfunction",
+   "fieldtype": "Check",
+   "label": "Any bowel or bladder dysfunction"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_abnormal_gait",
+   "fieldtype": "Check",
+   "label": "Any abnormal gait "
+  },
+  {
+   "default": "0",
+   "fieldname": "any_fever_or_unexplained_weight_loss",
+   "fieldtype": "Check",
+   "label": "Any fever or unexplained weight loss"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_history_of_trauma_or_fall",
+   "fieldtype": "Check",
+   "label": "Any history of trauma or fall "
+  },
+  {
+   "default": "0",
+   "fieldname": "none_back_neck_pain",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "default": "No",
+   "fieldname": "back_and_neck_pain",
+   "fieldtype": "Select",
+   "label": " Back and Neck Pain",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_dkpy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "present_complaints_column",
+   "fieldtype": "Column Break",
+   "label": "Present Complaints"
+  },
+  {
+   "fieldname": "do_you_have",
+   "fieldtype": "Select",
+   "label": "Do you have",
+   "options": "\nBack Pain\nNeck Pain"
+  },
+  {
+   "fieldname": "since_when_symptom",
+   "fieldtype": "Data",
+   "label": "Since when have you had this symptom?"
+  },
+  {
+   "fieldname": "which_part",
+   "fieldtype": "Heading",
+   "label": "<h5>Which part of the neck/back do you feel pain?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "neck",
+   "fieldtype": "Check",
+   "label": "Neck"
+  },
+  {
+   "default": "0",
+   "fieldname": "upper_back_chest_level",
+   "fieldtype": "Check",
+   "label": "Upper back (Chest level)"
+  },
+  {
+   "default": "0",
+   "fieldname": "lower_back",
+   "fieldtype": "Check",
+   "label": "Lower back"
+  },
+  {
+   "default": "0",
+   "fieldname": "neck_other",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.neck_other == 1;",
+   "fieldname": "other_describe",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "fieldname": "paint_felt",
+   "fieldtype": "Heading",
+   "label": "<h5>When is the pain felt more?</h5>",
+   "options": "\nEvening\nNight\nConstant\nOther"
+  },
+  {
+   "default": "0",
+   "fieldname": "morning",
+   "fieldtype": "Check",
+   "label": "Morning"
+  },
+  {
+   "default": "0",
+   "fieldname": "evening",
+   "fieldtype": "Check",
+   "label": "Evening"
+  },
+  {
+   "default": "0",
+   "fieldname": "night",
+   "fieldtype": "Check",
+   "label": "Night"
+  },
+  {
+   "default": "0",
+   "fieldname": "constant",
+   "fieldtype": "Check",
+   "label": "Constant"
+  },
+  {
+   "default": "0",
+   "fieldname": "other_painfelt",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.other_painfelt == 1;",
+   "fieldname": "descrive_ifother",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "default": "No",
+   "fieldname": "pain_radiate",
+   "fieldtype": "Select",
+   "label": "Does the pain radiate?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.pain_radiate == 'Yes';",
+   "fieldname": "backpain_radiates",
+   "fieldtype": "Heading",
+   "label": "<h5>If Yes, Where does it radiates</h5>"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.pain_radiate == 'Yes';",
+   "fieldname": "buttock",
+   "fieldtype": "Check",
+   "label": "Buttock"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.pain_radiate == 'Yes';",
+   "fieldname": "legs",
+   "fieldtype": "Check",
+   "label": "Legs"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.pain_radiate == 'Yes';",
+   "fieldname": "arms",
+   "fieldtype": "Check",
+   "label": "Arms"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.pain_radiate == 'Yes';",
+   "fieldname": "abdomen",
+   "fieldtype": "Check",
+   "label": "Abdomen"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.pain_radiate == 'Yes';",
+   "fieldname": "other_neckpain",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.pain_radiate == 'Yes' || doc.other_neckpain == 1;",
+   "fieldname": "other_backpain",
+   "fieldtype": "Data",
+   "label": "Other[Describe]"
+  },
+  {
+   "default": "No",
+   "fieldname": "twisted_back",
+   "fieldtype": "Select",
+   "label": "Have you lifted a heavy object or twisted your back/neck?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "what_worsens",
+   "fieldtype": "Heading",
+   "label": "<h5>What worsens the pain?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "postural_change",
+   "fieldtype": "Check",
+   "label": "Postural Change"
+  },
+  {
+   "default": "0",
+   "fieldname": "sneezing",
+   "fieldtype": "Check",
+   "label": "Cough/Sneezing"
+  },
+  {
+   "default": "0",
+   "fieldname": "activities",
+   "fieldtype": "Check",
+   "label": "Activities"
+  },
+  {
+   "default": "0",
+   "fieldname": "pain_worse_at_rest",
+   "fieldtype": "Check",
+   "label": "Pain Worse at rest"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "default": "0",
+   "fieldname": "unsure",
+   "fieldtype": "Check",
+   "label": "Don't know/Unsure"
+  },
+  {
+   "fieldname": "severity_pain",
+   "fieldtype": "Select",
+   "label": "Severity of the pain?",
+   "options": "Mild\nModerate\nSevere"
+  },
+  {
+   "default": "No",
+   "fieldname": "high_pillow",
+   "fieldtype": "Select",
+   "label": "Do you use high pillow?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "sleeping_mattress",
+   "fieldtype": "Select",
+   "label": "Do you use mattress for sleeping?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval:doc.sleeping_mattress == \"Yes\"\n",
+   "fieldname": "yes_describe_mattress",
+   "fieldtype": "Data",
+   "label": "if yes, please specify"
+  },
+  {
+   "fieldname": "column_break_ibec",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "If completed section check",
+   "fieldname": "check_eizy",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5associated_complaintsh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Associated Complaints</h5>"
+  },
+  {
+   "fieldname": "following_complaints",
+   "fieldtype": "Heading",
+   "label": "<h5>Do you have the following complaints?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "affecting_right",
+   "fieldtype": "Check",
+   "label": "Numbness/weakness affecting right leg"
+  },
+  {
+   "default": "0",
+   "fieldname": "affecting_left",
+   "fieldtype": "Check",
+   "label": "Numbness/weakness affecting left leg"
+  },
+  {
+   "default": "0",
+   "fieldname": "affecting_both",
+   "fieldtype": "Check",
+   "label": "Numbness/weakness affecting in both legs"
+  },
+  {
+   "default": "0",
+   "fieldname": "urine_leakage",
+   "fieldtype": "Check",
+   "label": "Involuntary passing of urine/Urine leakage"
+  },
+  {
+   "default": "0",
+   "fieldname": "gait_abnormalities",
+   "fieldtype": "Check",
+   "label": "Gait abnormalities"
+  },
+  {
+   "default": "0",
+   "fieldname": "muscle_spasm",
+   "fieldtype": "Check",
+   "label": "Muscle Spasm"
+  },
+  {
+   "default": "0",
+   "fieldname": "backpain_fever",
+   "fieldtype": "Check",
+   "label": "Fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "sweating",
+   "fieldtype": "Check",
+   "label": "Sweating"
+  },
+  {
+   "default": "0",
+   "fieldname": "weight_change",
+   "fieldtype": "Check",
+   "label": "Weight change"
+  },
+  {
+   "default": "0",
+   "fieldname": "abdominal_pain",
+   "fieldtype": "Check",
+   "label": "Abdominal pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "none2",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "depends_on": "eval: doc.weight_change == 1;",
+   "fieldname": "if_weight_change",
+   "fieldtype": "Select",
+   "label": "If weight change?",
+   "options": "Weight Gain\nWeight Loss"
+  },
+  {
+   "depends_on": "eval: doc.weight_change == 1;",
+   "fieldname": "since_when",
+   "fieldtype": "Data",
+   "label": "Since when?"
+  },
+  {
+   "fieldname": "abdomen_part",
+   "fieldtype": "Data",
+   "label": "Which part of the abdomen?"
+  },
+  {
+   "fieldname": "past_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Past History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_surgery",
+   "fieldtype": "Select",
+   "label": "Any surgery in the past?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "scan_report",
+   "fieldtype": "Select",
+   "label": "Do you have any X-ray /CT scan report?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "accident_history",
+   "fieldtype": "Select",
+   "label": "Any history of accident/fall in the past?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "h5occupation_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Occupation History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "standing_hours",
+   "fieldtype": "Select",
+   "label": "Does your work involve sitting/standing long hours in one position?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "lifting_heavy",
+   "fieldtype": "Select",
+   "label": "Does your work involve bending/or lifting heavy weights?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "stressful_job",
+   "fieldtype": "Select",
+   "label": "Is your work being very stressful?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "gym_frequently",
+   "fieldtype": "Select",
+   "label": "Do you go to gym frequently?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_cvvz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "If completed section check",
+   "fieldname": "check_mtyy",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5family_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Family History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "family_issues",
+   "fieldtype": "Select",
+   "label": "Does your family have similar issue?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "arthritis_history",
+   "fieldtype": "Select",
+   "label": "Any family history of arthritis?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "physical",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical Examination</h5>"
+  },
+  {
+   "fieldname": "posture_gait",
+   "fieldtype": "Data",
+   "label": "Observe the posture/gait?"
+  },
+  {
+   "fieldname": "lab_test",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "previous_labreports",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.previous_labreports == 'Yes';",
+   "fieldname": "upload_report",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload the report"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:20:49.360061",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Back and Neck Pain",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

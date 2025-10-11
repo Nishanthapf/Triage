@@ -1,0 +1,636 @@
+{
+ "actions": [],
+ "autoname": "format:SHP{###}",
+ "creation": "2025-10-11 18:21:13.669041",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_tab",
+  "basic_info",
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_rhwj",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "left_shoulder_rediatingto",
+  "any_history_of_trauma_or_fall",
+  "sever_sweeling_or_redness_of_the_affected_joint",
+  "not_able_to_move_affected_part",
+  "change_in_vital_signs_with_these_pains",
+  "numbness_or_tingling_of_hands",
+  "sudden_onset_of_pain",
+  "none_shoulder_hand_pain",
+  "shoulder_and_hand_pain",
+  "section_break_dkpy",
+  "column_break_xnks",
+  "check_tfiz",
+  "present_complaints_column",
+  "have_pain",
+  "since_when_symptoms",
+  "pain_start",
+  "pain_worsened",
+  "shoulder_pain",
+  "severity_pain",
+  "pain_characteristics",
+  "dullaching",
+  "tingling_numbness",
+  "sharp_shooting",
+  "burning",
+  "other_handpain",
+  "pain_other",
+  "swelling_area",
+  "redness_area",
+  "stiffness_fingers",
+  "stiffness_time",
+  "pain_on",
+  "finger_joints",
+  "nodules_hand",
+  "if_yes_describe",
+  "daily_activities",
+  "affected_part",
+  "worsen_pain",
+  "postural_change",
+  "cough_sneeze",
+  "activities",
+  "worse_pain",
+  "flexing_neck",
+  "none1",
+  "dont_know",
+  "column_break_ophf",
+  "check_rnxv",
+  "h4associated_complaintsh4",
+  "following_symptoms",
+  "discomfort_pain",
+  "affecting_left",
+  "sweating",
+  "backpain_fever",
+  "weight_change",
+  "none_handpain",
+  "other_hand",
+  "if_other",
+  "past_history",
+  "any_surgery",
+  "scan_report",
+  "accident_history",
+  "h5occupation_historyh5",
+  "standing_hours",
+  "lifting_heavy",
+  "stressful_job",
+  "gym_frequently",
+  "h5family_historyh5",
+  "family_issues",
+  "arthritis_history",
+  "physical",
+  "posture_gait",
+  "lab_test",
+  "previous_labreports",
+  "upload_report"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "basic_info",
+   "fieldtype": "Section Break",
+   "label": "Basic Information of the Patient"
+  },
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_rhwj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "left_shoulder_rediatingto",
+   "fieldtype": "Check",
+   "label": "If pain in the left shoulder with radiating to left hand associated with chest pain/ sweating/ nausea/vomiting"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_history_of_trauma_or_fall",
+   "fieldtype": "Check",
+   "label": "Any history of trauma or fall "
+  },
+  {
+   "default": "0",
+   "fieldname": "sever_sweeling_or_redness_of_the_affected_joint",
+   "fieldtype": "Check",
+   "label": "Sever sweeling or redness of the affected joint "
+  },
+  {
+   "default": "0",
+   "fieldname": "not_able_to_move_affected_part",
+   "fieldtype": "Check",
+   "label": "Not able to move affected part"
+  },
+  {
+   "default": "0",
+   "fieldname": "change_in_vital_signs_with_these_pains",
+   "fieldtype": "Check",
+   "label": "Change in vital signs with these pains "
+  },
+  {
+   "default": "0",
+   "fieldname": "numbness_or_tingling_of_hands",
+   "fieldtype": "Check",
+   "label": "Numbness or tingling of hands"
+  },
+  {
+   "default": "0",
+   "fieldname": "sudden_onset_of_pain",
+   "fieldtype": "Check",
+   "label": "Sudden onset of pain "
+  },
+  {
+   "default": "0",
+   "fieldname": "none_shoulder_hand_pain",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "shoulder_and_hand_pain",
+   "fieldtype": "Select",
+   "label": "Shoulder and Hand Pain",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_dkpy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_xnks",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_tfiz",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "present_complaints_column",
+   "fieldtype": "Heading",
+   "label": "<h4>Present Complaints</h4>"
+  },
+  {
+   "fieldname": "have_pain",
+   "fieldtype": "Select",
+   "label": "Do you have pain in ?",
+   "options": "Shoulder\nHand\nBoth"
+  },
+  {
+   "fieldname": "since_when_symptoms",
+   "fieldtype": "Data",
+   "label": "Since when have you had this symptom?"
+  },
+  {
+   "fieldname": "pain_start",
+   "fieldtype": "Select",
+   "label": "How did this pain start?",
+   "options": "Sudden\nGradual"
+  },
+  {
+   "default": "No",
+   "fieldname": "pain_worsened",
+   "fieldtype": "Select",
+   "label": "Has the pain worsened?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "shoulder_pain",
+   "fieldtype": "Data",
+   "label": "Which part of the shoulder/hand have pain?"
+  },
+  {
+   "fieldname": "severity_pain",
+   "fieldtype": "Select",
+   "label": "Severity of the pain?",
+   "options": "Mild\nModerate\nSevere"
+  },
+  {
+   "fieldname": "pain_characteristics",
+   "fieldtype": "Heading",
+   "label": "<h5>Pain Characteristics?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "dullaching",
+   "fieldtype": "Check",
+   "label": "Dullaching"
+  },
+  {
+   "default": "0",
+   "fieldname": "tingling_numbness",
+   "fieldtype": "Check",
+   "label": "Tingling numbness"
+  },
+  {
+   "default": "0",
+   "fieldname": "sharp_shooting",
+   "fieldtype": "Check",
+   "label": "Sharp shooting"
+  },
+  {
+   "default": "0",
+   "fieldname": "burning",
+   "fieldtype": "Check",
+   "label": "Burning"
+  },
+  {
+   "default": "0",
+   "fieldname": "other_handpain",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.other_handpain == 1;",
+   "fieldname": "pain_other",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "default": "No",
+   "fieldname": "swelling_area",
+   "fieldtype": "Select",
+   "label": "Any swelling in the painful area",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "redness_area",
+   "fieldtype": "Select",
+   "label": "Any redness in the painful area",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "stiffness_fingers",
+   "fieldtype": "Select",
+   "label": "Do you feel stiffness in your fingers",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.stiffness_fingers == 'Yes';",
+   "fieldname": "stiffness_time",
+   "fieldtype": "Data",
+   "label": "If Yes, what time of the day"
+  },
+  {
+   "default": "No",
+   "fieldname": "pain_on",
+   "fieldtype": "Select",
+   "label": "Do you have pain on",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "finger_joints",
+   "fieldtype": "Select",
+   "label": "Any pain over the finger joints?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "nodules_hand",
+   "fieldtype": "Select",
+   "label": "Any nodules on the hand",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.nodules_hand == 'Yes';",
+   "fieldname": "if_yes_describe",
+   "fieldtype": "Data",
+   "label": "If Yes, describe"
+  },
+  {
+   "default": "No",
+   "fieldname": "daily_activities",
+   "fieldtype": "Select",
+   "label": "Are you able to do daily activities?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "affected_part",
+   "fieldtype": "Select",
+   "label": "Is there any limitation of movement of the affected part?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "worsen_pain",
+   "fieldtype": "Heading",
+   "label": "<h5>What worsens the pain?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "postural_change",
+   "fieldtype": "Check",
+   "label": "Postural change"
+  },
+  {
+   "default": "0",
+   "fieldname": "cough_sneeze",
+   "fieldtype": "Check",
+   "label": "Cough/sneezing"
+  },
+  {
+   "default": "0",
+   "fieldname": "activities",
+   "fieldtype": "Check",
+   "label": "Activities"
+  },
+  {
+   "default": "0",
+   "fieldname": "worse_pain",
+   "fieldtype": "Check",
+   "label": "Pain worse at rest"
+  },
+  {
+   "default": "0",
+   "fieldname": "flexing_neck",
+   "fieldtype": "Check",
+   "label": "Rotating the head or flexing the neck"
+  },
+  {
+   "default": "0",
+   "fieldname": "none1",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "default": "0",
+   "fieldname": "dont_know",
+   "fieldtype": "Check",
+   "label": "Don't know /Unsure"
+  },
+  {
+   "fieldname": "column_break_ophf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_rnxv",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h4associated_complaintsh4",
+   "fieldtype": "Heading",
+   "label": "<h4>Associated Complaints</h4>"
+  },
+  {
+   "fieldname": "following_symptoms",
+   "fieldtype": "Heading",
+   "label": "<h5>Do you have the following symptom(s)?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "discomfort_pain",
+   "fieldtype": "Check",
+   "label": "Chest pain/Discomfort"
+  },
+  {
+   "default": "0",
+   "fieldname": "affecting_left",
+   "fieldtype": "Check",
+   "label": "Breathing difficulty"
+  },
+  {
+   "default": "0",
+   "fieldname": "sweating",
+   "fieldtype": "Check",
+   "label": "Sweating"
+  },
+  {
+   "default": "0",
+   "fieldname": "backpain_fever",
+   "fieldtype": "Check",
+   "label": "Fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "weight_change",
+   "fieldtype": "Check",
+   "label": "Weight change"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_handpain",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "default": "0",
+   "fieldname": "other_hand",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.other_hand == 1;",
+   "fieldname": "if_other",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "fieldname": "past_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Past History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_surgery",
+   "fieldtype": "Select",
+   "label": "Any surgery in the past?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "scan_report",
+   "fieldtype": "Select",
+   "label": "Do you have any X-ray /CT scan report?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "accident_history",
+   "fieldtype": "Select",
+   "label": "Any history of accident/fall in the past?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "h5occupation_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Occupation History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "standing_hours",
+   "fieldtype": "Select",
+   "label": "Does your work involve sitting/standing long hours in one position?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "lifting_heavy",
+   "fieldtype": "Select",
+   "label": "Does your work involve bending/or lifting heavy weights?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "stressful_job",
+   "fieldtype": "Select",
+   "label": "Is your work being very stressful?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "gym_frequently",
+   "fieldtype": "Select",
+   "label": "Do you go to gym frequently?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "h5family_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Family History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "family_issues",
+   "fieldtype": "Select",
+   "label": "Does your family have similar issue?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "arthritis_history",
+   "fieldtype": "Select",
+   "label": "Any family history of arthritis?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "physical",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical Examination</h5>"
+  },
+  {
+   "fieldname": "posture_gait",
+   "fieldtype": "Data",
+   "label": "Observe the posture/gait?"
+  },
+  {
+   "fieldname": "lab_test",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "previous_labreports",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.previous_labreports == 'Yes';",
+   "fieldname": "upload_report",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload the report"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:21:13.669041",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Shoulder and Hand Pain",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

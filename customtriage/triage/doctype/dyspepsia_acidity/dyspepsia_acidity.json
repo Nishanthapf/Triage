@@ -1,0 +1,700 @@
+{
+ "actions": [],
+ "autoname": "format:DYS{###}",
+ "creation": "2025-10-11 18:22:28.984262",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_dane",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "any_sudden_onset_abdominal_pain_with_vomiting_and_drowsiness",
+  "abdominal_pain_with_vomiting",
+  "worsening_of_abdominal_pain",
+  "any_bloating_sensation",
+  "any_weight_loss",
+  "change_in_color_of_stools",
+  "if_more_than50",
+  "none_dyspepsia",
+  "dyspepsia_acidity",
+  "present_chief_complaints_section",
+  "do_you_have_dyspepsia",
+  "since_when_have_you_had_this_symptom",
+  "how_does_this_symptom_start",
+  "column_break_ypxb",
+  "check_blsh",
+  "h5do_you_have_the_following_symptoms",
+  "bloody_vomiting",
+  "blacktarry_stool",
+  "blood_in_stool",
+  "chest_paindiscomfort",
+  "abdominal_pain",
+  "section_break_gaxq",
+  "is_abdominal_pain_where_is_the_pain",
+  "column_break_shzl",
+  "check_ippo",
+  "onset_of_the_abdominal_pain",
+  "section_break_xjpc",
+  "describe_the_pain_column",
+  "constant",
+  "colicky_intermittent",
+  "gnawing",
+  "cramping",
+  "dull",
+  "stabbing",
+  "bloating",
+  "burning",
+  "other_check",
+  "column_break_doei",
+  "check_yibx",
+  "describe",
+  "when_does_the_pain_increases",
+  "do_you_eat_in_hotels_in_regularly",
+  "have_reflux",
+  "associates_symptoms_section",
+  "difficulty_swallowing",
+  "have_you_lost_weight",
+  "do_you_have_heartburn",
+  "when_does_the_heartburn_get_worse",
+  "heartburn_other",
+  "do_you_have_cough",
+  "column_break_xolm",
+  "check_fuwq",
+  "if_sputum_decribe_the_color",
+  "do_you_hoarseness_voice",
+  "do_you_nausea",
+  "do_you_have__vomiting",
+  "do_you_have__stressanxiety",
+  "loss_of_appetite",
+  "past_history_section",
+  "any_history_of_hypertension",
+  "any_history_of_heart_diseases",
+  "any_history_of_diabetes",
+  "column_break_uayx",
+  "check_qwyi",
+  "any_history_of_thyroid_issues",
+  "any_history_of_stomach_cancer",
+  "have_you_done_any_endoscopy_in_the_past",
+  "personal_and_lifestyle_history_section",
+  "any_history_of_addiction_column",
+  "do_you_take_your_meal_on_time",
+  "column_break_jdze",
+  "check_qdyk",
+  "do_you_take_more_spicy_and_oily_food",
+  "do_you_drink_a_lot_of_coffee_or_tea",
+  "how_much_water_do_you_drink_everyday",
+  "occupation_history_section",
+  "check_offh",
+  "look_for_lymphnodes_in_the_neck_lt_supra_clavicular",
+  "physical_examination_section",
+  "check_owzn",
+  "lymphnodes",
+  "lab_test_section",
+  "previous_lab_reports",
+  "column_break_ixxu",
+  "check_vkrm",
+  "if_yes_please_upload"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_dane",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_sudden_onset_abdominal_pain_with_vomiting_and_drowsiness",
+   "fieldtype": "Check",
+   "label": "Any sudden onset abdominal pain with vomiting and drowsiness "
+  },
+  {
+   "default": "0",
+   "fieldname": "abdominal_pain_with_vomiting",
+   "fieldtype": "Check",
+   "label": "abdominal pain with vomiting "
+  },
+  {
+   "default": "0",
+   "fieldname": "worsening_of_abdominal_pain",
+   "fieldtype": "Check",
+   "label": "Worsening of abdominal pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_bloating_sensation",
+   "fieldtype": "Check",
+   "label": "Any bloating sensation"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_weight_loss",
+   "fieldtype": "Check",
+   "label": "any weight loss"
+  },
+  {
+   "default": "0",
+   "fieldname": "change_in_color_of_stools",
+   "fieldtype": "Check",
+   "label": "Change in color of stools"
+  },
+  {
+   "default": "0",
+   "fieldname": "if_more_than50",
+   "fieldtype": "Check",
+   "label": "If more than 50 years with first time histroy of abdominal pain "
+  },
+  {
+   "default": "0",
+   "fieldname": "none_dyspepsia",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "dyspepsia_acidity",
+   "fieldtype": "Select",
+   "label": "Dyspepsia_Acidity",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "present_chief_complaints_section",
+   "fieldtype": "Section Break",
+   "label": "Present Chief complaints"
+  },
+  {
+   "default": "No",
+   "fieldname": "do_you_have_dyspepsia",
+   "fieldtype": "Select",
+   "label": "Do you have dyspepsia",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "since_when_have_you_had_this_symptom",
+   "fieldtype": "Data",
+   "label": "Since when have you had this symptom?"
+  },
+  {
+   "fieldname": "how_does_this_symptom_start",
+   "fieldtype": "Select",
+   "label": "How does this symptom start?",
+   "options": "Sudden\nGradual"
+  },
+  {
+   "fieldname": "column_break_ypxb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_blsh",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5do_you_have_the_following_symptoms",
+   "fieldtype": "Heading",
+   "label": "<h5>Do you have the following symptom(s)?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "bloody_vomiting",
+   "fieldtype": "Check",
+   "label": "Bloody vomiting"
+  },
+  {
+   "default": "0",
+   "fieldname": "blacktarry_stool",
+   "fieldtype": "Check",
+   "label": "Black/tarry stool"
+  },
+  {
+   "default": "0",
+   "fieldname": "blood_in_stool",
+   "fieldtype": "Check",
+   "label": "Blood in stool"
+  },
+  {
+   "default": "0",
+   "fieldname": "chest_paindiscomfort",
+   "fieldtype": "Check",
+   "label": "Chest pain/discomfort"
+  },
+  {
+   "default": "0",
+   "fieldname": "abdominal_pain",
+   "fieldtype": "Check",
+   "label": "Abdominal pain"
+  },
+  {
+   "fieldname": "section_break_gaxq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "is_abdominal_pain_where_is_the_pain",
+   "fieldtype": "Data",
+   "label": "Is abdominal pain, where is the pain"
+  },
+  {
+   "fieldname": "column_break_shzl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_ippo",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "onset_of_the_abdominal_pain",
+   "fieldtype": "Select",
+   "label": "Onset of the abdominal pain",
+   "options": "Sudden\nGradual"
+  },
+  {
+   "fieldname": "section_break_xjpc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "describe_the_pain_column",
+   "fieldtype": "Column Break",
+   "label": "Describe the pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "constant",
+   "fieldtype": "Check",
+   "label": "Constant"
+  },
+  {
+   "default": "0",
+   "fieldname": "colicky_intermittent",
+   "fieldtype": "Check",
+   "label": "Colicky / Intermittent (comes & goes)"
+  },
+  {
+   "default": "0",
+   "fieldname": "gnawing",
+   "fieldtype": "Check",
+   "label": "Gnawing/chewing"
+  },
+  {
+   "default": "0",
+   "fieldname": "cramping",
+   "fieldtype": "Check",
+   "label": "Cramping"
+  },
+  {
+   "default": "0",
+   "fieldname": "dull",
+   "fieldtype": "Check",
+   "label": "Dull, aching"
+  },
+  {
+   "default": "0",
+   "fieldname": "stabbing",
+   "fieldtype": "Check",
+   "label": "Stabbing"
+  },
+  {
+   "default": "0",
+   "fieldname": "bloating",
+   "fieldtype": "Check",
+   "label": "Bloating"
+  },
+  {
+   "default": "0",
+   "fieldname": "burning",
+   "fieldtype": "Check",
+   "label": "Burning"
+  },
+  {
+   "default": "0",
+   "fieldname": "other_check",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "fieldname": "column_break_doei",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_yibx",
+   "fieldtype": "Check"
+  },
+  {
+   "depends_on": "eval: doc.other_check == 1;",
+   "fieldname": "describe",
+   "fieldtype": "Data",
+   "label": "Describe"
+  },
+  {
+   "fieldname": "when_does_the_pain_increases",
+   "fieldtype": "Select",
+   "label": "When does the pain increases",
+   "options": "After eating\nBefore eating\nContinous"
+  },
+  {
+   "default": "No",
+   "fieldname": "do_you_eat_in_hotels_in_regularly",
+   "fieldtype": "Select",
+   "label": "Do you eat in hotels in regularly",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "have_reflux",
+   "fieldtype": "Select",
+   "label": "Do you have reflux",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "associates_symptoms_section",
+   "fieldtype": "Section Break",
+   "label": "Associates symptoms"
+  },
+  {
+   "default": "No",
+   "fieldname": "difficulty_swallowing",
+   "fieldtype": "Select",
+   "label": "Difficulty swallowing",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "have_you_lost_weight",
+   "fieldtype": "Select",
+   "label": "Have you lost weight",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "do_you_have_heartburn",
+   "fieldtype": "Select",
+   "label": "Do you have heartburn",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "when_does_the_heartburn_get_worse",
+   "fieldtype": "Select",
+   "label": "When does the heartburn get worse?",
+   "options": "\nLying down\nSpicy food intake\nOther (Describe)"
+  },
+  {
+   "fieldname": "heartburn_other",
+   "fieldtype": "Data",
+   "label": "If others, please describe"
+  },
+  {
+   "fieldname": "do_you_have_cough",
+   "fieldtype": "Select",
+   "label": "Do you have cough",
+   "options": "Lying down\nSpicy food intake\nOther (Describe)"
+  },
+  {
+   "fieldname": "column_break_xolm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_fuwq",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "if_sputum_decribe_the_color",
+   "fieldtype": "Data",
+   "label": "If sputum, decribe the color"
+  },
+  {
+   "fieldname": "do_you_hoarseness_voice",
+   "fieldtype": "Select",
+   "label": "do you Hoarseness voice",
+   "options": "Lying down\nSpicy food intake\nOther (Describe)"
+  },
+  {
+   "fieldname": "do_you_nausea",
+   "fieldtype": "Select",
+   "label": "Do you Nausea",
+   "options": "Lying down\nSpicy food intake\nOther (Describe)"
+  },
+  {
+   "fieldname": "do_you_have__vomiting",
+   "fieldtype": "Select",
+   "label": "Do you have  Vomiting",
+   "options": "Lying down\nSpicy food intake\nOther (Describe)"
+  },
+  {
+   "fieldname": "do_you_have__stressanxiety",
+   "fieldtype": "Select",
+   "label": "Do you have  Stress/Anxiety",
+   "options": "Lying down\nSpicy food intake\nOther (Describe)"
+  },
+  {
+   "default": "No",
+   "fieldname": "loss_of_appetite",
+   "fieldtype": "Select",
+   "label": "Loss of appetite",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "past_history_section",
+   "fieldtype": "Section Break",
+   "label": "Past history"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_hypertension",
+   "fieldtype": "Select",
+   "label": "Any History of Hypertension",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_heart_diseases",
+   "fieldtype": "Select",
+   "label": "Any History of Heart diseases",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_diabetes",
+   "fieldtype": "Select",
+   "label": "Any History of Diabetes",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_uayx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_qwyi",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_thyroid_issues",
+   "fieldtype": "Select",
+   "label": "Any history of Thyroid issues",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_stomach_cancer",
+   "fieldtype": "Select",
+   "label": "Any history of stomach cancer",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "have_you_done_any_endoscopy_in_the_past",
+   "fieldtype": "Select",
+   "label": "Have you done any endoscopy in the past",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "personal_and_lifestyle_history_section",
+   "fieldtype": "Section Break",
+   "label": "Personal and lifestyle History"
+  },
+  {
+   "fieldname": "any_history_of_addiction_column",
+   "fieldtype": "Column Break",
+   "label": "Any history of addiction "
+  },
+  {
+   "default": "No",
+   "fieldname": "do_you_take_your_meal_on_time",
+   "fieldtype": "Select",
+   "label": "Do you take your meal on time",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_jdze",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_qdyk",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "do_you_take_more_spicy_and_oily_food",
+   "fieldtype": "Select",
+   "label": "Do you take more spicy and oily food",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "do_you_drink_a_lot_of_coffee_or_tea",
+   "fieldtype": "Select",
+   "label": "Do you drink a lot of coffee or tea",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "how_much_water_do_you_drink_everyday",
+   "fieldtype": "Data",
+   "label": "How much water do you drink everyday"
+  },
+  {
+   "fieldname": "occupation_history_section",
+   "fieldtype": "Section Break",
+   "label": "Occupation History "
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_offh",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "look_for_lymphnodes_in_the_neck_lt_supra_clavicular",
+   "fieldtype": "Select",
+   "label": "Look for lymphnodes in the neck (Lt. supra clavicular)",
+   "options": "Present\nAbsent"
+  },
+  {
+   "fieldname": "physical_examination_section",
+   "fieldtype": "Section Break",
+   "label": "Physical Examination"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_owzn",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "lymphnodes",
+   "fieldtype": "Select",
+   "label": "Look for lymphnodes in the neck (Lt. supra clavicular)",
+   "options": "Present\nAbsent"
+  },
+  {
+   "fieldname": "lab_test_section",
+   "fieldtype": "Section Break",
+   "label": "Lab test"
+  },
+  {
+   "default": "No",
+   "fieldname": "previous_lab_reports",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_ixxu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_vkrm",
+   "fieldtype": "Check"
+  },
+  {
+   "depends_on": "eval:doc.previous_lab_reports==\"Yes\";",
+   "fieldname": "if_yes_please_upload",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload "
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:22:28.984262",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Dyspepsia_Acidity",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

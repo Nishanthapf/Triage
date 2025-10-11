@@ -1,0 +1,479 @@
+{
+ "actions": [],
+ "autoname": "format:ANA{###}",
+ "creation": "2025-10-11 18:23:31.396462",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_dane",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "hb_lessthan_7",
+  "anaemic_individual",
+  "hb_morethan_7",
+  "none_anemia",
+  "anemia_adolescents",
+  "section_break_opoc",
+  "h5present_chief_complaintsh5",
+  "have_anemia",
+  "feeling_tired",
+  "describe_regularwork",
+  "concentrate_work",
+  "have_you_attained_menarche",
+  "marital_status",
+  "h5associated_symptomsh5",
+  "feeling_breathless",
+  "describe_activity",
+  "feel_palpitation",
+  "swelling_oflegs",
+  "gained_weight",
+  "column_break_iymc",
+  "check_bdxg",
+  "h5past_historyh5",
+  "dewormning_tablet",
+  "blood_transfusion",
+  "iron_injection",
+  "blood_loss",
+  "h5family_historyh5",
+  "similar_issue",
+  "anemia_history",
+  "family_blood_transfusion",
+  "detailed_obstetric_history_for_women_section",
+  "having_children",
+  "please_decribe_the_age_of_the_children",
+  "fp_methods",
+  "which_method",
+  "delivery_blood_transfusion",
+  "column_break_ptxc",
+  "check_wfpc",
+  "afterdelivery_complication",
+  "yes_complication",
+  "recently_abortion",
+  "menstrual_bleeding",
+  "section_break_kvpg",
+  "check_xfez",
+  "h5personal_and_lifestyle_historyh5",
+  "regular_diet",
+  "toiletin_home",
+  "slippers_regularly",
+  "h5laboratory_testh5",
+  "any_previous_lab",
+  "please_upload"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_dane",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "hb_lessthan_7",
+   "fieldtype": "Check",
+   "label": "If Hb less than <7 gm/dlIf Hb more than 7 gm/dl to less than 11 gm/dl"
+  },
+  {
+   "default": "0",
+   "fieldname": "anaemic_individual",
+   "fieldtype": "Check",
+   "label": "Anaemic individual with shortness of breath/swelling of legs/Rapid pulse rate/Weight loss/rectal bleed"
+  },
+  {
+   "default": "0",
+   "fieldname": "hb_morethan_7",
+   "fieldtype": "Check",
+   "label": "If Hb more than 7 gm/dl to less than 11 gm/dl"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_anemia",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "anemia_adolescents",
+   "fieldtype": "Select",
+   "label": "Anemia Adolescents",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_opoc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "h5present_chief_complaintsh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Present Chief Complaints</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "have_anemia",
+   "fieldtype": "Select",
+   "label": "Do you have Anemia",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "feeling_tired",
+   "fieldtype": "Select",
+   "label": "Do you feel tired/weakness while doing your regular work in the last 6 months?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.feeling_tired == 'Yes';",
+   "fieldname": "describe_regularwork",
+   "fieldtype": "Data",
+   "label": "If yes, please describe"
+  },
+  {
+   "default": "No",
+   "fieldname": "concentrate_work",
+   "fieldtype": "Select",
+   "label": "Are you able to concentrate in your work?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "depends_on": "eval: doc.gender == 'Female'\r\n",
+   "fieldname": "have_you_attained_menarche",
+   "fieldtype": "Select",
+   "label": "Have you attained Menarche?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "depends_on": "eval: doc.have_you_attained_menarche == 'Yes'\r\n",
+   "fieldname": "marital_status",
+   "fieldtype": "Select",
+   "label": "Are you Married?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "h5associated_symptomsh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Associated Symptoms</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "feeling_breathless",
+   "fieldtype": "Select",
+   "label": "Do you feel breathless while doing your regular activity?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.feeling_breathless == 'Yes';",
+   "fieldname": "describe_activity",
+   "fieldtype": "Data",
+   "label": "If Yes, please describe"
+  },
+  {
+   "default": "No",
+   "fieldname": "feel_palpitation",
+   "fieldtype": "Select",
+   "label": "Do you feel palpitation?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "swelling_oflegs",
+   "fieldtype": "Select",
+   "label": "Have you noticed swelling of leg?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "gained_weight",
+   "fieldtype": "Select",
+   "label": "Have you gained weight in the past 6 months?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_iymc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_bdxg",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5past_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Past History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "dewormning_tablet",
+   "fieldtype": "Select",
+   "label": "Have you taken deworming tablet in the past 1 year?",
+   "options": "Yes\nNo\nNot Sure"
+  },
+  {
+   "default": "No",
+   "fieldname": "blood_transfusion",
+   "fieldtype": "Select",
+   "label": "Have you had any blood transfusion in the last 1 year?",
+   "options": "Yes\nNo\nNot Sure"
+  },
+  {
+   "default": "No",
+   "fieldname": "iron_injection",
+   "fieldtype": "Select",
+   "label": "Have you had taken any iron injection in the last 1 year?",
+   "options": "Yes\nNo\nNot Sure"
+  },
+  {
+   "default": "No",
+   "fieldname": "blood_loss",
+   "fieldtype": "Select",
+   "label": "Did you have any accident/ surgery which caused lots of blood loss?",
+   "options": "Yes\nNo\nNot Sure"
+  },
+  {
+   "fieldname": "h5family_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Family History</h5>"
+  },
+  {
+   "fieldname": "similar_issue",
+   "fieldtype": "Select",
+   "label": "Does your family have similar issue",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "anemia_history",
+   "fieldtype": "Select",
+   "label": "Any family history of anemia?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "family_blood_transfusion",
+   "fieldtype": "Select",
+   "label": "Did anyone in your family have blood transfusion?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.gender == 'Female';",
+   "fieldname": "detailed_obstetric_history_for_women_section",
+   "fieldtype": "Section Break",
+   "label": "Detailed Obstetric history (For women)"
+  },
+  {
+   "fieldname": "having_children",
+   "fieldtype": "Data",
+   "label": "How many children do you have"
+  },
+  {
+   "fieldname": "please_decribe_the_age_of_the_children",
+   "fieldtype": "Data",
+   "label": "Please decribe the age of the children"
+  },
+  {
+   "default": "No",
+   "fieldname": "fp_methods",
+   "fieldtype": "Select",
+   "label": "Have you adopted any FP methods",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.fp_methods == 'Yes';",
+   "fieldname": "which_method",
+   "fieldtype": "Data",
+   "label": "If yes, Which method have you applied"
+  },
+  {
+   "default": "No",
+   "fieldname": "delivery_blood_transfusion",
+   "fieldtype": "Select",
+   "label": "Did you receive blood transfusion during your delivery",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_ptxc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_wfpc",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "afterdelivery_complication",
+   "fieldtype": "Select",
+   "label": "Did you have any complication after delivery",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.afterdelivery_complication == 'Yes';",
+   "fieldname": "yes_complication",
+   "fieldtype": "Data",
+   "label": "If yes, what was the complication"
+  },
+  {
+   "default": "No",
+   "fieldname": "recently_abortion",
+   "fieldtype": "Select",
+   "label": "Any abortion recently",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "menstrual_bleeding",
+   "fieldtype": "Select",
+   "label": "Irregular menstrual bleeding/menorraghia",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_kvpg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_xfez",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5personal_and_lifestyle_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Personal and Lifestyle History</h5>"
+  },
+  {
+   "fieldname": "regular_diet",
+   "fieldtype": "Data",
+   "label": "What is your regular diet?"
+  },
+  {
+   "default": "No",
+   "fieldname": "toiletin_home",
+   "fieldtype": "Select",
+   "label": "Do you have toilet at your home?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "slippers_regularly",
+   "fieldtype": "Select",
+   "label": "Do you wear slippers regularly when you go out?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "h5laboratory_testh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_previous_lab",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.any_previous_lab == 'Yes';",
+   "fieldname": "please_upload",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:23:31.396462",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Anemia-Adolescents",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

@@ -1,0 +1,817 @@
+{
+ "actions": [],
+ "autoname": "format:LNH{###}",
+ "creation": "2025-10-11 18:21:42.314844",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_tab",
+  "basic_info",
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_rhwj",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "leg_knee_hip_pain",
+  "sever_sweeling_or_redness_of_the_affected_joint",
+  "numbness_or_tingling_of_legs",
+  "weakness_in_the_legs",
+  "any_bowel_or_bladder_dysfunction",
+  "any_abnormal_gait",
+  "any_fever_or_unexplained_weight_loss",
+  "any_history_of_trauma_or_fall",
+  "not_able_to_move_affected_part",
+  "change_in_vital_signs_with_these_pains",
+  "none_leg_knee_hip_pain",
+  "leg_or_knee_or_hip_pain",
+  "section_break_evkf",
+  "check_nuqq",
+  "present_complaints_section",
+  "have_pain_in",
+  "leg",
+  "knee",
+  "hip",
+  "legpain_part",
+  "legpain_symptoms",
+  "swelling_legs",
+  "leg_pain_charactertistice",
+  "other_legpain",
+  "leg_symptoms",
+  "symptom_progressed_leg",
+  "severity_pain_leg",
+  "knee_pain_section",
+  "check_pwti",
+  "which_kneepain",
+  "kneepain_symptoms",
+  "involved_kneepain",
+  "swelling_knee",
+  "knee_pain_characteristics",
+  "other_kneepain",
+  "kneepain_symptom_start",
+  "symptom_progressed_knee",
+  "severity_pain_knee",
+  "section_break_gurf",
+  "column_break_wgyj",
+  "check_hftr",
+  "h5hip_painh5",
+  "hip_paining",
+  "hip_symptoms",
+  "swelling_hip",
+  "pain_characteristics_hip",
+  "pain_other",
+  "symptom_hip",
+  "symptom_progressed_hip",
+  "pain_severity_hip",
+  "section_break_rltt",
+  "check_uydi",
+  "following_symptoms",
+  "fever2",
+  "breathing",
+  "swelling_painful",
+  "redness_painful",
+  "leg_feels",
+  "stiffness",
+  "unable_to_walk",
+  "unable_bear_weight",
+  "movement_limitation",
+  "night_pain",
+  "locking_in_a_specific_position",
+  "groin_pain",
+  "other2",
+  "none",
+  "knee_other",
+  "pain_legknee",
+  "by_movement",
+  "using_stairs",
+  "rest",
+  "other",
+  "none2",
+  "ifother",
+  "section_break_evsg",
+  "past_history",
+  "any_surgery",
+  "scan_report",
+  "accident_history",
+  "bp_sugar",
+  "h5personal_and_lifestyle_historyh5",
+  "gym_frequently",
+  "h5occupation_historyh5",
+  "standing_hours",
+  "lifting_heavy",
+  "stressful_job",
+  "column_break_zecv",
+  "check_ymqq",
+  "h5family_historyh5",
+  "family_issues",
+  "arthritis_history",
+  "physical",
+  "posture_gait",
+  "lab_test",
+  "previous_labreports",
+  "upload_report"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "basic_info",
+   "fieldtype": "Section Break",
+   "label": "Basic Information of the Patient"
+  },
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_rhwj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "leg_knee_hip_pain",
+   "fieldtype": "Check",
+   "label": "Any leg, knee and hip pain not subsiding with pain killer or basic excercises more than 5 days "
+  },
+  {
+   "default": "0",
+   "fieldname": "sever_sweeling_or_redness_of_the_affected_joint",
+   "fieldtype": "Check",
+   "label": "Sever sweeling or redness of the affected joint "
+  },
+  {
+   "default": "0",
+   "fieldname": "numbness_or_tingling_of_legs",
+   "fieldtype": "Check",
+   "label": "Numbness or tingling of legs "
+  },
+  {
+   "default": "0",
+   "fieldname": "weakness_in_the_legs",
+   "fieldtype": "Check",
+   "label": "Weakness in the legs "
+  },
+  {
+   "default": "0",
+   "fieldname": "any_bowel_or_bladder_dysfunction",
+   "fieldtype": "Check",
+   "label": "Any bowel or bladder dysfunction"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_abnormal_gait",
+   "fieldtype": "Check",
+   "label": "Any abnormal gait "
+  },
+  {
+   "default": "0",
+   "fieldname": "any_fever_or_unexplained_weight_loss",
+   "fieldtype": "Check",
+   "label": "Any fever or unexplained weight loss"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_history_of_trauma_or_fall",
+   "fieldtype": "Check",
+   "label": "Any history of trauma or fall "
+  },
+  {
+   "default": "0",
+   "fieldname": "not_able_to_move_affected_part",
+   "fieldtype": "Check",
+   "label": "Not able to move affected part"
+  },
+  {
+   "default": "0",
+   "fieldname": "change_in_vital_signs_with_these_pains",
+   "fieldtype": "Check",
+   "label": "Change in vital signs with these pains "
+  },
+  {
+   "default": "0",
+   "fieldname": "none_leg_knee_hip_pain",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "leg_or_knee_or_hip_pain",
+   "fieldtype": "Select",
+   "label": "Leg or Knee or Hip pain",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_evkf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_nuqq",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "present_complaints_section",
+   "fieldtype": "Heading",
+   "label": "<h4>Present Complaints</h4>"
+  },
+  {
+   "fieldname": "have_pain_in",
+   "fieldtype": "Heading",
+   "label": "<h5>Do you have pain in</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "leg",
+   "fieldtype": "Check",
+   "label": "Leg"
+  },
+  {
+   "default": "0",
+   "fieldname": "knee",
+   "fieldtype": "Check",
+   "label": "Knee"
+  },
+  {
+   "default": "0",
+   "fieldname": "hip",
+   "fieldtype": "Check",
+   "label": "Hip"
+  },
+  {
+   "depends_on": "eval: doc.leg == 1;",
+   "fieldname": "legpain_part",
+   "fieldtype": "Select",
+   "label": "If leg pain, which part of the leg do you feel pain",
+   "options": "Left\nRight"
+  },
+  {
+   "depends_on": "eval: doc.leg == 1;",
+   "fieldname": "legpain_symptoms",
+   "fieldtype": "Data",
+   "label": "Since when have you had this symptom (Leg)"
+  },
+  {
+   "default": "No",
+   "depends_on": "eval: doc.leg == 1;",
+   "fieldname": "swelling_legs",
+   "fieldtype": "Select",
+   "label": "Is there any swelling in the right leg/ Left leg",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.leg == 1;",
+   "fieldname": "leg_pain_charactertistice",
+   "fieldtype": "Select",
+   "label": "Pain Characteristics (Leg)",
+   "options": "Dullaching\nTingling numbness\nSharp shooting\nBurning\nOther"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.leg == 1 || doc.leg_pain_charactertistice == 'Other';",
+   "fieldname": "other_legpain",
+   "fieldtype": "Data",
+   "label": "If other leg pain characteristics, please describe"
+  },
+  {
+   "depends_on": "eval: doc.leg == 1;",
+   "fieldname": "leg_symptoms",
+   "fieldtype": "Select",
+   "label": "How did the symptom start (Leg)",
+   "options": "Sudden (minutes to hours)\nGradual"
+  },
+  {
+   "depends_on": "eval: doc.leg == 1;",
+   "fieldname": "symptom_progressed_leg",
+   "fieldtype": "Select",
+   "label": "How has the symptom progressed (Leg)",
+   "options": "Progressive (Worsening)\nStatic (Not changed)\nWax and wane"
+  },
+  {
+   "depends_on": "eval: doc.leg == 1;",
+   "fieldname": "severity_pain_leg",
+   "fieldtype": "Select",
+   "label": "Severity of the pain (Leg)",
+   "options": "Mild\nModerate\nSevere"
+  },
+  {
+   "depends_on": "eval: doc.knee == 1;",
+   "fieldname": "knee_pain_section",
+   "fieldtype": "Section Break",
+   "label": "Knee Pain"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_pwti",
+   "fieldtype": "Check"
+  },
+  {
+   "depends_on": "eval: doc.knee == 1;",
+   "fieldname": "which_kneepain",
+   "fieldtype": "Select",
+   "label": "If knee pain, which knee is paining",
+   "options": "Left\nRight"
+  },
+  {
+   "depends_on": "eval: doc.knee == 1;",
+   "fieldname": "kneepain_symptoms",
+   "fieldtype": "Data",
+   "label": "Since when have you had this symptom (Knee)"
+  },
+  {
+   "depends_on": "eval: doc.knee == 1;",
+   "fieldname": "involved_kneepain",
+   "fieldtype": "Select",
+   "label": "If the Knee ( Right or left )is involved, which part of the knee is paining",
+   "options": "Front\nBack\nLateral/medial"
+  },
+  {
+   "default": "No",
+   "depends_on": "eval: doc.knee == 1;",
+   "fieldname": "swelling_knee",
+   "fieldtype": "Select",
+   "label": "Is there any swelling in the right knee/left knee",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.knee == 1;",
+   "fieldname": "knee_pain_characteristics",
+   "fieldtype": "Select",
+   "label": "Pain Characteristics (Knee)",
+   "options": "Dullaching\nTingling numbness\nSharp shooting\nBurning\nOther"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.knee == 1 || doc.knee_pain_characteristics == 'Other';",
+   "fieldname": "other_kneepain",
+   "fieldtype": "Data",
+   "label": "If other Knee pain characteristics, please describe"
+  },
+  {
+   "depends_on": "eval: doc.knee == 1;",
+   "fieldname": "kneepain_symptom_start",
+   "fieldtype": "Select",
+   "label": "How did the symptom start (Knee)",
+   "options": "Sudden (minutes to hours)\nGradual"
+  },
+  {
+   "depends_on": "eval: doc.knee == 1;",
+   "fieldname": "symptom_progressed_knee",
+   "fieldtype": "Select",
+   "label": "How has the symptom progressed (Knee)",
+   "options": "Progressive (Worsening)\nStatic (Not changed)\nWax and wane"
+  },
+  {
+   "depends_on": "eval: doc.knee == 1;",
+   "fieldname": "severity_pain_knee",
+   "fieldtype": "Select",
+   "label": "Severity of the pain (Knee)",
+   "options": "Mild\nModerate\nSevere"
+  },
+  {
+   "depends_on": "eval:doc.hip == 1;",
+   "fieldname": "section_break_gurf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_wgyj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_hftr",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5hip_painh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Hip Pain</h5>"
+  },
+  {
+   "depends_on": "eval:doc.hip == 1;",
+   "fieldname": "hip_paining",
+   "fieldtype": "Select",
+   "label": "If hip, which hip is paining"
+  },
+  {
+   "depends_on": "eval:doc.hip == 1;",
+   "fieldname": "hip_symptoms",
+   "fieldtype": "Data",
+   "label": "Since when have you had this symptom (Hip)"
+  },
+  {
+   "default": "No",
+   "depends_on": "eval:doc.hip == 1;",
+   "fieldname": "swelling_hip",
+   "fieldtype": "Select",
+   "label": "Is there any swelling in the right or left hip",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval:doc.hip == 1;",
+   "fieldname": "pain_characteristics_hip",
+   "fieldtype": "Select",
+   "label": "Pain Characteristics (Hip)",
+   "options": "Dullaching\nTingling numbness\nSharp shooting\nBurning\nOther"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.hip == 1 || doc.pain_characteristics_hip == 'Other';",
+   "fieldname": "pain_other",
+   "fieldtype": "Data",
+   "label": "If other hip pain characteristics, please describe"
+  },
+  {
+   "depends_on": "eval:doc.hip == 1;",
+   "fieldname": "symptom_hip",
+   "fieldtype": "Select",
+   "label": "How did the symptom start (Hip)",
+   "options": "Sudden (minutes to hours)\nGradual"
+  },
+  {
+   "depends_on": "eval:doc.hip == 1;",
+   "fieldname": "symptom_progressed_hip",
+   "fieldtype": "Select",
+   "label": "How has the symptom progressed (Hip)",
+   "options": "Progressive (Worsening)\nStatic (Not changed)\nWax and wane"
+  },
+  {
+   "depends_on": "eval:doc.hip == 1;",
+   "fieldname": "pain_severity_hip",
+   "fieldtype": "Select",
+   "label": "Severity of the pain (Hip)",
+   "options": "Mild\nModerate\nSevere"
+  },
+  {
+   "fieldname": "section_break_rltt",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_uydi",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "following_symptoms",
+   "fieldtype": "Heading",
+   "label": "<h5>Do you have the following symptom(s)?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "fever2",
+   "fieldtype": "Check",
+   "label": " Fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "breathing",
+   "fieldtype": "Check",
+   "label": " Difficulty breathing"
+  },
+  {
+   "default": "0",
+   "fieldname": "swelling_painful",
+   "fieldtype": "Check",
+   "label": "Swelling in the painful area"
+  },
+  {
+   "default": "0",
+   "fieldname": "redness_painful",
+   "fieldtype": "Check",
+   "label": "Redness in the painful area"
+  },
+  {
+   "default": "0",
+   "fieldname": "leg_feels",
+   "fieldtype": "Check",
+   "label": "Affected leg feels shorter"
+  },
+  {
+   "default": "0",
+   "fieldname": "stiffness",
+   "fieldtype": "Check",
+   "label": " Stiffness"
+  },
+  {
+   "default": "0",
+   "fieldname": "unable_to_walk",
+   "fieldtype": "Check",
+   "label": "Unable to walk"
+  },
+  {
+   "default": "0",
+   "fieldname": "unable_bear_weight",
+   "fieldtype": "Check",
+   "label": "Unable to bear weight"
+  },
+  {
+   "default": "0",
+   "fieldname": "movement_limitation",
+   "fieldtype": "Check",
+   "label": "Movement Limitation"
+  },
+  {
+   "default": "0",
+   "fieldname": "night_pain",
+   "fieldtype": "Check",
+   "label": "Night pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "locking_in_a_specific_position",
+   "fieldtype": "Check",
+   "label": "Locking in a specific position"
+  },
+  {
+   "default": "0",
+   "fieldname": "groin_pain",
+   "fieldtype": "Check",
+   "label": "Groin pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "other2",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "depends_on": "eval: doc.other2 == 1;",
+   "fieldname": "knee_other",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "fieldname": "pain_legknee",
+   "fieldtype": "Heading",
+   "label": "<h5>Is the pain in your leg/knee/hip made worse by the following(s)?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "by_movement",
+   "fieldtype": "Check",
+   "label": "By movement"
+  },
+  {
+   "default": "0",
+   "fieldname": "using_stairs",
+   "fieldtype": "Check",
+   "label": "Using stairs"
+  },
+  {
+   "default": "0",
+   "fieldname": "rest",
+   "fieldtype": "Check",
+   "label": "Rest"
+  },
+  {
+   "default": "0",
+   "fieldname": "other",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "default": "0",
+   "fieldname": "none2",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "depends_on": "eval: doc.other == 1;",
+   "fieldname": "ifother",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "fieldname": "section_break_evsg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "past_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Past History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_surgery",
+   "fieldtype": "Select",
+   "label": "Any surgery in the past?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "scan_report",
+   "fieldtype": "Select",
+   "label": "Do you have any X-ray /CT scan report?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "accident_history",
+   "fieldtype": "Select",
+   "label": "Any history of accident/fall in the past?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "bp_sugar",
+   "fieldtype": "Select",
+   "label": "Any history of hypertension/ diabetes ",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "h5personal_and_lifestyle_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Personal and Lifestyle History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "gym_frequently",
+   "fieldtype": "Select",
+   "label": "Do you go to gym frequently?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "h5occupation_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Occupation History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "standing_hours",
+   "fieldtype": "Select",
+   "label": "Does your work involve sitting/standing long hours in one position?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "lifting_heavy",
+   "fieldtype": "Select",
+   "label": "Does your work involve bending/or lifting heavy weights?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "stressful_job",
+   "fieldtype": "Select",
+   "label": "Is your work being very stressful?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_zecv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_ymqq",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5family_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Family History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "family_issues",
+   "fieldtype": "Select",
+   "label": "Does your family have similar issue?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "arthritis_history",
+   "fieldtype": "Select",
+   "label": "Any family history of arthritis?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "physical",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical Examination</h5>"
+  },
+  {
+   "fieldname": "posture_gait",
+   "fieldtype": "Data",
+   "label": "Observe the posture/gait?"
+  },
+  {
+   "fieldname": "lab_test",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "previous_labreports",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc. previous_labreports =='Yes';",
+   "fieldname": "upload_report",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload the report"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:21:42.314844",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Leg or Knee or Hip pain",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

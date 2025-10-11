@@ -1,0 +1,886 @@
+{
+ "actions": [],
+ "autoname": "format:CHP{###}",
+ "creation": "2025-10-11 18:27:52.370546",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_qcwb",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "chest_pain_column",
+  "sudden_onset_chest_pain",
+  "none",
+  "chest_pain",
+  "section_break_idcr",
+  "chect_discomfort",
+  "chestpain_part",
+  "restrosternal",
+  "left_sided",
+  "right_sided",
+  "epigastric",
+  "between_the_scapulae",
+  "other",
+  "other_chestpain",
+  "chestpain_symptom",
+  "symptom_start",
+  "very_sudden",
+  "gradual",
+  "intermittent",
+  "symtom_other",
+  "if_gradual",
+  "otherpain_chest",
+  "how_does_thepain",
+  "heavy",
+  "ripping",
+  "sharp_stabbing",
+  "dull_aching",
+  "burning",
+  "other_pain",
+  "chest_ifother",
+  "pain_continue",
+  "few_minutes",
+  "prolonged",
+  "variable",
+  "other_continuepain",
+  "continue_other",
+  "pain_most",
+  "at_night",
+  "in_the_morning",
+  "not_linked",
+  "mostpain_other",
+  "mostpain_ifother",
+  "severity_of_the_pain",
+  "column_break_igza",
+  "check_mhdx",
+  "otherparts_pain",
+  "does_not_move",
+  "pain_radiates_to",
+  "left_arm",
+  "right_arm",
+  "neck",
+  "jaw",
+  "epigastric_abdomen",
+  "left_shoulder",
+  "right_shoulder",
+  "back_left",
+  "back_right",
+  "bodypain_other",
+  "other_painbody",
+  "following_symptoms",
+  "difficulty_breathing",
+  "anxiety",
+  "sweating",
+  "nausea",
+  "vomiting",
+  "palpitations",
+  "fatigue",
+  "fainting",
+  "dizziness",
+  "chestpain_fever",
+  "chestpain_cough",
+  "chestpain_other",
+  "ifother_describe",
+  "following_situation",
+  "movement",
+  "exercise",
+  "emotional_distress",
+  "chestpain_anxiety",
+  "cold",
+  "lying_down_on_the_back",
+  "lying_down_to_the_side",
+  "sitting_up",
+  "some_foods",
+  "chestpain_none",
+  "dontknow_unsure",
+  "chestpain_otherscheck",
+  "otherpain_describe",
+  "section_break_txld",
+  "check_rehf",
+  "getbetter_situation",
+  "rest",
+  "chest_sittingup",
+  "leaning_forward",
+  "medications",
+  "none_situation",
+  "unsure_situation",
+  "situation_other",
+  "please_describeother",
+  "section_break_uivk",
+  "check_uoln",
+  "past_history",
+  "chestpain_bp",
+  "chestpain_heart",
+  "chestpain_diabetes",
+  "chestpain_asthma",
+  "acidity_and_reflux",
+  "h5personal_and_lifestyle_historyh5",
+  "spicy_oily",
+  "food_ontime",
+  "h5laboratory_testh5",
+  "previous_test",
+  "attach_photo"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_qcwb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "fieldname": "chest_pain_column",
+   "fieldtype": "Column Break",
+   "label": "Chest Pain",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "0",
+   "fieldname": "sudden_onset_chest_pain",
+   "fieldtype": "Check",
+   "label": "Sudden onset chest pain with sweating  and breathing difficulty  and giddiness "
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "chest_pain",
+   "fieldtype": "Select",
+   "label": "Chest Pain"
+  },
+  {
+   "fieldname": "section_break_idcr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "No",
+   "fieldname": "chect_discomfort",
+   "fieldtype": "Select",
+   "label": "Do you have Chest Pain or Chest Discomfort",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "chestpain_part",
+   "fieldtype": "Heading",
+   "label": "<h5>Which part of the chest do you feel pain?</h5>",
+   "options": "\n"
+  },
+  {
+   "default": "0",
+   "fieldname": "restrosternal",
+   "fieldtype": "Check",
+   "label": "Retrosternal - Center of the chest"
+  },
+  {
+   "default": "0",
+   "fieldname": "left_sided",
+   "fieldtype": "Check",
+   "label": "Left sided"
+  },
+  {
+   "default": "0",
+   "fieldname": "right_sided",
+   "fieldtype": "Check",
+   "label": "Right Sided"
+  },
+  {
+   "default": "0",
+   "fieldname": "epigastric",
+   "fieldtype": "Check",
+   "label": "Epigastric - Above the abdomen"
+  },
+  {
+   "default": "0",
+   "fieldname": "between_the_scapulae",
+   "fieldtype": "Check",
+   "label": "Between the scapulae"
+  },
+  {
+   "default": "0",
+   "fieldname": "other",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.other == 1;",
+   "fieldname": "other_chestpain",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "fieldname": "chestpain_symptom",
+   "fieldtype": "Data",
+   "label": "Since when have you had this symptom?"
+  },
+  {
+   "fieldname": "symptom_start",
+   "fieldtype": "Heading",
+   "label": "<h5>How did the symptom start?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "very_sudden",
+   "fieldtype": "Check",
+   "label": "Very Sudden"
+  },
+  {
+   "default": "0",
+   "fieldname": "gradual",
+   "fieldtype": "Check",
+   "label": "Gradual"
+  },
+  {
+   "default": "0",
+   "fieldname": "intermittent",
+   "fieldtype": "Check",
+   "label": "Intermittent"
+  },
+  {
+   "default": "0",
+   "fieldname": "symtom_other",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.gradual == 1;",
+   "fieldname": "if_gradual",
+   "fieldtype": "Select",
+   "label": "If Gradual",
+   "options": "\nOver a Few Minutes\nOver Few Hours\nOver Few Days"
+  },
+  {
+   "depends_on": "eval: doc.symtom_other == 1;",
+   "fieldname": "otherpain_chest",
+   "fieldtype": "Data",
+   "label": "If other, describe"
+  },
+  {
+   "fieldname": "how_does_thepain",
+   "fieldtype": "Heading",
+   "label": "<h5>How does the pain feel?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "heavy",
+   "fieldtype": "Check",
+   "label": "Constricting/ Heavy"
+  },
+  {
+   "default": "0",
+   "fieldname": "ripping",
+   "fieldtype": "Check",
+   "label": "Tearing/ Ripping"
+  },
+  {
+   "default": "0",
+   "fieldname": "sharp_stabbing",
+   "fieldtype": "Check",
+   "label": "Sharp/ Stabbing"
+  },
+  {
+   "default": "0",
+   "fieldname": "dull_aching",
+   "fieldtype": "Check",
+   "label": "Dull/ Aching"
+  },
+  {
+   "default": "0",
+   "fieldname": "burning",
+   "fieldtype": "Check",
+   "label": "Burning"
+  },
+  {
+   "default": "0",
+   "fieldname": "other_pain",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval:doc.other_pain == 1\r\n",
+   "fieldname": "chest_ifother",
+   "fieldtype": "Data",
+   "label": "If other, describe"
+  },
+  {
+   "fieldname": "pain_continue",
+   "fieldtype": "Heading",
+   "label": "<h5>How long does the pain continue?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "few_minutes",
+   "fieldtype": "Check",
+   "label": "Few Minutes"
+  },
+  {
+   "default": "0",
+   "fieldname": "prolonged",
+   "fieldtype": "Check",
+   "label": "Prolonged"
+  },
+  {
+   "default": "0",
+   "fieldname": "variable",
+   "fieldtype": "Check",
+   "label": "Variable"
+  },
+  {
+   "default": "0",
+   "fieldname": "other_continuepain",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.other_continuepain == 1",
+   "fieldname": "continue_other",
+   "fieldtype": "Data",
+   "label": "If other, describe"
+  },
+  {
+   "fieldname": "pain_most",
+   "fieldtype": "Heading",
+   "label": "<h5>In a day, when do you feel pain the most?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "at_night",
+   "fieldtype": "Check",
+   "label": "At Night"
+  },
+  {
+   "default": "0",
+   "fieldname": "in_the_morning",
+   "fieldtype": "Check",
+   "label": "In the Morning"
+  },
+  {
+   "default": "0",
+   "fieldname": "not_linked",
+   "fieldtype": "Check",
+   "label": "Not linked to any particular time of day"
+  },
+  {
+   "default": "0",
+   "fieldname": "mostpain_other",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.mostpain_other == 1",
+   "fieldname": "mostpain_ifother",
+   "fieldtype": "Data",
+   "label": "If other, describe"
+  },
+  {
+   "fieldname": "severity_of_the_pain",
+   "fieldtype": "Select",
+   "label": "Severity of the pain",
+   "options": "\nMild (1-3)\nModerate (4-6)\nSevere (7-9)\nVery severe (10)"
+  },
+  {
+   "fieldname": "column_break_igza",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_mhdx",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "otherparts_pain",
+   "fieldtype": "Heading",
+   "label": "<h5>Does this pain go to other part(s) of the body?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "does_not_move",
+   "fieldtype": "Check",
+   "label": "Does not move"
+  },
+  {
+   "default": "0",
+   "fieldname": "pain_radiates_to",
+   "fieldtype": "Check",
+   "label": "Pain Radiates to"
+  },
+  {
+   "default": "0",
+   "fieldname": "left_arm",
+   "fieldtype": "Check",
+   "label": "Left arm"
+  },
+  {
+   "default": "0",
+   "fieldname": "right_arm",
+   "fieldtype": "Check",
+   "label": "Right arm"
+  },
+  {
+   "default": "0",
+   "fieldname": "neck",
+   "fieldtype": "Check",
+   "label": "Neck"
+  },
+  {
+   "default": "0",
+   "fieldname": "jaw",
+   "fieldtype": "Check",
+   "label": "Jaw"
+  },
+  {
+   "default": "0",
+   "fieldname": "epigastric_abdomen",
+   "fieldtype": "Check",
+   "label": "Epigastric - Above the abdomen"
+  },
+  {
+   "default": "0",
+   "fieldname": "left_shoulder",
+   "fieldtype": "Check",
+   "label": "Left shoulder"
+  },
+  {
+   "default": "0",
+   "fieldname": "right_shoulder",
+   "fieldtype": "Check",
+   "label": "Right shoulder"
+  },
+  {
+   "default": "0",
+   "fieldname": "back_left",
+   "fieldtype": "Check",
+   "label": "Back- Left"
+  },
+  {
+   "default": "0",
+   "fieldname": "back_right",
+   "fieldtype": "Check",
+   "label": "Back- right"
+  },
+  {
+   "default": "0",
+   "fieldname": "bodypain_other",
+   "fieldtype": "Check",
+   "label": "Others"
+  },
+  {
+   "depends_on": "eval: doc.bodypain_other == 1;",
+   "fieldname": "other_painbody",
+   "fieldtype": "Data",
+   "label": "Other [describe]"
+  },
+  {
+   "fieldname": "following_symptoms",
+   "fieldtype": "Heading",
+   "label": "<h5>Do you have the following symptom(s)?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "difficulty_breathing",
+   "fieldtype": "Check",
+   "label": "Difficulty breathing"
+  },
+  {
+   "default": "0",
+   "fieldname": "anxiety",
+   "fieldtype": "Check",
+   "label": "Anxiety"
+  },
+  {
+   "default": "0",
+   "fieldname": "sweating",
+   "fieldtype": "Check",
+   "label": "Sweating"
+  },
+  {
+   "default": "0",
+   "fieldname": "nausea",
+   "fieldtype": "Check",
+   "label": "Nausea"
+  },
+  {
+   "default": "0",
+   "fieldname": "vomiting",
+   "fieldtype": "Check",
+   "label": "Vomiting"
+  },
+  {
+   "default": "0",
+   "fieldname": "palpitations",
+   "fieldtype": "Check",
+   "label": "Palpitations"
+  },
+  {
+   "default": "0",
+   "fieldname": "fatigue",
+   "fieldtype": "Check",
+   "label": "Fatigue"
+  },
+  {
+   "default": "0",
+   "fieldname": "fainting",
+   "fieldtype": "Check",
+   "label": "Fainting/Loss of consciousness"
+  },
+  {
+   "default": "0",
+   "fieldname": "dizziness",
+   "fieldtype": "Check",
+   "label": "Dizziness"
+  },
+  {
+   "default": "0",
+   "fieldname": "chestpain_fever",
+   "fieldtype": "Check",
+   "label": "Fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "chestpain_cough",
+   "fieldtype": "Check",
+   "label": "Cough"
+  },
+  {
+   "default": "0",
+   "fieldname": "chestpain_other",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.chestpain_other == 1",
+   "fieldname": "ifother_describe",
+   "fieldtype": "Data",
+   "label": "If other, describe"
+  },
+  {
+   "fieldname": "following_situation",
+   "fieldtype": "Heading",
+   "label": "<h5>Does the symptom get worse with the following situation(s)?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "movement",
+   "fieldtype": "Check",
+   "label": "Movement"
+  },
+  {
+   "default": "0",
+   "fieldname": "exercise",
+   "fieldtype": "Check",
+   "label": "Exercise"
+  },
+  {
+   "default": "0",
+   "fieldname": "emotional_distress",
+   "fieldtype": "Check",
+   "label": "Emotional distress"
+  },
+  {
+   "default": "0",
+   "fieldname": "chestpain_anxiety",
+   "fieldtype": "Check",
+   "label": "Anxiety"
+  },
+  {
+   "default": "0",
+   "fieldname": "cold",
+   "fieldtype": "Check",
+   "label": "Cold"
+  },
+  {
+   "default": "0",
+   "fieldname": "lying_down_on_the_back",
+   "fieldtype": "Check",
+   "label": "Lying down on the back"
+  },
+  {
+   "default": "0",
+   "fieldname": "lying_down_to_the_side",
+   "fieldtype": "Check",
+   "label": "Lying down to the side"
+  },
+  {
+   "default": "0",
+   "fieldname": "sitting_up",
+   "fieldtype": "Check",
+   "label": "Sitting up"
+  },
+  {
+   "default": "0",
+   "fieldname": "some_foods",
+   "fieldtype": "Check",
+   "label": "Some foods"
+  },
+  {
+   "default": "0",
+   "fieldname": "chestpain_none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "default": "0",
+   "fieldname": "dontknow_unsure",
+   "fieldtype": "Check",
+   "label": "Don't know / Unsure"
+  },
+  {
+   "default": "0",
+   "fieldname": "chestpain_otherscheck",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.chestpain_otherscheck == 1",
+   "fieldname": "otherpain_describe",
+   "fieldtype": "Data",
+   "label": "If other, describe"
+  },
+  {
+   "fieldname": "section_break_txld",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_rehf",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "getbetter_situation",
+   "fieldtype": "Heading",
+   "label": "<h5>Does the symptom get better with the following situation(s)?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "rest",
+   "fieldtype": "Check",
+   "label": "Rest"
+  },
+  {
+   "default": "0",
+   "fieldname": "chest_sittingup",
+   "fieldtype": "Check",
+   "label": "Sitting up"
+  },
+  {
+   "default": "0",
+   "fieldname": "leaning_forward",
+   "fieldtype": "Check",
+   "label": "Leaning forward"
+  },
+  {
+   "default": "0",
+   "fieldname": "medications",
+   "fieldtype": "Check",
+   "label": "Medications"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_situation",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "default": "0",
+   "fieldname": "unsure_situation",
+   "fieldtype": "Check",
+   "label": "Don't know/Unsure"
+  },
+  {
+   "default": "0",
+   "fieldname": "situation_other",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.situation_other == 1",
+   "fieldname": "please_describeother",
+   "fieldtype": "Data",
+   "label": "If other, describe"
+  },
+  {
+   "fieldname": "section_break_uivk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_uoln",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "past_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Past History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "chestpain_bp",
+   "fieldtype": "Select",
+   "label": "Any History of Hypertension",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "chestpain_heart",
+   "fieldtype": "Select",
+   "label": "Any History of heart diseases",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "chestpain_diabetes",
+   "fieldtype": "Select",
+   "label": "Any History of Diabetes",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "chestpain_asthma",
+   "fieldtype": "Select",
+   "label": "Any History of Asthma",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "acidity_and_reflux",
+   "fieldtype": "Select",
+   "label": "Any history of acidity and reflux in the past",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "h5personal_and_lifestyle_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Personal and Lifestyle History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "spicy_oily",
+   "fieldtype": "Select",
+   "label": "Do you eat very spicy food/Oily food",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "food_ontime",
+   "fieldtype": "Select",
+   "label": "Do you take your food on time?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "h5laboratory_testh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "previous_test",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.previous_test == 'Yes';",
+   "fieldname": "attach_photo",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload the report"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:27:52.370546",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Chest Pain",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

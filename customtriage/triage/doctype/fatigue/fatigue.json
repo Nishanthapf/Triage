@@ -1,0 +1,491 @@
+{
+ "actions": [],
+ "autoname": "format:FTG{###}",
+ "creation": "2025-10-11 18:19:55.084232",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_dane",
+  "community_name",
+  "date",
+  "created_by",
+  "present_chief_complaints_section",
+  "check_btjb",
+  "h5present_chief_complaintsh5",
+  "since_when_have_you_had_this_symptom",
+  "in_a_day_when_do_you_feel_the_symptom_the_most",
+  "other_fatigue",
+  "customary_meal",
+  "associated_symptoms_section",
+  "do_you_have_the_following_symptoms_column",
+  "fever",
+  "chills",
+  "night_sweats",
+  "diarrhea",
+  "vomiting",
+  "breathlessness_on_exertion",
+  "weight_change_kg",
+  "none",
+  "if_weight_change",
+  "since_when",
+  "do_you_have_jaundice",
+  "day_time_sleepiness",
+  "column_break_uidm",
+  "check_oxka",
+  "do_you_have_frequent_nose_bleeding",
+  "gums_bleed",
+  "have_you_vomited_blood_anytime",
+  "have_you_noticed_blood_in_your_stool",
+  "is_the_color_of_your_stool_black",
+  "any_difficulty_or_burning_while_passing_urine",
+  "any_tooth_extractions",
+  "past_history_section",
+  "any_surgerytrauma_in_the_past",
+  "any_blood_transfusion_in_the_past",
+  "have_you_been_diagnosed_with_cancer",
+  "any_history_of_hypertension",
+  "column_break_eolb",
+  "check_nzzr",
+  "any_history_of_heart_diseases",
+  "any_history_of_diabetes",
+  "any_history_of_thyroid_issues",
+  "any_history_of_lung_disease",
+  "personal_and_lifestyle_history_section",
+  "any_history_of_addiction",
+  "excessive_bleeding_after_delivery",
+  "column_break_ygtw",
+  "check_hrsx",
+  "are_you_breastfeeding_your_child_now",
+  "regularly_fasting",
+  "is_your_work_involves_night_shift",
+  "lab_test_section",
+  "previous_lab_reports",
+  "column_break_veid",
+  "check_ixcj",
+  "if_yes_please_upload"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_dane",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "present_chief_complaints_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_btjb",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5present_chief_complaintsh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Present Chief complaints</h5>"
+  },
+  {
+   "fieldname": "since_when_have_you_had_this_symptom",
+   "fieldtype": "Data",
+   "label": "  Since when have you had this symptom?"
+  },
+  {
+   "fieldname": "in_a_day_when_do_you_feel_the_symptom_the_most",
+   "fieldtype": "Select",
+   "label": "In a day when do you feel the symptom the most?",
+   "options": "All day\nMorning\nEvening\nNight\nOther"
+  },
+  {
+   "depends_on": "eval:doc.in_a_day_when_do_you_feel_the_symptom_the_most == 'Other';",
+   "fieldname": "other_fatigue",
+   "fieldtype": "Data",
+   "label": "Other (Describe)"
+  },
+  {
+   "depends_on": "eval:doc.in_a_day_when_do_you_feel_the_symptom_the_most==\"Other(Describe)\";",
+   "fieldname": "customary_meal",
+   "fieldtype": "Data",
+   "label": "Customary meal"
+  },
+  {
+   "fieldname": "associated_symptoms_section",
+   "fieldtype": "Section Break",
+   "label": "Associated symptoms"
+  },
+  {
+   "fieldname": "do_you_have_the_following_symptoms_column",
+   "fieldtype": "Column Break",
+   "label": "Do you have the following symptom(s)?"
+  },
+  {
+   "default": "0",
+   "fieldname": "fever",
+   "fieldtype": "Check",
+   "label": "Fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "chills",
+   "fieldtype": "Check",
+   "label": "Chills"
+  },
+  {
+   "default": "0",
+   "fieldname": "night_sweats",
+   "fieldtype": "Check",
+   "label": "Night sweats"
+  },
+  {
+   "default": "0",
+   "fieldname": "diarrhea",
+   "fieldtype": "Check",
+   "label": "Diarrhea"
+  },
+  {
+   "default": "0",
+   "fieldname": "vomiting",
+   "fieldtype": "Check",
+   "label": "Vomiting"
+  },
+  {
+   "default": "0",
+   "fieldname": "breathlessness_on_exertion",
+   "fieldtype": "Check",
+   "label": "Breathlessness on exertion"
+  },
+  {
+   "default": "0",
+   "fieldname": "weight_change_kg",
+   "fieldtype": "Check",
+   "label": "Weight change (kg)"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "depends_on": "eval:doc.weight_change_kg==1;",
+   "fieldname": "if_weight_change",
+   "fieldtype": "Select",
+   "label": "If weight change?",
+   "options": "Weight gain\nWeight loss"
+  },
+  {
+   "depends_on": "eval:doc.weight_change_kg==1;",
+   "fieldname": "since_when",
+   "fieldtype": "Date",
+   "label": "since when"
+  },
+  {
+   "default": "No",
+   "fieldname": "do_you_have_jaundice",
+   "fieldtype": "Select",
+   "label": "Do you have Jaundice",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "day_time_sleepiness",
+   "fieldtype": "Select",
+   "label": "Day time sleepiness",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_uidm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_oxka",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "do_you_have_frequent_nose_bleeding",
+   "fieldtype": "Select",
+   "label": "Do you have frequent nose bleeding",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "gums_bleed",
+   "fieldtype": "Select",
+   "label": "Do your gums bleed, when you brush your teeth",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "have_you_vomited_blood_anytime",
+   "fieldtype": "Select",
+   "label": "Have you vomited blood anytime",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "have_you_noticed_blood_in_your_stool",
+   "fieldtype": "Select",
+   "label": "Have you noticed blood in your stool",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "is_the_color_of_your_stool_black",
+   "fieldtype": "Select",
+   "label": "Is the color of your stool black",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_difficulty_or_burning_while_passing_urine",
+   "fieldtype": "Select",
+   "label": "Any difficulty or burning while passing urine",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_tooth_extractions",
+   "fieldtype": "Select",
+   "label": "Any tooth extractions",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "past_history_section",
+   "fieldtype": "Section Break",
+   "label": "Past history"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_surgerytrauma_in_the_past",
+   "fieldtype": "Select",
+   "label": "Any surgery/Trauma in the past",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_blood_transfusion_in_the_past",
+   "fieldtype": "Select",
+   "label": "Any blood transfusion in the past",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "have_you_been_diagnosed_with_cancer",
+   "fieldtype": "Select",
+   "label": "Have you been diagnosed with cancer",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_hypertension",
+   "fieldtype": "Select",
+   "label": "Any History of Hypertension",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_eolb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_nzzr",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_heart_diseases",
+   "fieldtype": "Select",
+   "label": "Any History of Heart diseases",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_diabetes",
+   "fieldtype": "Select",
+   "label": "Any History of Diabetes",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_thyroid_issues",
+   "fieldtype": "Select",
+   "label": "Any history of Thyroid issues",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_lung_disease",
+   "fieldtype": "Select",
+   "label": "Any history of lung disease",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "personal_and_lifestyle_history_section",
+   "fieldtype": "Section Break",
+   "label": "Personal lifestyle and Occupationhistory"
+  },
+  {
+   "fieldname": "any_history_of_addiction",
+   "fieldtype": "Heading",
+   "label": "<h5>Any history of addiction</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "excessive_bleeding_after_delivery",
+   "fieldtype": "Select",
+   "label": "Did you have excessive bleeding after delivery (If the delivery have occurred with the 6 months)",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_ygtw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_hrsx",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "are_you_breastfeeding_your_child_now",
+   "fieldtype": "Select",
+   "label": "Are you breastfeeding your child now",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "regularly_fasting",
+   "fieldtype": "Select",
+   "label": "Are you fasting regularly",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "is_your_work_involves_night_shift",
+   "fieldtype": "Select",
+   "label": "Is your work involves night shift",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "lab_test_section",
+   "fieldtype": "Section Break",
+   "label": "Lab test"
+  },
+  {
+   "default": "No",
+   "fieldname": "previous_lab_reports",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_veid",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_ixcj",
+   "fieldtype": "Check"
+  },
+  {
+   "depends_on": "eval:doc.previous_lab_reports==\"Yes\";",
+   "fieldname": "if_yes_please_upload",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:19:55.084232",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Fatigue",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

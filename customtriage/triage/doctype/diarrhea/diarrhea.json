@@ -1,0 +1,423 @@
+{
+ "actions": [],
+ "autoname": "format:DIA{###}",
+ "creation": "2025-09-26 15:15:04.700695",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_tab",
+  "basic_info",
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_rhwj",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "column_break_rlgl",
+  "child",
+  "severly_dehydrated",
+  "any_child_with_diarrhoea",
+  "fever_with_diarrhoea",
+  "none_child",
+  "diarrhea",
+  "column_break_lecg",
+  "adult",
+  "severe_dehydration",
+  "diarrhoea_vomiting",
+  "blood_in_stools",
+  "foul_smelling_diarrhoea",
+  "severe_abdominal_pain_with_diarrhoea",
+  "feeding_better_ors",
+  "diarrhoea_fever",
+  "none_diarrhea",
+  "section_break_dkpy",
+  "present_complaints_column",
+  "suffering_diarrhea",
+  "since_howlong",
+  "stool_type",
+  "times_aday",
+  "food_outside",
+  "yes_outsidefood",
+  "what_outsidefood",
+  "travel_recently",
+  "diarrhea_episodes",
+  "column_break_zecv",
+  "check_zpwe",
+  "following_complaints",
+  "vomiting",
+  "fever",
+  "abdominal_pain_with_diarrhea",
+  "none",
+  "pain_bowl",
+  "h5past_historyh5",
+  "recurrent_diarrhea",
+  "section_break_tzom",
+  "physical_examination",
+  "check_jspw",
+  "dehydration_degree",
+  "h5laboratory_testh5",
+  "bloodprevious",
+  "report_upload"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "basic_info",
+   "fieldtype": "Section Break",
+   "label": "Basic Information of the Patient"
+  },
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_rhwj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "depends_on": "eval:doc.age>=5;",
+   "fieldname": "column_break_rlgl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "child",
+   "fieldtype": "Heading",
+   "label": "Child"
+  },
+  {
+   "default": "0",
+   "fieldname": "severly_dehydrated",
+   "fieldtype": "Check",
+   "label": "If the child is severly dehydrated/drowsy"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_child_with_diarrhoea",
+   "fieldtype": "Check",
+   "label": "Any child with diarrhoea "
+  },
+  {
+   "default": "0",
+   "fieldname": "fever_with_diarrhoea",
+   "fieldtype": "Check",
+   "label": "Fever with diarrhoea"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_child",
+   "fieldtype": "Check",
+   "label": "None "
+  },
+  {
+   "default": "No",
+   "fieldname": "diarrhea",
+   "fieldtype": "Select",
+   "label": "Diarrhea",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval:doc.age<=5;",
+   "fieldname": "column_break_lecg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "adult",
+   "fieldtype": "Heading",
+   "label": "Adult "
+  },
+  {
+   "default": "0",
+   "fieldname": "severe_dehydration",
+   "fieldtype": "Check",
+   "label": "If severe dehydration and drowsiness"
+  },
+  {
+   "default": "0",
+   "fieldname": "diarrhoea_vomiting",
+   "fieldtype": "Check",
+   "label": "Diarrhoea associated with vomiting "
+  },
+  {
+   "default": "0",
+   "fieldname": "blood_in_stools",
+   "fieldtype": "Check",
+   "label": "Blood in stools"
+  },
+  {
+   "default": "0",
+   "fieldname": "foul_smelling_diarrhoea",
+   "fieldtype": "Check",
+   "label": "Foul smelling diarrhoea"
+  },
+  {
+   "default": "0",
+   "fieldname": "severe_abdominal_pain_with_diarrhoea",
+   "fieldtype": "Check",
+   "label": "Severe abdominal pain with diarrhoea"
+  },
+  {
+   "default": "0",
+   "fieldname": "feeding_better_ors",
+   "fieldtype": "Check",
+   "label": "If not feeling better with ORS and diet control for more than 2 days"
+  },
+  {
+   "default": "0",
+   "fieldname": "diarrhoea_fever",
+   "fieldtype": "Check",
+   "label": "Fever with diarrhoea"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_diarrhea",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "section_break_dkpy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "present_complaints_column",
+   "fieldtype": "Column Break",
+   "label": "Present Complaints"
+  },
+  {
+   "default": "No",
+   "fieldname": "suffering_diarrhea",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Are you suffering from diarrhea",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "since_howlong",
+   "fieldtype": "Data",
+   "label": "Since, how long?"
+  },
+  {
+   "fieldname": "stool_type",
+   "fieldtype": "Select",
+   "label": "Type of Stool?",
+   "options": "Watery\nMucus\nBloody"
+  },
+  {
+   "fieldname": "times_aday",
+   "fieldtype": "Data",
+   "label": "How many times a day?"
+  },
+  {
+   "default": "No",
+   "fieldname": "food_outside",
+   "fieldtype": "Select",
+   "label": "Did you take any food outside?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.food_outside == 'Yes';",
+   "fieldname": "yes_outsidefood",
+   "fieldtype": "Data",
+   "label": "If yes, when did you have"
+  },
+  {
+   "depends_on": "eval: doc.food_outside == 'Yes';",
+   "fieldname": "what_outsidefood",
+   "fieldtype": "Data",
+   "label": "what did you have"
+  },
+  {
+   "default": "No",
+   "fieldname": "travel_recently",
+   "fieldtype": "Select",
+   "label": "Did you travel recently?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "diarrhea_episodes",
+   "fieldtype": "Select",
+   "label": "Anyone else in the family had episodes of Diarrhea in the last one week?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_zecv",
+   "fieldtype": "Column Break",
+   "label": "Associated Complaints"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_zpwe",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "following_complaints",
+   "fieldtype": "Heading",
+   "label": "<h5>Do you have the following complaints?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "vomiting",
+   "fieldtype": "Check",
+   "label": "Vomiting"
+  },
+  {
+   "default": "0",
+   "fieldname": "fever",
+   "fieldtype": "Check",
+   "label": "Fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "abdominal_pain_with_diarrhea",
+   "fieldtype": "Check",
+   "label": "Abdominal Pain with Diarrhea"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "pain_bowl",
+   "fieldtype": "Select",
+   "label": "Is the abdominal pain associated with bowel movements?",
+   "options": "No association with bowel movements\nPain occurs before bowel movement\nPain occurs after bowel movement\nNone"
+  },
+  {
+   "fieldname": "h5past_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Past History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "recurrent_diarrhea",
+   "fieldtype": "Select",
+   "label": "Did you have recurrent diarrhea in the past?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_tzom",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "physical_examination",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical Examination</h5>"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_jspw",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "dehydration_degree",
+   "fieldtype": "Select",
+   "label": "Degree of Dehydration?",
+   "options": "Mild\nModerate\nSevere"
+  },
+  {
+   "fieldname": "h5laboratory_testh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "bloodprevious",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.bloodprevious == 'Yes';",
+   "fieldname": "report_upload",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload the report"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-26 15:18:01.678716",
+ "modified_by": "tech4socialsector@azimpremjifoundation.org",
+ "module": "Triage",
+ "name": "Diarrhea",
+ "naming_rule": "Expression",
+ "owner": "tech4socialsector@azimpremjifoundation.org",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

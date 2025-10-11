@@ -1,0 +1,649 @@
+{
+ "actions": [],
+ "autoname": "format:PNC{###}",
+ "creation": "2025-10-11 18:25:20.764671",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_dane",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "red_flags_mother",
+  "mother",
+  "breathlessness",
+  "mental_issues",
+  "pain_breast",
+  "none_mother",
+  "postnatal_care",
+  "red_flags_child",
+  "child",
+  "child_feeding_is_reduced",
+  "child_is_drowsy",
+  "respiratory_rate_is_more_than__60_beats_per_minute",
+  "chest_indrawing",
+  "abdominal_distension",
+  "jaundice",
+  "child_not_passing_urine_and_stool",
+  "fever_more_than_normal",
+  "cough_or_cold",
+  "none",
+  "section_break_opoc",
+  "present_history",
+  "delivery_date",
+  "delivery_place",
+  "delivery_mode",
+  "no_of_birth",
+  "baby_gender",
+  "gender_of_the_baby",
+  "delivery_hospital",
+  "delivery_complication",
+  "yes_complication",
+  "after_complication",
+  "please_specify",
+  "bleeding",
+  "high_fever_with_abdominal_pain",
+  "breathing_difficulty",
+  "foul_smelling",
+  "any_pain_in_the_breast",
+  "headache",
+  "inability_to_feed_baby",
+  "swelling_of_legs_with_pain",
+  "other",
+  "pnc_other",
+  "column_break_mxmd",
+  "check_wugd",
+  "baby_birth_weight",
+  "birth_weight__of_the_baby",
+  "baby_condition",
+  "if_sick",
+  "where_treatment",
+  "breastfeed_baby",
+  "no_reason",
+  "pregnancy_issue",
+  "family_planning",
+  "no_familyplanning",
+  "specific_vaccination",
+  "if_no_please_refer",
+  "ifa_calcium",
+  "pain_killer",
+  "prescription",
+  "section_break_fbke",
+  "check_fddd",
+  "h5past_historyh5",
+  "hypertension",
+  "heart_diseases",
+  "diabetes",
+  "thyroid_issues",
+  "h5personal_and_lifestyle_historyh5",
+  "describe_daily_diet",
+  "section_break_kvpg",
+  "check_qzoy",
+  "h5physical_examinationh5",
+  "breast_examination",
+  "abdomen_examination",
+  "episiotomy_assesment",
+  "h5laboratory_testh5",
+  "any_previous_lab",
+  "please_upload"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_dane",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "fieldname": "red_flags_mother",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mother",
+   "fieldtype": "Heading",
+   "label": "Mother"
+  },
+  {
+   "default": "0",
+   "fieldname": "breathlessness",
+   "fieldtype": "Check",
+   "label": "Breathlessness/Swelling of legs/foul smelling discharge/sever abdominal pain/passing clots PV"
+  },
+  {
+   "default": "0",
+   "fieldname": "mental_issues",
+   "fieldtype": "Check",
+   "label": "Mental issues such as crying easily/irritable/mood swings/not feeding the baby"
+  },
+  {
+   "default": "0",
+   "fieldname": "pain_breast",
+   "fieldtype": "Check",
+   "label": "Pain in the breast while feeding  or cracked/sore nipple"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_mother",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "postnatal_care",
+   "fieldtype": "Select",
+   "label": "Postnatal Care",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "red_flags_child",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "child",
+   "fieldtype": "Heading",
+   "label": "Child"
+  },
+  {
+   "default": "0",
+   "fieldname": "child_feeding_is_reduced",
+   "fieldtype": "Check",
+   "label": "Child feeding is reduced"
+  },
+  {
+   "default": "0",
+   "fieldname": "child_is_drowsy",
+   "fieldtype": "Check",
+   "label": "Child is drowsy"
+  },
+  {
+   "default": "0",
+   "fieldname": "respiratory_rate_is_more_than__60_beats_per_minute",
+   "fieldtype": "Check",
+   "label": "Respiratory rate is more than > 60 beats per minute"
+  },
+  {
+   "default": "0",
+   "fieldname": "chest_indrawing",
+   "fieldtype": "Check",
+   "label": "Chest indrawing "
+  },
+  {
+   "default": "0",
+   "fieldname": "abdominal_distension",
+   "fieldtype": "Check",
+   "label": "Abdominal distension"
+  },
+  {
+   "default": "0",
+   "fieldname": "jaundice",
+   "fieldtype": "Check",
+   "label": "Jaundice"
+  },
+  {
+   "default": "0",
+   "fieldname": "child_not_passing_urine_and_stool",
+   "fieldtype": "Check",
+   "label": "Child not passing urine and stool"
+  },
+  {
+   "default": "0",
+   "fieldname": "fever_more_than_normal",
+   "fieldtype": "Check",
+   "label": "Fever more than normal "
+  },
+  {
+   "default": "0",
+   "fieldname": "cough_or_cold",
+   "fieldtype": "Check",
+   "label": "Cough or cold "
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "section_break_opoc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "present_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Present History</h5>"
+  },
+  {
+   "fieldname": "delivery_date",
+   "fieldtype": "Select",
+   "label": "Date of Delivery?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "delivery_place",
+   "fieldtype": "Select",
+   "label": "Place of Delivery?",
+   "options": "\nHospital\nHome\nEnroute"
+  },
+  {
+   "fieldname": "delivery_mode",
+   "fieldtype": "Select",
+   "label": "Mode of delivery?",
+   "options": "\nNormal\nC-section\nInstrumental"
+  },
+  {
+   "fieldname": "no_of_birth",
+   "fieldtype": "Int",
+   "label": "No.Of.Birth",
+   "options": "1\n2"
+  },
+  {
+   "fieldname": "baby_gender",
+   "fieldtype": "Select",
+   "label": "Gender of the II baby?",
+   "options": "\nMale\nFemale"
+  },
+  {
+   "fieldname": "gender_of_the_baby",
+   "fieldtype": "Select",
+   "label": "Gender of the baby?",
+   "options": "\nMale\nFemale"
+  },
+  {
+   "fieldname": "delivery_hospital",
+   "fieldtype": "Data",
+   "label": "How long did you stay in hospital after delivery?"
+  },
+  {
+   "default": "No",
+   "fieldname": "delivery_complication",
+   "fieldtype": "Select",
+   "label": "Any complication during the delivery ?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "yes_complication",
+   "fieldtype": "Data",
+   "label": "If yes please specify"
+  },
+  {
+   "default": "No",
+   "fieldname": "after_complication",
+   "fieldtype": "Select",
+   "label": "Any complication after the delivery?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.after_complication == 'Yes';",
+   "fieldname": "please_specify",
+   "fieldtype": "Heading",
+   "label": "<h5>If yes, please specify?</h5>"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.after_complication == 'Yes';",
+   "fieldname": "bleeding",
+   "fieldtype": "Check",
+   "label": "Bleeding"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.after_complication == 'Yes';",
+   "fieldname": "high_fever_with_abdominal_pain",
+   "fieldtype": "Check",
+   "label": "High fever with abdominal pain"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.after_complication == 'Yes';",
+   "fieldname": "breathing_difficulty",
+   "fieldtype": "Check",
+   "label": "Breathing difficulty"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.after_complication == 'Yes';",
+   "fieldname": "foul_smelling",
+   "fieldtype": "Check",
+   "label": "Foul smelling discharge-PV"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.after_complication == 'Yes';",
+   "fieldname": "any_pain_in_the_breast",
+   "fieldtype": "Check",
+   "label": "Any pain in the breast"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.after_complication == 'Yes';",
+   "fieldname": "headache",
+   "fieldtype": "Check",
+   "label": "Headache"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.after_complication == 'Yes';",
+   "fieldname": "inability_to_feed_baby",
+   "fieldtype": "Check",
+   "label": "Inability to feed baby"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.after_complication == 'Yes';",
+   "fieldname": "swelling_of_legs_with_pain",
+   "fieldtype": "Check",
+   "label": "Swelling of legs with pain"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.after_complication == 'Yes';",
+   "fieldname": "other",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "default": "No",
+   "depends_on": "eval: doc.after_complication == 'Yes' || doc.other == 1;",
+   "fieldname": "pnc_other",
+   "fieldtype": "Select",
+   "label": "If other, please describe",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "column_break_mxmd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_wugd",
+   "fieldtype": "Check"
+  },
+  {
+   "depends_on": "eval:doc.no_of_birth == \"0\" || doc.no_of_birth == \"1\"\r\n",
+   "fieldname": "baby_birth_weight",
+   "fieldtype": "Data",
+   "label": "Birth weight of the baby?"
+  },
+  {
+   "fieldname": "birth_weight__of_the_baby",
+   "fieldtype": "Data",
+   "label": "Birth weight  of the II baby?"
+  },
+  {
+   "fieldname": "baby_condition",
+   "fieldtype": "Select",
+   "label": "Condition of the baby?",
+   "options": "\nHealthy\nSick"
+  },
+  {
+   "depends_on": "eval: doc.baby_condition == 'Sick';",
+   "fieldname": "if_sick",
+   "fieldtype": "Data",
+   "label": "If Sick, What happened"
+  },
+  {
+   "fieldname": "where_treatment",
+   "fieldtype": "Data",
+   "label": "Where did you seek treatment"
+  },
+  {
+   "default": "No",
+   "fieldname": "breastfeed_baby",
+   "fieldtype": "Select",
+   "label": "Did you breastfeed your baby soon after delivery?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.breastfeed_baby == 'No';",
+   "fieldname": "no_reason",
+   "fieldtype": "Data",
+   "label": "If No, Please give reasons"
+  },
+  {
+   "default": "No",
+   "fieldname": "pregnancy_issue",
+   "fieldtype": "Select",
+   "label": "Did you have Hypertension/Diabetes/Thyroid issues during the pregnancy?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "family_planning",
+   "fieldtype": "Select",
+   "label": "Have you adopted any family planning?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.family_planning == 'No';",
+   "fieldname": "no_familyplanning",
+   "fieldtype": "Data",
+   "label": "If no, please provide awareness on the family planning"
+  },
+  {
+   "default": "No",
+   "fieldname": "specific_vaccination",
+   "fieldtype": "Select",
+   "label": "Did the baby receive age specific vaccination?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.specific_vaccination == 'No';",
+   "fieldname": "if_no_please_refer",
+   "fieldtype": "Data",
+   "label": "If no, please refer"
+  },
+  {
+   "default": "No",
+   "fieldname": "ifa_calcium",
+   "fieldtype": "Select",
+   "label": "Are you taking IFA/Calcium?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "pain_killer",
+   "fieldtype": "Select",
+   "label": "Are you taking any pain killers from outside?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "prescription",
+   "fieldtype": "Attach",
+   "label": "If Yes, check the prescription and upload it"
+  },
+  {
+   "fieldname": "section_break_fbke",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_fddd",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5past_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Past History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "hypertension",
+   "fieldtype": "Select",
+   "label": "Any History of Hypertension",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "heart_diseases",
+   "fieldtype": "Select",
+   "label": "Any History of Heart diseases",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "diabetes",
+   "fieldtype": "Select",
+   "label": "Any History of Diabetes",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "thyroid_issues",
+   "fieldtype": "Select",
+   "label": "Any history of Thyroid issues",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "h5personal_and_lifestyle_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Personal and Lifestyle History</h5>"
+  },
+  {
+   "fieldname": "describe_daily_diet",
+   "fieldtype": "Data",
+   "label": "Describe your daily diet?"
+  },
+  {
+   "fieldname": "section_break_kvpg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_qzoy",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5physical_examinationh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical Examination</h5>"
+  },
+  {
+   "fieldname": "breast_examination",
+   "fieldtype": "Data",
+   "label": "Breast Examination?"
+  },
+  {
+   "fieldname": "abdomen_examination",
+   "fieldtype": "Data",
+   "label": "Abdomen Examination?"
+  },
+  {
+   "fieldname": "episiotomy_assesment",
+   "fieldtype": "Data",
+   "label": "Episiotomy Assesment"
+  },
+  {
+   "fieldname": "h5laboratory_testh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_previous_lab",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.any_previous_lab == 'Yes';",
+   "fieldname": "please_upload",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:25:20.764671",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Postnatal Care",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

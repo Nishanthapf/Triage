@@ -1,0 +1,678 @@
+{
+ "actions": [],
+ "autoname": "format:FAP{###}",
+ "creation": "2025-10-11 18:23:01.232787",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_tab",
+  "basic_info",
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_rhwj",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "foot_ankle_pain_not_subsiding",
+  "sever_swelling",
+  "any_abnormal_gait",
+  "any_fever_or_unexplained_weight_loss",
+  "any_history_of_trauma_or_fall",
+  "not_able_to_move_affected_part",
+  "change_in_vital_signs_with_these_pains",
+  "none_foot_ankle_pain",
+  "foot_and_ankle_pain",
+  "present_complaints_section",
+  "check_vtwa",
+  "have_pain_in",
+  "ankle_pain",
+  "swelling_ankle",
+  "ankle_symptoms",
+  "pain_characteristics_ankle",
+  "other_anklepain",
+  "symptom_start_ankle",
+  "symptom_progressed_ankle",
+  "pain_severity_ankle",
+  "section_break_dkpy",
+  "column_break_nfcr",
+  "check_jovb",
+  "foot_pain",
+  "foot_swelling",
+  "footpain_symptoms",
+  "foot_pain_charcteristics",
+  "pain_other",
+  "how_did_the_symptom_start_foot",
+  "symptom_progrssed_foot",
+  "severity_pain_foot",
+  "section_break_lmwp",
+  "following_symptoms",
+  "fever2",
+  "breathing",
+  "swelling_painful",
+  "redness_painful",
+  "stiffness",
+  "unable_to_walk",
+  "unable_bear_weight",
+  "movement_limitation",
+  "night_pain",
+  "other2",
+  "none",
+  "knee_other",
+  "column_break_suka",
+  "check_hstn",
+  "pain_legknee",
+  "by_movement",
+  "using_stairs",
+  "rest",
+  "other",
+  "none2",
+  "ifother",
+  "section_break_evsg",
+  "past_history",
+  "any_surgery",
+  "scan_report",
+  "accident_history",
+  "sugar_bp_history",
+  "column_break_piuv",
+  "check_ndgt",
+  "h5occupation_historyh5",
+  "standing_hours",
+  "lifting_heavy",
+  "stressful_job",
+  "are_you_involves_in_tailoringor_in_garment_factory",
+  "gym_frequently",
+  "section_break_njkg",
+  "check_yujn",
+  "h5family_historyh5",
+  "family_issues",
+  "arthritis_history",
+  "physical",
+  "posture_gait",
+  "lab_test",
+  "previous_labreports",
+  "upload_report"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "basic_info",
+   "fieldtype": "Section Break",
+   "label": "Basic Information of the Patient"
+  },
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_rhwj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "foot_ankle_pain_not_subsiding",
+   "fieldtype": "Check",
+   "label": "Any foot and ankle pain not subsiding with pain killer or basic excercises more than 5 days "
+  },
+  {
+   "default": "0",
+   "fieldname": "sever_swelling",
+   "fieldtype": "Check",
+   "label": "Sever swelling or redness of the affected joint "
+  },
+  {
+   "default": "0",
+   "fieldname": "any_abnormal_gait",
+   "fieldtype": "Check",
+   "label": "Any abnormal gait "
+  },
+  {
+   "default": "0",
+   "fieldname": "any_fever_or_unexplained_weight_loss",
+   "fieldtype": "Check",
+   "label": "Any fever or unexplained weight loss"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_history_of_trauma_or_fall",
+   "fieldtype": "Check",
+   "label": "Any history of trauma or fall "
+  },
+  {
+   "default": "0",
+   "fieldname": "not_able_to_move_affected_part",
+   "fieldtype": "Check",
+   "label": "Not able to move affected part"
+  },
+  {
+   "default": "0",
+   "fieldname": "change_in_vital_signs_with_these_pains",
+   "fieldtype": "Check",
+   "label": "Change in vital signs with these pains "
+  },
+  {
+   "default": "0",
+   "fieldname": "none_foot_ankle_pain",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "foot_and_ankle_pain",
+   "fieldtype": "Select",
+   "label": "Foot and Ankle Pain",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "present_complaints_section",
+   "fieldtype": "Section Break",
+   "label": "Present Complaints"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_vtwa",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "have_pain_in",
+   "fieldtype": "Select",
+   "label": "Do you have pain in",
+   "options": "Ankle\nFoot"
+  },
+  {
+   "depends_on": "eval: doc.have_pain_in == 'Ankle';",
+   "fieldname": "ankle_pain",
+   "fieldtype": "Select",
+   "label": "Which part of the leg (Ankle) is paining",
+   "options": "Right\nLeft"
+  },
+  {
+   "default": "No",
+   "depends_on": "eval: doc.have_pain_in == 'Ankle';",
+   "fieldname": "swelling_ankle",
+   "fieldtype": "Select",
+   "label": "Is there any swelling in ankle",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.have_pain_in == 'Ankle';",
+   "fieldname": "ankle_symptoms",
+   "fieldtype": "Data",
+   "label": "Since when have you had this symptom (Ankle)"
+  },
+  {
+   "depends_on": "eval: doc.have_pain_in == 'Ankle';",
+   "fieldname": "pain_characteristics_ankle",
+   "fieldtype": "Select",
+   "label": "Pain characteristics (Ankle)",
+   "options": "Dull aching\nTingling numbness\nSharp shooting\nBurning\nOther"
+  },
+  {
+   "depends_on": "eval: doc.have_pain_in == 'Ankle';",
+   "fieldname": "other_anklepain",
+   "fieldtype": "Data",
+   "label": "Other Pain(Ankle)"
+  },
+  {
+   "depends_on": "eval: doc.have_pain_in == 'Ankle';",
+   "fieldname": "symptom_start_ankle",
+   "fieldtype": "Select",
+   "label": "How did the symptom start (Ankle)",
+   "options": "Sudden (minutes to hours)\nGradual"
+  },
+  {
+   "depends_on": "eval: doc.have_pain_in == 'Ankle';",
+   "fieldname": "symptom_progressed_ankle",
+   "fieldtype": "Select",
+   "label": "How has the symptom progressed (Ankle)",
+   "options": "Progressive (Worsening)\nStatic (Not changed)\nWax and wane"
+  },
+  {
+   "depends_on": "eval: doc.have_pain_in == 'Ankle';",
+   "fieldname": "pain_severity_ankle",
+   "fieldtype": "Select",
+   "label": "Severity of the pain (Ankle)",
+   "options": "Mild\nModerate\nSevere"
+  },
+  {
+   "depends_on": "eval: doc.have_pain_in == 'Foot';",
+   "fieldname": "section_break_dkpy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_nfcr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_jovb",
+   "fieldtype": "Check"
+  },
+  {
+   "depends_on": "eval: doc.have_pain_in == 'Foot';",
+   "fieldname": "foot_pain",
+   "fieldtype": "Select",
+   "label": "Which part of the leg (Foot) is paining",
+   "options": "Right\nLeft"
+  },
+  {
+   "default": "No",
+   "depends_on": "eval: doc.have_pain_in == 'Foot';",
+   "fieldname": "foot_swelling",
+   "fieldtype": "Select",
+   "label": "Is there any swelling (foot)",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.have_pain_in == 'Foot';",
+   "fieldname": "footpain_symptoms",
+   "fieldtype": "Data",
+   "label": "Since when have you had this symptom (Foot)"
+  },
+  {
+   "depends_on": "eval: doc.have_pain_in == 'Foot';",
+   "fieldname": "foot_pain_charcteristics",
+   "fieldtype": "Select",
+   "label": "Pain characteristics (Foot)",
+   "options": "Dull aching\nTingling numbness\nSharp shooting\nBurning\nOther"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.have_pain_in == 'Foot' || doc.foot_pain_charcteristics == 'Other';",
+   "fieldname": "pain_other",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "depends_on": "eval: doc.have_pain_in == 'Foot';",
+   "fieldname": "how_did_the_symptom_start_foot",
+   "fieldtype": "Select",
+   "label": "How did the symptom start (Foot)",
+   "options": "Sudden (minutes to hours)\nGradual"
+  },
+  {
+   "depends_on": "eval: doc.have_pain_in == 'Foot';",
+   "fieldname": "symptom_progrssed_foot",
+   "fieldtype": "Select",
+   "label": "How has the symptom progressed (Foot)",
+   "options": "Progressive (Worsening)\nStatic (Not changed)\nWax and wane"
+  },
+  {
+   "depends_on": "eval: doc.have_pain_in == 'Foot';",
+   "fieldname": "severity_pain_foot",
+   "fieldtype": "Select",
+   "label": "Severity of the pain (Foot)",
+   "options": "\nMild\nModerate\nSevere"
+  },
+  {
+   "fieldname": "section_break_lmwp",
+   "fieldtype": "Section Break",
+   "label": "Associated Complaints"
+  },
+  {
+   "fieldname": "following_symptoms",
+   "fieldtype": "Heading",
+   "label": "<h5>Do you have the following symptom(s)?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "fever2",
+   "fieldtype": "Check",
+   "label": " Fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "breathing",
+   "fieldtype": "Check",
+   "label": " Difficulty breathing"
+  },
+  {
+   "default": "0",
+   "fieldname": "swelling_painful",
+   "fieldtype": "Check",
+   "label": "Swelling in the painful area"
+  },
+  {
+   "default": "0",
+   "fieldname": "redness_painful",
+   "fieldtype": "Check",
+   "label": "Redness in the painful area"
+  },
+  {
+   "default": "0",
+   "fieldname": "stiffness",
+   "fieldtype": "Check",
+   "label": " Stiffness"
+  },
+  {
+   "default": "0",
+   "fieldname": "unable_to_walk",
+   "fieldtype": "Check",
+   "label": "Unable to walk"
+  },
+  {
+   "default": "0",
+   "fieldname": "unable_bear_weight",
+   "fieldtype": "Check",
+   "label": "Unable to bear weight"
+  },
+  {
+   "default": "0",
+   "fieldname": "movement_limitation",
+   "fieldtype": "Check",
+   "label": "Movement Limitation"
+  },
+  {
+   "default": "0",
+   "fieldname": "night_pain",
+   "fieldtype": "Check",
+   "label": "Night pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "other2",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "depends_on": "eval: doc.other2 == 1;",
+   "fieldname": "knee_other",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "fieldname": "column_break_suka",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_hstn",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "pain_legknee",
+   "fieldtype": "Heading",
+   "label": "<h5>Is the pain in your leg/knee/hip made worse by the following(s)?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "by_movement",
+   "fieldtype": "Check",
+   "label": "By movement"
+  },
+  {
+   "default": "0",
+   "fieldname": "using_stairs",
+   "fieldtype": "Check",
+   "label": "Using stairs"
+  },
+  {
+   "default": "0",
+   "fieldname": "rest",
+   "fieldtype": "Check",
+   "label": "Rest"
+  },
+  {
+   "default": "0",
+   "fieldname": "other",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "default": "0",
+   "fieldname": "none2",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "depends_on": "eval: doc.other == 1;",
+   "fieldname": "ifother",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "fieldname": "section_break_evsg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "past_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Past History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_surgery",
+   "fieldtype": "Select",
+   "label": "Any surgery in the past?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "scan_report",
+   "fieldtype": "Select",
+   "label": "Do you have any X-ray /CT scan report?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "accident_history",
+   "fieldtype": "Select",
+   "label": "Any history of accident/fall in the past?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "sugar_bp_history",
+   "fieldtype": "Select",
+   "label": "Any history of hypertension/ diabetes",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_piuv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_ndgt",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5occupation_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Occupation History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "standing_hours",
+   "fieldtype": "Select",
+   "label": "Does your work involve sitting/standing long hours in one position?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "lifting_heavy",
+   "fieldtype": "Select",
+   "label": "Does your work involve bending/or lifting heavy weights?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "stressful_job",
+   "fieldtype": "Select",
+   "label": "Is your work being very stressful?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "are_you_involves_in_tailoringor_in_garment_factory",
+   "fieldtype": "Select",
+   "label": "Are you involves in tailoring/or in garment factory",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "gym_frequently",
+   "fieldtype": "Select",
+   "label": "Do you go to gym frequently?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_njkg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_yujn",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5family_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Family History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "family_issues",
+   "fieldtype": "Select",
+   "label": "Does your family have similar issue?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "arthritis_history",
+   "fieldtype": "Select",
+   "label": "Any family history of arthritis?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "physical",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical Examination</h5>"
+  },
+  {
+   "fieldname": "posture_gait",
+   "fieldtype": "Data",
+   "label": "Observe the posture/gait?"
+  },
+  {
+   "fieldname": "lab_test",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "previous_labreports",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.previous_labreports == 'Yes';",
+   "fieldname": "upload_report",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload the report"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:23:01.232787",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Foot and Ankle Pain",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

@@ -1,0 +1,446 @@
+{
+ "actions": [],
+ "autoname": "format:AEC{###}",
+ "creation": "2025-10-11 18:23:48.957736",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_dane",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "if_hb_less_than_7_gmdl",
+  "anaemic_individual",
+  "if_hb_more_than_7_gmdl_to_less_than_11_gmdl",
+  "none",
+  "anemia_children",
+  "section_break_opoc",
+  "h5present_chief_complaintsh5",
+  "child_anemia",
+  "more_irritable",
+  "child_tired",
+  "child_sleeping",
+  "losing_concentration",
+  "any_jaundice",
+  "recurrent_nosebleed",
+  "eat_mud",
+  "attenaied_menarche",
+  "menstrual_history",
+  "h5past_historyh5",
+  "child_bloodtest",
+  "child_blood_transfusion",
+  "surgery_bloodloss",
+  "jaundice_afterbirth",
+  "days_admitted",
+  "column_break_iymc",
+  "check_rcks",
+  "h5personal_and_lifestyle_historyh5",
+  "breastfeeding_child",
+  "no_breastfeed",
+  "complementary_feeding",
+  "daily_diet",
+  "daily_milk",
+  "toiletat_home",
+  "wearing_slipper",
+  "h5family_historyh5",
+  "family_issue",
+  "family_anemia",
+  "family_blood",
+  "development_history",
+  "childsit_support",
+  "did_childwalk",
+  "did_childtalk",
+  "section_break_kvpg",
+  "check_znsu",
+  "h5physical_examinationh5",
+  "observe_the_developmental_milestones",
+  "h5laboratory_testh5",
+  "any_previous_lab",
+  "please_upload"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_dane",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "if_hb_less_than_7_gmdl",
+   "fieldtype": "Check",
+   "label": "If Hb less than <7 gm/dl"
+  },
+  {
+   "default": "0",
+   "fieldname": "anaemic_individual",
+   "fieldtype": "Check",
+   "label": "Anaemic individual with shortness of breath/swelling of legs/Rapid pulse rate/Weight loss/rectal bleed"
+  },
+  {
+   "default": "0",
+   "fieldname": "if_hb_more_than_7_gmdl_to_less_than_11_gmdl",
+   "fieldtype": "Check",
+   "label": "If Hb more than 7 gm/dl to less than 11 gm/dl"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "anemia_children",
+   "fieldtype": "Select",
+   "label": "Anemia Children",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_opoc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "h5present_chief_complaintsh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Present Chief Complaints</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "child_anemia",
+   "fieldtype": "Select",
+   "label": "Has the child diagnosed with anemia ?",
+   "options": "Yes\nNo\nDon't Know"
+  },
+  {
+   "default": "No",
+   "fieldname": "more_irritable",
+   "fieldtype": "Select",
+   "label": "Has the child more irritable in the last 6 months?",
+   "options": "Yes\nNo\nDon't Know"
+  },
+  {
+   "default": "No",
+   "fieldname": "child_tired",
+   "fieldtype": "Select",
+   "label": "Is the child feel being tired?",
+   "options": "Yes\nNo\nDon't Know"
+  },
+  {
+   "default": "No",
+   "fieldname": "child_sleeping",
+   "fieldtype": "Select",
+   "label": "Is the child sleeping more in the last 6 months?",
+   "options": "Yes\nNo\nDon't Know"
+  },
+  {
+   "default": "No",
+   "fieldname": "losing_concentration",
+   "fieldtype": "Select",
+   "label": "Has the child losing concentration on studies?",
+   "options": "Yes\nNo\nDon't Know"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_jaundice",
+   "fieldtype": "Select",
+   "label": "Have you noticed any jaundice?",
+   "options": "Yes\nNo\nDon't Know"
+  },
+  {
+   "default": "No",
+   "fieldname": "recurrent_nosebleed",
+   "fieldtype": "Select",
+   "label": "Have you noticed any severe or recurrent nosebleed?",
+   "options": "Yes\nNo\nDon't Know"
+  },
+  {
+   "default": "No",
+   "fieldname": "eat_mud",
+   "fieldtype": "Select",
+   "label": "Does your child eat mud or chalk?",
+   "options": "Yes\nNo\nDon't Know"
+  },
+  {
+   "default": "No",
+   "depends_on": "eval: doc.gender == 'Female';",
+   "fieldname": "attenaied_menarche",
+   "fieldtype": "Select",
+   "label": "Has your child attenaied menarche",
+   "options": "Yes\nNo\nDon't Know"
+  },
+  {
+   "depends_on": "eval: doc.gender == 'Female' || doc.attenaied_menarche == 'Yes';",
+   "fieldname": "menstrual_history",
+   "fieldtype": "Data",
+   "label": "if Yes, Detailed menestrual history",
+   "options": "\nYes\nNo\nDon't Know"
+  },
+  {
+   "fieldname": "h5past_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Past History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "child_bloodtest",
+   "fieldtype": "Select",
+   "label": "Does your child had any blood test",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "child_blood_transfusion",
+   "fieldtype": "Select",
+   "label": "Child had any blood transfusion",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "surgery_bloodloss",
+   "fieldtype": "Select",
+   "label": "Any accident/ surgery which caused lots of blood loss?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "jaundice_afterbirth",
+   "fieldtype": "Select",
+   "label": "Does the child have jaundice after birth?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.jaundice_afterbirth == 'Yes'\n\n ",
+   "fieldname": "days_admitted",
+   "fieldtype": "Data",
+   "label": "How many days the child was admitted in the hospital"
+  },
+  {
+   "fieldname": "column_break_iymc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_rcks",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5personal_and_lifestyle_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Personal and Lifestyle History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "breastfeeding_child",
+   "fieldtype": "Select",
+   "label": "Are you breast feeding your child",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.breastfeeding_child == 'No';",
+   "fieldname": "no_breastfeed",
+   "fieldtype": "Data",
+   "label": "If No how long did you breast feed"
+  },
+  {
+   "fieldname": "complementary_feeding",
+   "fieldtype": "Data",
+   "label": "When did you start complementary feeding"
+  },
+  {
+   "fieldname": "daily_diet",
+   "fieldtype": "Data",
+   "label": "Describe the daily diet of the child?"
+  },
+  {
+   "fieldname": "daily_milk",
+   "fieldtype": "Data",
+   "label": "How much milk the child has daily?"
+  },
+  {
+   "default": "No",
+   "fieldname": "toiletat_home",
+   "fieldtype": "Select",
+   "label": "Do you have toilet at your home?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "wearing_slipper",
+   "fieldtype": "Select",
+   "label": "Does your child wear slippers regularly when he/she goes out?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "h5family_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Family History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "family_issue",
+   "fieldtype": "Select",
+   "label": "Does your family have similar issue?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "family_anemia",
+   "fieldtype": "Select",
+   "label": "Any family history of anemia ?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "family_blood",
+   "fieldtype": "Select",
+   "label": "Did anyone in your family have blood transfusion?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.age <5;",
+   "fieldname": "development_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Developmental History (If the child is below 5 years)</h5>"
+  },
+  {
+   "depends_on": "eval: doc.age <5;",
+   "fieldname": "childsit_support",
+   "fieldtype": "Data",
+   "label": "When did your child sit without support"
+  },
+  {
+   "depends_on": "eval: doc.age <5;",
+   "fieldname": "did_childwalk",
+   "fieldtype": "Data",
+   "label": "When did your child walk"
+  },
+  {
+   "depends_on": "eval: doc.age <5;",
+   "fieldname": "did_childtalk",
+   "fieldtype": "Data",
+   "label": "When did your child talk"
+  },
+  {
+   "fieldname": "section_break_kvpg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_znsu",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5physical_examinationh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical Examination</h5>"
+  },
+  {
+   "fieldname": "observe_the_developmental_milestones",
+   "fieldtype": "Data",
+   "label": "Observe the developmental milestones?"
+  },
+  {
+   "fieldname": "h5laboratory_testh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_previous_lab",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.any_previous_lab == 'Yes';",
+   "fieldname": "please_upload",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:23:48.957736",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Anemia- Children",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

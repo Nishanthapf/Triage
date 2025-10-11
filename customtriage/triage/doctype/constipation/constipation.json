@@ -1,0 +1,457 @@
+{
+ "actions": [],
+ "autoname": "format:CON{###}",
+ "creation": "2025-10-11 18:28:20.505139",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_tab",
+  "basic_info",
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_rhwj",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "blood_stool",
+  "not_able_to_pass_the_gas",
+  "sever_abdominal_pain",
+  "recent_loss_of_appetite_or_weight_loss",
+  "recent_onset_of_constipation",
+  "none_constipation",
+  "constipation",
+  "section_break_dkpy",
+  "present_complaints_column",
+  "notpassed_stool",
+  "constipation_symptoms",
+  "hard_dry",
+  "pain_passing_stool",
+  "urge_pass_stool",
+  "color_stool",
+  "dietory_pattern",
+  "column_break_ptvi",
+  "check_vwfw",
+  "column_break_zecv",
+  "h5do_you_haveh5",
+  "abdomen_pain",
+  "heavyness_in_the_abdomen",
+  "blood_in_the_stool",
+  "recent_loss_of_weight",
+  "recent_loss_of_appetite",
+  "lower_back_pain",
+  "able_to_pass_gas",
+  "vomiting",
+  "none",
+  "section_break_piry",
+  "column_break_rsvl",
+  "h5personal_and_lifestyle_historyh5",
+  "water_intake",
+  "recent_dietory",
+  "regular_exercise",
+  "column_break_kuts",
+  "check_inid",
+  "past_history_column",
+  "undergone_surgery",
+  "if_yes_specify",
+  "section_break_cvvz",
+  "check_qeqi",
+  "occupation_history",
+  "toilet_facility",
+  "sitting_jobs",
+  "safe_drinking_water",
+  "lab_test",
+  "previous_report",
+  "upload_report"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "basic_info",
+   "fieldtype": "Section Break",
+   "label": "Basic Information of the Patient"
+  },
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_rhwj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "blood_stool",
+   "fieldtype": "Check",
+   "label": "Blood in the stool"
+  },
+  {
+   "default": "0",
+   "fieldname": "not_able_to_pass_the_gas",
+   "fieldtype": "Check",
+   "label": "Not able to pass the gas"
+  },
+  {
+   "default": "0",
+   "fieldname": "sever_abdominal_pain",
+   "fieldtype": "Check",
+   "label": "Sever abdominal pain "
+  },
+  {
+   "default": "0",
+   "fieldname": "recent_loss_of_appetite_or_weight_loss",
+   "fieldtype": "Check",
+   "label": "Recent loss of appetite or weight loss"
+  },
+  {
+   "default": "0",
+   "fieldname": "recent_onset_of_constipation",
+   "fieldtype": "Check",
+   "label": "Recent onset of constipation"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_constipation",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "constipation",
+   "fieldtype": "Select",
+   "label": "Constipation",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "section_break_dkpy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "present_complaints_column",
+   "fieldtype": "Column Break",
+   "label": "Present Complaints"
+  },
+  {
+   "fieldname": "notpassed_stool",
+   "fieldtype": "Data",
+   "label": "How many days you have not passed the stool"
+  },
+  {
+   "fieldname": "constipation_symptoms",
+   "fieldtype": "Data",
+   "label": "Since how many days you are having this symptoms"
+  },
+  {
+   "default": "No",
+   "fieldname": "hard_dry",
+   "fieldtype": "Select",
+   "label": "Is it hard and dry stool",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "pain_passing_stool",
+   "fieldtype": "Select",
+   "label": "Do you have to strain or pain while passing the stool",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "urge_pass_stool",
+   "fieldtype": "Select",
+   "label": "After you passed the stool, do you have urge to pass again",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "color_stool",
+   "fieldtype": "Data",
+   "label": "Colour of the stool"
+  },
+  {
+   "default": "No",
+   "fieldname": "dietory_pattern",
+   "fieldtype": "Select",
+   "label": "Have you changed your dietory pattern",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "column_break_ptvi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_vwfw",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "column_break_zecv",
+   "fieldtype": "Heading",
+   "label": "<h5>Associated Complaints</h5><h5></h5>"
+  },
+  {
+   "fieldname": "h5do_you_haveh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Do you have</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "abdomen_pain",
+   "fieldtype": "Check",
+   "label": "Abdomen pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "heavyness_in_the_abdomen",
+   "fieldtype": "Check",
+   "label": "Heavyness in the abdomen"
+  },
+  {
+   "default": "0",
+   "fieldname": "blood_in_the_stool",
+   "fieldtype": "Check",
+   "label": "Blood in the stool"
+  },
+  {
+   "default": "0",
+   "fieldname": "recent_loss_of_weight",
+   "fieldtype": "Check",
+   "label": "Recent loss of weight"
+  },
+  {
+   "default": "0",
+   "fieldname": "recent_loss_of_appetite",
+   "fieldtype": "Check",
+   "label": "Recent loss of appetite"
+  },
+  {
+   "default": "0",
+   "fieldname": "lower_back_pain",
+   "fieldtype": "Check",
+   "label": "Lower Back pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "able_to_pass_gas",
+   "fieldtype": "Check",
+   "label": "Able to Pass gas"
+  },
+  {
+   "default": "0",
+   "fieldname": "vomiting",
+   "fieldtype": "Check",
+   "label": "Vomiting"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "section_break_piry",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_rsvl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "h5personal_and_lifestyle_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Personal and Lifestyle History</h5><h5></h5>"
+  },
+  {
+   "fieldname": "water_intake",
+   "fieldtype": "Data",
+   "label": "How much water do you take everyday"
+  },
+  {
+   "default": "No",
+   "fieldname": "recent_dietory",
+   "fieldtype": "Select",
+   "label": "Have you changed your dietory pattern recently",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "regular_exercise",
+   "fieldtype": "Select",
+   "label": "Do you exercise regularly",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "column_break_kuts",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_inid",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "past_history_column",
+   "fieldtype": "Heading",
+   "label": "<h5>Past History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "undergone_surgery",
+   "fieldtype": "Select",
+   "label": "Have you undergone any surgery in the past",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.undergone_surgery == 'Yes';",
+   "fieldname": "if_yes_specify",
+   "fieldtype": "Data",
+   "label": "If yes, Specify"
+  },
+  {
+   "fieldname": "section_break_cvvz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_qeqi",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "occupation_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Occupation History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "toilet_facility",
+   "fieldtype": "Select",
+   "label": "Do you have facility of toilet in the office",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "sitting_jobs",
+   "fieldtype": "Select",
+   "label": "Do your job involves lots of sitting",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "safe_drinking_water",
+   "fieldtype": "Select",
+   "label": "Do you have safe drinking water facility in the offce or working station",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "lab_test",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "previous_report",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.previous_report == 'Yes';",
+   "fieldname": "upload_report",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload the report"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:28:20.505139",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Constipation",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

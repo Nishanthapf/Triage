@@ -1,0 +1,599 @@
+{
+ "actions": [],
+ "autoname": "format:SKP{###}",
+ "creation": "2025-10-11 18:26:45.118689",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_dane",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "any_painful_skin_rash_with_blisters_or_open_sores",
+  "any_yellow_or_bloody_discharge",
+  "any_rash_which_is_extensive_on_the_body",
+  "sudden_oset",
+  "none_skin",
+  "skin_problem",
+  "section_break_opoc",
+  "present_chief_complaints_column",
+  "skin_lesion",
+  "itchy_skin",
+  "skin_rash",
+  "bullae",
+  "skin_burn",
+  "bumps",
+  "not_applicable",
+  "skin_other",
+  "skin_otherdescibe",
+  "body_problem",
+  "face",
+  "scalp",
+  "hands",
+  "feet",
+  "palms",
+  "groin_region",
+  "legs",
+  "skin_creases",
+  "trunk",
+  "no_lesions",
+  "lesion_symptoms",
+  "get_worse",
+  "same_problem",
+  "hair_colors",
+  "column_break_whwf",
+  "check_cbvu",
+  "associated_symptoms_column",
+  "any_associated_symptoms",
+  "discharge_from_the_lesion",
+  "pain_in_the_lesions",
+  "itching_in_the_lesions",
+  "skin_fever",
+  "runny_nose",
+  "wheezing",
+  "any_joint_pain",
+  "dandruff_issue",
+  "other_skin",
+  "none",
+  "describe_skinother",
+  "history_past",
+  "any_pasthistory",
+  "hypertension_history",
+  "any_heart_diseases",
+  "any_diabetes",
+  "any_thyroid",
+  "any_asthma",
+  "any_skin_lesions",
+  "repeated_sneezing",
+  "section_break_kvpg",
+  "check_hgfb",
+  "occupational_history",
+  "chemical_exposure",
+  "h5family_historyh5",
+  "family_skin_allergy",
+  "family_asthma_history",
+  "h5physical_examinationh5",
+  "h5skin_textureh5",
+  "lesion_present",
+  "lesion_photo",
+  "h5laboratory_testh5",
+  "any_previous_lab",
+  "please_upload"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_dane",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_painful_skin_rash_with_blisters_or_open_sores",
+   "fieldtype": "Check",
+   "label": "Any painful skin rash with blisters or open sores"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_yellow_or_bloody_discharge",
+   "fieldtype": "Check",
+   "label": "Any Yellow or bloody discharge"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_rash_which_is_extensive_on_the_body",
+   "fieldtype": "Check",
+   "label": "Any rash which is extensive on the body"
+  },
+  {
+   "default": "0",
+   "fieldname": "sudden_oset",
+   "fieldtype": "Check",
+   "label": "Sudden onset rash spreading fast accompanied with high fever and breathing difficulty and discoloration of skin"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_skin",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "skin_problem",
+   "fieldtype": "Select",
+   "label": "Skin Problem",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "section_break_opoc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "present_chief_complaints_column",
+   "fieldtype": "Column Break",
+   "label": "Present Chief Complaints"
+  },
+  {
+   "fieldname": "skin_lesion",
+   "fieldtype": "Heading",
+   "label": "<h5>Type of the skin lesion?</h5>",
+   "options": "\n"
+  },
+  {
+   "default": "0",
+   "fieldname": "itchy_skin",
+   "fieldtype": "Check",
+   "label": "Itchy/scaly/dry skin"
+  },
+  {
+   "default": "0",
+   "fieldname": "skin_rash",
+   "fieldtype": "Check",
+   "label": "Skin rash"
+  },
+  {
+   "default": "0",
+   "fieldname": "bullae",
+   "fieldtype": "Check",
+   "label": "Bullae/blister"
+  },
+  {
+   "default": "0",
+   "fieldname": "skin_burn",
+   "fieldtype": "Check",
+   "label": "Skin Burn"
+  },
+  {
+   "default": "0",
+   "fieldname": "bumps",
+   "fieldtype": "Check",
+   "label": "Bumps"
+  },
+  {
+   "default": "0",
+   "fieldname": "not_applicable",
+   "fieldtype": "Check",
+   "label": "Not Applicable"
+  },
+  {
+   "default": "0",
+   "fieldname": "skin_other",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.skin_other == 1;",
+   "fieldname": "skin_otherdescibe",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "fieldname": "body_problem",
+   "fieldtype": "Heading",
+   "label": "<h5>Which part of your body has the problem?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "face",
+   "fieldtype": "Check",
+   "label": "Face"
+  },
+  {
+   "default": "0",
+   "fieldname": "scalp",
+   "fieldtype": "Check",
+   "label": "Scalp"
+  },
+  {
+   "default": "0",
+   "fieldname": "hands",
+   "fieldtype": "Check",
+   "label": "Hands"
+  },
+  {
+   "default": "0",
+   "fieldname": "feet",
+   "fieldtype": "Check",
+   "label": "Feet"
+  },
+  {
+   "default": "0",
+   "fieldname": "palms",
+   "fieldtype": "Check",
+   "label": "Palms/soles"
+  },
+  {
+   "default": "0",
+   "fieldname": "groin_region",
+   "fieldtype": "Check",
+   "label": "Groin region"
+  },
+  {
+   "default": "0",
+   "fieldname": "legs",
+   "fieldtype": "Check",
+   "label": "Legs"
+  },
+  {
+   "default": "0",
+   "fieldname": "skin_creases",
+   "fieldtype": "Check",
+   "label": "Skin creases (Elbow folds/behind the knees)"
+  },
+  {
+   "default": "0",
+   "fieldname": "trunk",
+   "fieldtype": "Check",
+   "label": "Trunk"
+  },
+  {
+   "fieldname": "no_lesions",
+   "fieldtype": "Data",
+   "label": "No. of lesions"
+  },
+  {
+   "fieldname": "lesion_symptoms",
+   "fieldtype": "Data",
+   "label": "Since when have you had this symptom?"
+  },
+  {
+   "default": "No",
+   "fieldname": "get_worse",
+   "fieldtype": "Select",
+   "label": "Does it get worse when you go out in the sun?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "same_problem",
+   "fieldtype": "Select",
+   "label": "Anybody else in the family or Neighbours has the same problem?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "hair_colors",
+   "fieldtype": "Select",
+   "label": "Do you use any hair colors?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "column_break_whwf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_cbvu",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "associated_symptoms_column",
+   "fieldtype": "Heading",
+   "label": "<h5>Associated SymptomsAssociated Symptoms</h5>"
+  },
+  {
+   "fieldname": "any_associated_symptoms",
+   "fieldtype": "Heading",
+   "label": "<h5>Any associated symptoms?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "discharge_from_the_lesion",
+   "fieldtype": "Check",
+   "label": "Discharge from the lesion"
+  },
+  {
+   "default": "0",
+   "fieldname": "pain_in_the_lesions",
+   "fieldtype": "Check",
+   "label": "Pain in the lesions"
+  },
+  {
+   "default": "0",
+   "fieldname": "itching_in_the_lesions",
+   "fieldtype": "Check",
+   "label": "Itching in the lesions"
+  },
+  {
+   "default": "0",
+   "fieldname": "skin_fever",
+   "fieldtype": "Check",
+   "label": "Fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "runny_nose",
+   "fieldtype": "Check",
+   "label": "Runny nose"
+  },
+  {
+   "default": "0",
+   "fieldname": "wheezing",
+   "fieldtype": "Check",
+   "label": "Wheezing"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_joint_pain",
+   "fieldtype": "Check",
+   "label": "Any Joint pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "dandruff_issue",
+   "fieldtype": "Check",
+   "label": "Dandruff issue"
+  },
+  {
+   "default": "0",
+   "fieldname": "other_skin",
+   "fieldtype": "Check",
+   "label": "Others"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "depends_on": "eval: doc.other_skin == 1;",
+   "fieldname": "describe_skinother",
+   "fieldtype": "Data",
+   "label": "If other, please specify"
+  },
+  {
+   "fieldname": "history_past",
+   "fieldtype": "Heading",
+   "label": "<h5>Past History</h5>"
+  },
+  {
+   "fieldname": "any_pasthistory",
+   "fieldtype": "Heading",
+   "label": "<h5>Any past history of?</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "hypertension_history",
+   "fieldtype": "Select",
+   "label": "Any History of Hypertension",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_heart_diseases",
+   "fieldtype": "Select",
+   "label": "Any History of Heart diseases",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_diabetes",
+   "fieldtype": "Select",
+   "label": "Any History of Diabetes",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_thyroid",
+   "fieldtype": "Select",
+   "label": "Any history of Thyroid issues",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_asthma",
+   "fieldtype": "Select",
+   "label": "Any history of asthma",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_skin_lesions",
+   "fieldtype": "Select",
+   "label": "Any history of skin lesions",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "repeated_sneezing",
+   "fieldtype": "Select",
+   "label": "Any history of repeated sneezing and cold in the past",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "section_break_kvpg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_hgfb",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "occupational_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Occupational History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "chemical_exposure",
+   "fieldtype": "Select",
+   "label": "Any exposure to chemicals?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "h5family_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Family History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "family_skin_allergy",
+   "fieldtype": "Select",
+   "label": "Family history of skin allergy",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "family_asthma_history",
+   "fieldtype": "Select",
+   "label": "Family history of asthma",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "h5physical_examinationh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical Examination</h5>"
+  },
+  {
+   "fieldname": "h5skin_textureh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Skin Texture</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "lesion_present",
+   "fieldtype": "Select",
+   "label": "If the lesions are present on the skin",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "lesion_photo",
+   "fieldtype": "Data",
+   "label": "If yes, upload the photo of lesions"
+  },
+  {
+   "fieldname": "h5laboratory_testh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_previous_lab",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.any_previous_lab == 'Yes';",
+   "fieldname": "please_upload",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:26:45.118689",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Skin Problem",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

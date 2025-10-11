@@ -1,0 +1,475 @@
+{
+ "actions": [],
+ "autoname": "format:EYE{###}",
+ "creation": "2025-10-11 18:20:20.019104",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_dane",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "sudden_loss_of_partial_or_complete_vision",
+  "any_history_of_trauma",
+  "any_history_of_foreign_body",
+  "none_eyeproblem",
+  "select_kpbe",
+  "present_chief_complaints_section",
+  "which_eye",
+  "had_this_symptom",
+  "something_get_in_eye",
+  "column_break_nkhb",
+  "check_xdnq",
+  "if_yes_when",
+  "describe_the_foreign_body",
+  "associated_symptoms_section",
+  "do_you_have_the_following_symptoms_column",
+  "following_symptom",
+  "any_blurred_vision",
+  "any_double_vision",
+  "eye_discomfort_due_to_light_exposure",
+  "nausea",
+  "vomiting",
+  "eyelid_swelling",
+  "headache",
+  "none",
+  "column_break_rgei",
+  "check_azju",
+  "itching_eyenose",
+  "sneezing",
+  "eye_pain",
+  "redness_of_eye",
+  "discharge_from_the_eye",
+  "if_yes",
+  "past_history_section",
+  "column_break_lkpp",
+  "any_history_of_hypertension",
+  "any_history_of_heart_diseases",
+  "any_history_of_diabetes",
+  "column_break_lggw",
+  "check_eqhu",
+  "any_history_of_thyroid_issues",
+  "any_history_of_trauma_to_the_eye",
+  "any_history_of_eye_surgery",
+  "occupation_history_section",
+  "involved_usage_of_laptop",
+  "are_you_doing_any_welding_work",
+  "column_break_rpmx",
+  "check_emcp",
+  "h5physical_examinationh5",
+  "upload_the_photo",
+  "section_break_etpj",
+  "check_rskd",
+  "h4lab_testh4",
+  "previous_lab_reports",
+  "if_yes_please_upload"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_dane",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "sudden_loss_of_partial_or_complete_vision",
+   "fieldtype": "Check",
+   "label": "Sudden loss of partial or complete vision "
+  },
+  {
+   "default": "0",
+   "fieldname": "any_history_of_trauma",
+   "fieldtype": "Check",
+   "label": "Any history of trauma"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_history_of_foreign_body",
+   "fieldtype": "Check",
+   "label": "Any history of foreign body"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_eyeproblem",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "default": "No",
+   "fieldname": "select_kpbe",
+   "fieldtype": "Select",
+   "label": "Eye problem",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "present_chief_complaints_section",
+   "fieldtype": "Section Break",
+   "label": "Present chief complaints"
+  },
+  {
+   "fieldname": "which_eye",
+   "fieldtype": "Select",
+   "label": "Which eye(s) is affected?",
+   "options": "Right eye\nLeft eye\nBoth eyes"
+  },
+  {
+   "fieldname": "had_this_symptom",
+   "fieldtype": "Data",
+   "label": "Since when have you had this symptom?"
+  },
+  {
+   "default": "No",
+   "fieldname": "something_get_in_eye",
+   "fieldtype": "Select",
+   "label": "Did something get in your eye?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_nkhb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_xdnq",
+   "fieldtype": "Check"
+  },
+  {
+   "depends_on": "eval:doc.something_get_in_eye==\"Yes\";",
+   "fieldname": "if_yes_when",
+   "fieldtype": "Data",
+   "label": "If yes, When "
+  },
+  {
+   "fieldname": "describe_the_foreign_body",
+   "fieldtype": "Data",
+   "label": "Describe the foreign body"
+  },
+  {
+   "fieldname": "associated_symptoms_section",
+   "fieldtype": "Section Break",
+   "label": "Associated symptoms"
+  },
+  {
+   "fieldname": "do_you_have_the_following_symptoms_column",
+   "fieldtype": "Column Break",
+   "label": "Do you have the following symptom(s)?"
+  },
+  {
+   "default": "0",
+   "fieldname": "following_symptom",
+   "fieldtype": "Check",
+   "label": "Any change in vision"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_blurred_vision",
+   "fieldtype": "Check",
+   "label": "Any blurred vision"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_double_vision",
+   "fieldtype": "Check",
+   "label": "Any double vision"
+  },
+  {
+   "default": "0",
+   "fieldname": "eye_discomfort_due_to_light_exposure",
+   "fieldtype": "Check",
+   "label": "Eye discomfort due to light exposure"
+  },
+  {
+   "default": "0",
+   "fieldname": "nausea",
+   "fieldtype": "Check",
+   "label": "Nausea"
+  },
+  {
+   "default": "0",
+   "fieldname": "vomiting",
+   "fieldtype": "Check",
+   "label": "Vomiting"
+  },
+  {
+   "default": "0",
+   "fieldname": "eyelid_swelling",
+   "fieldtype": "Check",
+   "label": "Eyelid swelling"
+  },
+  {
+   "default": "0",
+   "fieldname": "headache",
+   "fieldtype": "Check",
+   "label": "Headache"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "column_break_rgei",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_azju",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "0",
+   "fieldname": "itching_eyenose",
+   "fieldtype": "Check",
+   "label": "Itching (Eye/Nose)"
+  },
+  {
+   "default": "0",
+   "fieldname": "sneezing",
+   "fieldtype": "Check",
+   "label": "Sneezing"
+  },
+  {
+   "default": "0",
+   "fieldname": "eye_pain",
+   "fieldtype": "Check",
+   "label": "Eye pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "redness_of_eye",
+   "fieldtype": "Check",
+   "label": "Redness of eye"
+  },
+  {
+   "default": "No",
+   "fieldname": "discharge_from_the_eye",
+   "fieldtype": "Select",
+   "label": "Discharge from the eye",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval:doc.discharge_from_the_eye==\"Yes\";",
+   "fieldname": "if_yes",
+   "fieldtype": "Data",
+   "label": "If Yes",
+   "read_only_depends_on": "eval:doc.discharge_from_the_eye==\"Yes\";"
+  },
+  {
+   "fieldname": "past_history_section",
+   "fieldtype": "Section Break",
+   "label": "Past history"
+  },
+  {
+   "fieldname": "column_break_lkpp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_hypertension",
+   "fieldtype": "Select",
+   "label": "Any History of Hypertension",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_heart_diseases",
+   "fieldtype": "Select",
+   "label": "Any History of Heart diseases",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_diabetes",
+   "fieldtype": "Select",
+   "label": "Any History of Diabetes",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_lggw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_eqhu",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_thyroid_issues",
+   "fieldtype": "Select",
+   "label": "Any history of Thyroid issues",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_trauma_to_the_eye",
+   "fieldtype": "Select",
+   "label": "Any history of trauma to the eye",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_eye_surgery",
+   "fieldtype": "Select",
+   "label": "Any history of eye surgery",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "occupation_history_section",
+   "fieldtype": "Section Break",
+   "label": "Occupation History and Physical examination"
+  },
+  {
+   "default": "No",
+   "fieldname": "involved_usage_of_laptop",
+   "fieldtype": "Select",
+   "label": "Is your job involved usage of laptop/computer",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "are_you_doing_any_welding_work",
+   "fieldtype": "Select",
+   "label": "Are you doing any welding work",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "column_break_rpmx",
+   "fieldtype": "Column Break",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_emcp",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5physical_examinationh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical examination</h5>"
+  },
+  {
+   "fieldname": "upload_the_photo",
+   "fieldtype": "Attach",
+   "label": "Upload the photo"
+  },
+  {
+   "fieldname": "section_break_etpj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_rskd",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h4lab_testh4",
+   "fieldtype": "Heading",
+   "label": "<h4>Lab test</h4>"
+  },
+  {
+   "default": "No",
+   "fieldname": "previous_lab_reports",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval:doc.previous_lab_reports==\"Yes\";",
+   "fieldname": "if_yes_please_upload",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:20:20.019104",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Eye problem",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

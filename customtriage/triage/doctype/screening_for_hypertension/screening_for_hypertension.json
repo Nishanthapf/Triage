@@ -1,0 +1,508 @@
+{
+ "actions": [],
+ "autoname": "format:SBP{###}",
+ "creation": "2025-09-26 14:31:46.498442",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_tab",
+  "basic_info",
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_rhwj",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "new_hypertensive",
+  "sudden_swelling_of_legs",
+  "any_history_of_fainting_or_fall",
+  "severe_headache_sudden_onset",
+  "chest_pain_sudden_onset",
+  "breathlessness_sudden_onset",
+  "any_nausea_vomiting_sudden_onset",
+  "drowsy",
+  "any_slurrred_speech",
+  "any_change_in_gaitimbalance",
+  "none",
+  "screening_for_hypertension",
+  "section_break_bshx",
+  "present_complaints_bp",
+  "headache_6months",
+  "feel_giddy_6months",
+  "feel_giddy",
+  "chest_painmonths",
+  "ifyes_chestpain",
+  "column_break_hqwq",
+  "check_dtvk",
+  "blurred_vision6",
+  "palpitation",
+  "often_getting_angry",
+  "breathing_while_walking",
+  "section_break_casv",
+  "check_ytyo",
+  "section_break_artb",
+  "heart_disease_history",
+  "kidney_history",
+  "stroke_history",
+  "bp_other_complaints",
+  "bp_sugar_history",
+  "section_break_mele",
+  "column_break_lyer",
+  "check_lgdm",
+  "h5past_history_womenh5",
+  "high_bp",
+  "lbw",
+  "section_break_liie",
+  "bp_personal_history",
+  "regular_exercise",
+  "consume_fried",
+  "occupation_bp",
+  "long_periods",
+  "feel_stressed",
+  "column_break_bpsu",
+  "check_bmgb",
+  "h5physical_examinationh5",
+  "peripheral_pulsefeet",
+  "for_peripheral_edema",
+  "h5laboratory_testh5",
+  "rft_last_oneyear",
+  "urine_albumin6",
+  "lab_scanning"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "basic_info",
+   "fieldtype": "Section Break",
+   "label": "Basic Information of the Patient"
+  },
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_rhwj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "new_hypertensive",
+   "fieldtype": "Check",
+   "label": "New hypertensive"
+  },
+  {
+   "default": "0",
+   "fieldname": "sudden_swelling_of_legs",
+   "fieldtype": "Check",
+   "label": "Sudden swelling of legs"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_history_of_fainting_or_fall",
+   "fieldtype": "Check",
+   "label": "Any history of fainting or fall "
+  },
+  {
+   "default": "0",
+   "fieldname": "severe_headache_sudden_onset",
+   "fieldtype": "Check",
+   "label": "Severe headache (Sudden onset)"
+  },
+  {
+   "default": "0",
+   "fieldname": "chest_pain_sudden_onset",
+   "fieldtype": "Check",
+   "label": "Chest pain (Sudden onset)"
+  },
+  {
+   "default": "0",
+   "fieldname": "breathlessness_sudden_onset",
+   "fieldtype": "Check",
+   "label": "Breathlessness (Sudden onset)"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_nausea_vomiting_sudden_onset",
+   "fieldtype": "Check",
+   "label": "Any nausea vomiting (Sudden onset)"
+  },
+  {
+   "default": "0",
+   "fieldname": "drowsy",
+   "fieldtype": "Check",
+   "label": "Drowsy "
+  },
+  {
+   "default": "0",
+   "fieldname": "any_slurrred_speech",
+   "fieldtype": "Check",
+   "label": "Any slurrred speech"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_change_in_gaitimbalance",
+   "fieldtype": "Check",
+   "label": "Any change in gait/imbalance"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "default": "No",
+   "fieldname": "screening_for_hypertension",
+   "fieldtype": "Select",
+   "label": "Screening for Hypertension",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_bshx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "present_complaints_bp",
+   "fieldtype": "Column Break",
+   "label": "Present complaints"
+  },
+  {
+   "default": "No",
+   "fieldname": "headache_6months",
+   "fieldtype": "Select",
+   "label": "Do you have any headache in the last 6 months?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "feel_giddy_6months",
+   "fieldtype": "Select",
+   "label": "Do you feel giddy in the last 6 months?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "feel_giddy",
+   "fieldtype": "Select",
+   "label": "Do you feel giddy when you get up from sitting position?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "chest_painmonths",
+   "fieldtype": "Select",
+   "label": "Do you have chest pain in the last 6 months?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.chest_painmonths == 'Yes';",
+   "fieldname": "ifyes_chestpain",
+   "fieldtype": "Data",
+   "label": "If Yes, Please specify"
+  },
+  {
+   "fieldname": "column_break_hqwq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_dtvk",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "blurred_vision6",
+   "fieldtype": "Select",
+   "label": "Do you have blurred vision in the last 6 months?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "palpitation",
+   "fieldtype": "Select",
+   "label": "Do you have Palpitation?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "often_getting_angry",
+   "fieldtype": "Select",
+   "label": "Have you been getting very angry very often for small things?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "breathing_while_walking",
+   "fieldtype": "Select",
+   "label": "Have you had any breathing difficulty while walking in the last 6 month?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_casv",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_ytyo",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "section_break_artb",
+   "fieldtype": "Heading",
+   "label": "<h5>Associated Complaints</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "heart_disease_history",
+   "fieldtype": "Select",
+   "label": "Any history of heart disease?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "kidney_history",
+   "fieldtype": "Select",
+   "label": "Any history of kidney diseases?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "stroke_history",
+   "fieldtype": "Select",
+   "label": "Any history of stroke?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "bp_other_complaints",
+   "fieldtype": "Data",
+   "label": "Any other complaints, please specify"
+  },
+  {
+   "default": "No",
+   "fieldname": "bp_sugar_history",
+   "fieldtype": "Select",
+   "label": "Any history of Diabetes",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.gender == 'Female';",
+   "fieldname": "section_break_mele",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_lyer",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_lgdm",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5past_history_womenh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Past History (Women)</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "high_bp",
+   "fieldtype": "Select",
+   "label": "Any history of high BP in your pregnancy?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "lbw",
+   "fieldtype": "Select",
+   "label": "Any history of preterm delivery or LBW?",
+   "options": "Yes\nNo\nNot Sure"
+  },
+  {
+   "fieldname": "section_break_liie",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "bp_personal_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Personal and Lifestyle History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "regular_exercise",
+   "fieldtype": "Select",
+   "label": "Do you exercise regularly / walk/ Cycle etc.",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "consume_fried",
+   "fieldtype": "Select",
+   "label": "Do you consume more bakery items/Junk food/fried food/soft drinks/Pickels/Dry fish/Papad?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "occupation_bp",
+   "fieldtype": "Heading",
+   "label": "<h5>Occupation History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "long_periods",
+   "fieldtype": "Select",
+   "label": "Does your Job involve sitting for long periods of time (8 hours or more)?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "feel_stressed",
+   "fieldtype": "Select",
+   "label": "Do you feel stressed in your Job?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_bpsu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_bmgb",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5physical_examinationh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical Examination</h5>"
+  },
+  {
+   "fieldname": "peripheral_pulsefeet",
+   "fieldtype": "Data",
+   "label": "Check Peripheral pulses in both feet?"
+  },
+  {
+   "default": "Absent",
+   "fieldname": "for_peripheral_edema",
+   "fieldtype": "Select",
+   "label": "Check for peripheral edema (around the eyes, feet)?",
+   "options": "Present\nAbsent"
+  },
+  {
+   "fieldname": "h5laboratory_testh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "rft_last_oneyear",
+   "fieldtype": "Select",
+   "label": "Was RFT/Lipid profile/Hb/TSH/ECG/Eye check in the last one year?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "urine_albumin6",
+   "fieldtype": "Select",
+   "label": "Was urine micro albumin done in the last 6 months?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "lab_scanning",
+   "fieldtype": "Attach",
+   "label": "If any lab reports or Scanning or ECG etc. Please upload?"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-26 15:34:22.097315",
+ "modified_by": "tech4socialsector@azimpremjifoundation.org",
+ "module": "Triage",
+ "name": "Screening for Hypertension",
+ "naming_rule": "Expression",
+ "owner": "tech4socialsector@azimpremjifoundation.org",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

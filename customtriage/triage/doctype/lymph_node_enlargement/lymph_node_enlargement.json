@@ -1,0 +1,447 @@
+{
+ "actions": [],
+ "autoname": "format:LNE{###)",
+ "creation": "2025-10-11 18:27:20.435431",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_dane",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "any_painful_lymphnode",
+  "none_lymph",
+  "lymph_node_enlargement",
+  "section_break_opoc",
+  "column_break_xvtu",
+  "check_baks",
+  "present_chief_complaints_column",
+  "where_lumpis",
+  "neck",
+  "axilla",
+  "chect",
+  "groin",
+  "is_it",
+  "since_noticed",
+  "how_start",
+  "pain_lump",
+  "section_break_zpmq",
+  "any_associated_symptoms_column",
+  "any_fever",
+  "any_cough",
+  "sputum",
+  "if_yes_please_describe",
+  "any_sore_throat",
+  "column_break_cyvq",
+  "check_fdcu",
+  "any_loose_stools",
+  "any_joint_pain",
+  "animal_bite",
+  "limb_injury",
+  "section_break_kvpg",
+  "past_history_column",
+  "bp_history",
+  "heart_diseases",
+  "diabetes_history",
+  "thyroid_issues",
+  "column_break_wdvg",
+  "check_rkua",
+  "similar_lump",
+  "breast_lumps",
+  "diagnosed_tb",
+  "cancer_treatment",
+  "section_break_xelj",
+  "check_lyvk",
+  "h5physical_examinationh5",
+  "lymph_node",
+  "h5laboratory_testh5",
+  "any_previous_lab",
+  "please_upload"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_dane",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_painful_lymphnode",
+   "fieldtype": "Check",
+   "label": "Any painful lymphnode"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_lymph",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "lymph_node_enlargement",
+   "fieldtype": "Select",
+   "label": "Lymph node Enlargement",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "section_break_opoc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_xvtu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_baks",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "present_chief_complaints_column",
+   "fieldtype": "Heading",
+   "label": "<h5>Present Chief Complaints</h5>"
+  },
+  {
+   "fieldname": "where_lumpis",
+   "fieldtype": "Heading",
+   "label": "<h5>Where is the lump?</h5>",
+   "options": "\n"
+  },
+  {
+   "default": "0",
+   "fieldname": "neck",
+   "fieldtype": "Check",
+   "label": "Neck"
+  },
+  {
+   "default": "0",
+   "fieldname": "axilla",
+   "fieldtype": "Check",
+   "label": "Axilla"
+  },
+  {
+   "default": "0",
+   "fieldname": "chect",
+   "fieldtype": "Check",
+   "label": "Chest"
+  },
+  {
+   "default": "0",
+   "fieldname": "groin",
+   "fieldtype": "Check",
+   "label": "Groin"
+  },
+  {
+   "fieldname": "is_it",
+   "fieldtype": "Select",
+   "label": "Is it?",
+   "options": "\nSingle\nMultiple"
+  },
+  {
+   "fieldname": "since_noticed",
+   "fieldtype": "Data",
+   "label": "Since when you noticed it?"
+  },
+  {
+   "fieldname": "how_start",
+   "fieldtype": "Select",
+   "label": "How did it start?",
+   "options": "\nSudden\nGradual"
+  },
+  {
+   "default": "No",
+   "fieldname": "pain_lump",
+   "fieldtype": "Select",
+   "label": "Is there pain in the lump?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "section_break_zpmq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "any_associated_symptoms_column",
+   "fieldtype": "Column Break",
+   "label": "Any associated symptoms"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_fever",
+   "fieldtype": "Select",
+   "label": "Any fever",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_cough",
+   "fieldtype": "Select",
+   "label": "Any cough",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "sputum",
+   "fieldtype": "Select",
+   "label": "Do you bring out sputum?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.sputum == 'Yes';",
+   "fieldname": "if_yes_please_describe",
+   "fieldtype": "Data",
+   "label": "If yes, please describe"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_sore_throat",
+   "fieldtype": "Select",
+   "label": "Any sore throat",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "column_break_cyvq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_fdcu",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_loose_stools",
+   "fieldtype": "Select",
+   "label": "Any loose stools",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_joint_pain",
+   "fieldtype": "Select",
+   "label": "Any joint pain",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "animal_bite",
+   "fieldtype": "Select",
+   "label": "Any recent animal bite?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "limb_injury",
+   "fieldtype": "Select",
+   "label": "Any recent injury to the limbs?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "section_break_kvpg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "past_history_column",
+   "fieldtype": "Column Break",
+   "label": "Past History"
+  },
+  {
+   "default": "No",
+   "fieldname": "bp_history",
+   "fieldtype": "Select",
+   "label": "Any History of Hypertension",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "heart_diseases",
+   "fieldtype": "Select",
+   "label": "Any History of Heart diseases",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "diabetes_history",
+   "fieldtype": "Select",
+   "label": "Any History of Diabetes",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "thyroid_issues",
+   "fieldtype": "Select",
+   "label": "Any history of Thyroid issues",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "column_break_wdvg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_rkua",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "similar_lump",
+   "fieldtype": "Select",
+   "label": "Any similar lumps in the past?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "breast_lumps",
+   "fieldtype": "Select",
+   "label": "Any breast lesions/breast lumps in the past?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "diagnosed_tb",
+   "fieldtype": "Select",
+   "label": "Have you been diagnosed with TB?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "cancer_treatment",
+   "fieldtype": "Select",
+   "label": "Have you been diagnosed with cancer and taken treatment?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "section_break_xelj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_lyvk",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5physical_examinationh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical Examination</h5>"
+  },
+  {
+   "fieldname": "lymph_node",
+   "fieldtype": "Data",
+   "label": "Describe the lymph node?"
+  },
+  {
+   "fieldname": "h5laboratory_testh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_previous_lab",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.any_previous_lab == 'Yes';",
+   "fieldname": "please_upload",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:27:20.435431",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Lymph node Enlargement",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

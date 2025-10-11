@@ -1,0 +1,714 @@
+{
+ "actions": [],
+ "autoname": "format:PGC{###}",
+ "creation": "2025-10-11 18:24:53.240457",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_dane",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "any_urinary_complaints",
+  "if_hb_less_than_7_gmdl",
+  "if_hb_more_than_7_gmdl_to_less_than_11_gmdl",
+  "server_headche",
+  "reduces_or_absent_foetal_movement",
+  "leaking_or_bleeding_pv",
+  "none_pregnancy",
+  "pregnancy_care",
+  "section_break_opoc",
+  "present_history",
+  "pregnancy_confirmed",
+  "which_pregnancy",
+  "lmp",
+  "edd",
+  "any_bloodtest",
+  "if_yes_upload_the_report",
+  "scanning_done",
+  "scanning_report",
+  "td_booster",
+  "any_medication",
+  "tablets_pic",
+  "ncd_condition",
+  "ncd_diabetes",
+  "ncd_hypertension",
+  "thyroid",
+  "column_break_mxmd",
+  "check_tded",
+  "taken_iron_injection",
+  "hospital_name",
+  "fetal_movement",
+  "early_pregnancy",
+  "any_complication",
+  "fever_care",
+  "dysuria",
+  "burning_micturition",
+  "headsche",
+  "high_blood_pressure",
+  "high_blood_sugar",
+  "white_discharge",
+  "edema",
+  "jaundice",
+  "bleeding_pv",
+  "other",
+  "none2",
+  "complication_other",
+  "deworming_tablet",
+  "history_of_previous_pregnancy_section",
+  "number_of_living_children",
+  "pregnancy_complication",
+  "mode_of_previous_delivery",
+  "any_preterm_delivery",
+  "lbw_baby",
+  "baby_weight",
+  "defects_congenital",
+  "post_delivery_issue",
+  "contraception_pregnancies",
+  "column_break_dvwj",
+  "check_wbmb",
+  "any_abortion",
+  "if_yes_which_trimister",
+  "type_of_abortion",
+  "reason_for_abortion",
+  "stillbirth_history",
+  "history_iron_injection",
+  "twin_prehnancy",
+  "ectopic_pregnancy",
+  "section_break_kvpg",
+  "past_history",
+  "any_past_history",
+  "hypertension",
+  "diabetes",
+  "heart_diseases",
+  "thyroid_issues",
+  "none",
+  "h5personal_and_lifestyle_historyh5",
+  "daily_diet",
+  "h5family_historyh5",
+  "twin_pregnancies",
+  "column_break_iymc",
+  "check_cquo",
+  "h5physical_examinationh5",
+  "fundal_height",
+  "fetal_heart_rate",
+  "breast_examination",
+  "h5laboratory_testh5",
+  "any_previous_lab",
+  "please_upload"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_dane",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_urinary_complaints",
+   "fieldtype": "Check",
+   "label": "Any urinary complaints"
+  },
+  {
+   "default": "0",
+   "fieldname": "if_hb_less_than_7_gmdl",
+   "fieldtype": "Check",
+   "label": "If Hb less than <7 gm/dl"
+  },
+  {
+   "default": "0",
+   "fieldname": "if_hb_more_than_7_gmdl_to_less_than_11_gmdl",
+   "fieldtype": "Check",
+   "label": "If Hb more than 7 gm/dl to less than 11 gm/dl"
+  },
+  {
+   "default": "0",
+   "fieldname": "server_headche",
+   "fieldtype": "Check",
+   "label": "Severe headche/blurring of vision/breathlessness/swelling of extremeties/severe abdominal pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "reduces_or_absent_foetal_movement",
+   "fieldtype": "Check",
+   "label": "Reduces or absent foetal movement"
+  },
+  {
+   "default": "0",
+   "fieldname": "leaking_or_bleeding_pv",
+   "fieldtype": "Check",
+   "label": "Leaking or bleeding PV"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_pregnancy",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "pregnancy_care",
+   "fieldtype": "Select",
+   "label": "Pregnancy Care",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "section_break_opoc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "present_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Present History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "pregnancy_confirmed",
+   "fieldtype": "Select",
+   "label": "Pregnancy Confirmed?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "which_pregnancy",
+   "fieldtype": "Int",
+   "label": "Which pregnancy is this?"
+  },
+  {
+   "fieldname": "lmp",
+   "fieldtype": "Date",
+   "label": "LMP"
+  },
+  {
+   "fieldname": "edd",
+   "fieldtype": "Date",
+   "label": "EDD",
+   "read_only": 1
+  },
+  {
+   "default": "No",
+   "fieldname": "any_bloodtest",
+   "fieldtype": "Select",
+   "label": "Have you done any blood test?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.any_bloodtest == 'Yes';",
+   "fieldname": "if_yes_upload_the_report",
+   "fieldtype": "Attach",
+   "label": "If yes, Upload the report"
+  },
+  {
+   "fieldname": "scanning_done",
+   "fieldtype": "Select",
+   "label": "Have you done scanning?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.scanning_done == 'Yes';",
+   "fieldname": "scanning_report",
+   "fieldtype": "Attach",
+   "label": "If yes, Upload the report"
+  },
+  {
+   "default": "No",
+   "fieldname": "td_booster",
+   "fieldtype": "Select",
+   "label": "Have you taken TD 1,2 or Td booster?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_medication",
+   "fieldtype": "Select",
+   "label": "Are you taking any medications?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.any_medication == 'Yes';",
+   "fieldname": "tablets_pic",
+   "fieldtype": "Attach",
+   "label": "If yes, Upload the tablets pictures"
+  },
+  {
+   "fieldname": "ncd_condition",
+   "fieldtype": "Heading",
+   "label": "<h5>Any pre-existing NCD condition ?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "ncd_diabetes",
+   "fieldtype": "Check",
+   "label": "Diabetes"
+  },
+  {
+   "default": "0",
+   "fieldname": "ncd_hypertension",
+   "fieldtype": "Check",
+   "label": "Hypertension"
+  },
+  {
+   "default": "0",
+   "fieldname": "thyroid",
+   "fieldtype": "Check",
+   "label": "Thyroid"
+  },
+  {
+   "fieldname": "column_break_mxmd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_tded",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "taken_iron_injection",
+   "fieldtype": "Select",
+   "label": "Have you taken Iron injection?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.taken_iron_injection == 'Yes';",
+   "fieldname": "hospital_name",
+   "fieldtype": "Data",
+   "label": "If yes, where have you taken (Name of the hospital)"
+  },
+  {
+   "default": "No",
+   "fieldname": "fetal_movement",
+   "fieldtype": "Select",
+   "label": "Are you feeling fetal movement (Applicable to women who are in the 5th months of pregnancy or more)",
+   "options": "\nYes\nNo\nNot Applicable"
+  },
+  {
+   "default": "No",
+   "fieldname": "early_pregnancy",
+   "fieldtype": "Select",
+   "label": "Any excessive vomiting in early pregnancy?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "any_complication",
+   "fieldtype": "Heading",
+   "label": "<h5>Any complication?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "fever_care",
+   "fieldtype": "Check",
+   "label": "Fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "dysuria",
+   "fieldtype": "Check",
+   "label": "Dysuria"
+  },
+  {
+   "default": "0",
+   "fieldname": "burning_micturition",
+   "fieldtype": "Check",
+   "label": "Burning Micturition"
+  },
+  {
+   "default": "0",
+   "fieldname": "headsche",
+   "fieldtype": "Check",
+   "label": "Headache or Blurred Vision"
+  },
+  {
+   "default": "0",
+   "fieldname": "high_blood_pressure",
+   "fieldtype": "Check",
+   "label": "High Blood Pressure"
+  },
+  {
+   "default": "0",
+   "fieldname": "high_blood_sugar",
+   "fieldtype": "Check",
+   "label": "High Blood Sugar"
+  },
+  {
+   "default": "0",
+   "fieldname": "white_discharge",
+   "fieldtype": "Check",
+   "label": "White Discharge"
+  },
+  {
+   "default": "0",
+   "fieldname": "edema",
+   "fieldtype": "Check",
+   "label": "Edema"
+  },
+  {
+   "default": "0",
+   "fieldname": "jaundice",
+   "fieldtype": "Check",
+   "label": "Jaundice"
+  },
+  {
+   "default": "0",
+   "fieldname": "bleeding_pv",
+   "fieldtype": "Check",
+   "label": "Bleeding PV"
+  },
+  {
+   "default": "0",
+   "fieldname": "other",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "default": "0",
+   "fieldname": "none2",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "depends_on": "eval: doc.other == 1;\r\n\r\n",
+   "fieldname": "complication_other",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "default": "No",
+   "fieldname": "deworming_tablet",
+   "fieldtype": "Select",
+   "label": "Have you taken deworming tablet?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.which_pregnancy >= 2\r\n",
+   "fieldname": "history_of_previous_pregnancy_section",
+   "fieldtype": "Section Break",
+   "label": "History of Previous Pregnancy"
+  },
+  {
+   "fieldname": "number_of_living_children",
+   "fieldtype": "Data",
+   "label": "Number of living children"
+  },
+  {
+   "fieldname": "pregnancy_complication",
+   "fieldtype": "Data",
+   "label": "Any complication during last pregnancy"
+  },
+  {
+   "fieldname": "mode_of_previous_delivery",
+   "fieldtype": "Select",
+   "label": "Mode of previous delivery",
+   "options": "\nNormal\nC section\nInstrumental"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_preterm_delivery",
+   "fieldtype": "Select",
+   "label": "Any preterm delivery",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "lbw_baby",
+   "fieldtype": "Select",
+   "label": "Any baby born with LBW",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.lbw_baby == 'Yes';",
+   "fieldname": "baby_weight",
+   "fieldtype": "Data",
+   "label": "If yes, what was the weight of the baby"
+  },
+  {
+   "default": "No",
+   "fieldname": "defects_congenital",
+   "fieldtype": "Select",
+   "label": "Any birth defects/ congenital anomalies",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "post_delivery_issue",
+   "fieldtype": "Data",
+   "label": "Any complication during post delivery"
+  },
+  {
+   "fieldname": "contraception_pregnancies",
+   "fieldtype": "Data",
+   "label": "Any contraception used between pregnancies"
+  },
+  {
+   "fieldname": "column_break_dvwj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_wbmb",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_abortion",
+   "fieldtype": "Select",
+   "label": "Any abortion",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.any_abortion == 'Yes';",
+   "fieldname": "if_yes_which_trimister",
+   "fieldtype": "Select",
+   "label": "If yes, which trimister",
+   "options": "\nTrimister 1\nTrimister 2\nTrimister 3"
+  },
+  {
+   "depends_on": "eval: doc.any_abortion == 'Yes';",
+   "fieldname": "type_of_abortion",
+   "fieldtype": "Select",
+   "label": "Type of abortion",
+   "options": "\nSpontaneous\nInduced"
+  },
+  {
+   "depends_on": "eval: doc.any_abortion == 'Yes';",
+   "fieldname": "reason_for_abortion",
+   "fieldtype": "Data",
+   "label": "Reason for abortion"
+  },
+  {
+   "default": "No",
+   "fieldname": "stillbirth_history",
+   "fieldtype": "Select",
+   "label": "History of any still birth",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "history_iron_injection",
+   "fieldtype": "Select",
+   "label": "History of blood transfusion or Iron injection",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "twin_prehnancy",
+   "fieldtype": "Select",
+   "label": "Any history of twin pregnancy",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "ectopic_pregnancy",
+   "fieldtype": "Select",
+   "label": "Any history of ectopic pregnancy",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_kvpg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "past_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Past History</h5>"
+  },
+  {
+   "fieldname": "any_past_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Any past history of?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "hypertension",
+   "fieldtype": "Check",
+   "label": "Hypertension"
+  },
+  {
+   "default": "0",
+   "fieldname": "diabetes",
+   "fieldtype": "Check",
+   "label": "Diabetes"
+  },
+  {
+   "default": "0",
+   "fieldname": "heart_diseases",
+   "fieldtype": "Check",
+   "label": "Heart diseases"
+  },
+  {
+   "default": "0",
+   "fieldname": "thyroid_issues",
+   "fieldtype": "Check",
+   "label": "Thyroid issues"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "h5personal_and_lifestyle_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Personal and Lifestyle History</h5>"
+  },
+  {
+   "fieldname": "daily_diet",
+   "fieldtype": "Small Text",
+   "label": "Describe the daily diet of the child?"
+  },
+  {
+   "fieldname": "h5family_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Family History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "twin_pregnancies",
+   "fieldtype": "Select",
+   "label": "Any twin pregnancies in the family (Mother side)?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_iymc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_cquo",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5physical_examinationh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical Examination</h5>"
+  },
+  {
+   "fieldname": "fundal_height",
+   "fieldtype": "Data",
+   "label": "Fundal Height"
+  },
+  {
+   "fieldname": "fetal_heart_rate",
+   "fieldtype": "Data",
+   "label": "Fetal Heart Rate"
+  },
+  {
+   "fieldname": "breast_examination",
+   "fieldtype": "Data",
+   "label": "Breast Examination?"
+  },
+  {
+   "fieldname": "h5laboratory_testh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_previous_lab",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.any_previous_lab == 'Yes';",
+   "fieldname": "please_upload",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:24:53.240457",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Pregnancy Care",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

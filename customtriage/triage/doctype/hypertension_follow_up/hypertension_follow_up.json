@@ -1,0 +1,401 @@
+{
+ "actions": [],
+ "autoname": "format:BPF{###}",
+ "creation": "2025-10-11 18:17:34.998580",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_tab",
+  "basic_info",
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_rhwj",
+  "community_name",
+  "date",
+  "created_by",
+  "section_break_rncs",
+  "new_hypertensive",
+  "sudden_swelling_of_legs",
+  "any_history_of_fainting_or_fall",
+  "severe_headache_sudden_onset",
+  "chest_pain_sudden_onset",
+  "breathlessness_sudden_onset",
+  "any_nausea_vomiting_sudden_onset",
+  "drowsy",
+  "any_slurrred_speech",
+  "any_change_in_gaitimbalance",
+  "none",
+  "hypertension_follow_up",
+  "section_break_vooc",
+  "present_complaints_column",
+  "blurring_of_vision",
+  "anychest_pain",
+  "breathing_difficultyon",
+  "swelling_legs",
+  "tingling_sensation",
+  "column_break_bdkj",
+  "check_kpry",
+  "physical_exam_diabetes",
+  "peripheral_pulses",
+  "peripheral_edemas",
+  "heavy_breathing",
+  "section_break_bpam",
+  "check_dgyi",
+  "personal_and_lifestyle_history_section",
+  "stopped_junks",
+  "exercise_30mins",
+  "diabetic_medicalhistory",
+  "medicines_regularly",
+  "bp_medicinereason",
+  "provide_explanation",
+  "section_break_bfxw",
+  "check_xdfn",
+  "h5laboratory_testh5",
+  "lipid_profile",
+  "micro_albumin",
+  "lab_reports"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "basic_info",
+   "fieldtype": "Section Break",
+   "label": "Basic Information of the Patient"
+  },
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_rhwj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "section_break_rncs",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "new_hypertensive",
+   "fieldtype": "Check",
+   "label": "New hypertensive"
+  },
+  {
+   "default": "0",
+   "fieldname": "sudden_swelling_of_legs",
+   "fieldtype": "Check",
+   "label": "Sudden swelling of legs"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_history_of_fainting_or_fall",
+   "fieldtype": "Check",
+   "label": "Any history of fainting or fall "
+  },
+  {
+   "default": "0",
+   "fieldname": "severe_headache_sudden_onset",
+   "fieldtype": "Check",
+   "label": "Severe headache (Sudden onset)"
+  },
+  {
+   "default": "0",
+   "fieldname": "chest_pain_sudden_onset",
+   "fieldtype": "Check",
+   "label": "Chest pain (Sudden onset)"
+  },
+  {
+   "default": "0",
+   "fieldname": "breathlessness_sudden_onset",
+   "fieldtype": "Check",
+   "label": "Breathlessness (Sudden onset)"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_nausea_vomiting_sudden_onset",
+   "fieldtype": "Check",
+   "label": "Any nausea vomiting (Sudden onset)"
+  },
+  {
+   "default": "0",
+   "fieldname": "drowsy",
+   "fieldtype": "Check",
+   "label": "Drowsy "
+  },
+  {
+   "default": "0",
+   "fieldname": "any_slurrred_speech",
+   "fieldtype": "Check",
+   "label": "Any slurrred speech"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_change_in_gaitimbalance",
+   "fieldtype": "Check",
+   "label": "Any change in gait/imbalance"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "default": "No",
+   "fieldname": "hypertension_follow_up",
+   "fieldtype": "Select",
+   "label": "Hypertension Follow up",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_vooc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "present_complaints_column",
+   "fieldtype": "Column Break",
+   "label": "Present Complaints"
+  },
+  {
+   "default": "No",
+   "fieldname": "blurring_of_vision",
+   "fieldtype": "Select",
+   "label": "Any Blurring of Vision?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "anychest_pain",
+   "fieldtype": "Select",
+   "label": "Any Chest Pain?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "breathing_difficultyon",
+   "fieldtype": "Select",
+   "label": "Any Breathing Difficulty on walking?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "swelling_legs",
+   "fieldtype": "Select",
+   "label": "Any Swelling of the Legs?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "tingling_sensation",
+   "fieldtype": "Select",
+   "label": "Any tingling and burning sensation in the hands or feet?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_bdkj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_kpry",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "physical_exam_diabetes",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical Examination</h5>"
+  },
+  {
+   "fieldname": "peripheral_pulses",
+   "fieldtype": "Data",
+   "label": "Check Peripheral pulses in both feet (Describe)"
+  },
+  {
+   "fieldname": "peripheral_edemas",
+   "fieldtype": "Select",
+   "label": "Check for peripheral edema (around the eyes, feet)?",
+   "options": "Present\nAbsent"
+  },
+  {
+   "default": "Absent",
+   "fieldname": "heavy_breathing",
+   "fieldtype": "Select",
+   "label": "Check for heavy breathing?",
+   "options": "Present\nAbsent"
+  },
+  {
+   "fieldname": "section_break_bpam",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_dgyi",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "personal_and_lifestyle_history_section",
+   "fieldtype": "Heading",
+   "label": "<h5>Personal and lifestyle History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "stopped_junks",
+   "fieldtype": "Select",
+   "label": "Have you stopped taking bakery items/Junk food/fried food/soft drinks?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "exercise_30mins",
+   "fieldtype": "Select",
+   "label": "Do you exercise everyday (walking/cycling/running/yoga etc.) at least 30 min?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "diabetic_medicalhistory",
+   "fieldtype": "Heading",
+   "label": "<h5>Medical History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "medicines_regularly",
+   "fieldtype": "Select",
+   "label": "Are you taking the medicines regularly as advised?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "bp_medicinereason",
+   "fieldtype": "Select",
+   "label": "If no, provide the reason",
+   "options": "Medicines caused Allergy\nMedicines cause Side-Effects\nDoctor advised to stop\nOther Reason"
+  },
+  {
+   "depends_on": "eval: doc.bp_medicinereason == 'Other Reason';",
+   "fieldname": "provide_explanation",
+   "fieldtype": "Data",
+   "label": "Other reasons, please provide explanation?"
+  },
+  {
+   "fieldname": "section_break_bfxw",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_xdfn",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5laboratory_testh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "lipid_profile",
+   "fieldtype": "Select",
+   "label": "Was RFT/Lipid profile/Hb/TSH/ECG/Eye check in the last one year?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "micro_albumin",
+   "fieldtype": "Select",
+   "label": "Was urine micro albumin done in the last 6 months ",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "lab_reports",
+   "fieldtype": "Attach",
+   "label": "Upload the lab reports or tests if any?"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:17:34.998580",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Hypertension Follow up",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

@@ -1,0 +1,797 @@
+{
+ "actions": [],
+ "autoname": "format:REI{###}",
+ "creation": "2025-10-11 18:18:17.316849",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_dane",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "red_flags_child",
+  "child",
+  "if_the_child_is_breathless",
+  "if_the_child_is_having_chest_in_drawing",
+  "if_the_child_is_drowsy_or_constantly_crying",
+  "if_the_child_is_refusing_breast_feeding_or_any_feed",
+  "none4",
+  "respiratory_issue",
+  "red_flags_adult",
+  "adult",
+  "high_fever_more_than_3_days",
+  "associated_with_chills",
+  "discoloured_nasal_discharge_or_sputum_discolor",
+  "sputum",
+  "finding_difficulty_to_swallow",
+  "tender_lymphnodes_in_the_neck",
+  "breathing_difficulty",
+  "chest_pain",
+  "any_change_in_the_sound_while_coughing",
+  "none",
+  "section_break_jrpo",
+  "check_sayy",
+  "h5do_you_haveh5",
+  "fever",
+  "cough",
+  "cold",
+  "headache",
+  "if_fever_section",
+  "select_ygoh",
+  "fever_since",
+  "severity_fever",
+  "column_break_utxd",
+  "fever_most",
+  "fever_withchills",
+  "if_cough_section",
+  "select_upnm",
+  "howlong_cough",
+  "cough_occurrence",
+  "day",
+  "night",
+  "lying_down",
+  "talking",
+  "seasonal",
+  "if_seasonal",
+  "constant",
+  "after_contact_with_pet_animals",
+  "others",
+  "other_describe",
+  "howis_cough",
+  "column_break_ehuj",
+  "sputum_color",
+  "following_symptoms",
+  "wheezing",
+  "shortness_of_breath",
+  "pain_chest",
+  "bloody_sputum",
+  "weight_loss",
+  "hoarseness",
+  "throat_buring",
+  "stuffy_nose",
+  "runny_nose",
+  "if_cold_section",
+  "select_umxs",
+  "cold_sincewhen",
+  "cause_cold",
+  "cold_weather",
+  "wind",
+  "known_allergy",
+  "any_allergy",
+  "other_cause",
+  "coldother_describe",
+  "cause_none",
+  "nasal_congestion",
+  "if_headache_section",
+  "select_beav",
+  "since_headache",
+  "severity",
+  "h5character_of_headacheh5",
+  "throbbing",
+  "stabbing",
+  "pounding",
+  "dull_continuous",
+  "headache_others",
+  "headache_other",
+  "when_feelpain",
+  "section_break_tlbd",
+  "select_zfpp",
+  "h5past_historyh5",
+  "any_history_of_asthama",
+  "any_history_of_allergy",
+  "past_symptoms",
+  "section_break_lgcz",
+  "select_ffsm",
+  "h5family_historyh5",
+  "history_asthma",
+  "allergy_history",
+  "physical_exam",
+  "throat_examination",
+  "sinus_tenderness",
+  "lab_test",
+  "lab_previous",
+  "if_yes_please_upload"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_dane",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "depends_on": "eval:doc.age && doc.age <= 5\n",
+   "fieldname": "red_flags_child",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "child",
+   "fieldtype": "Heading",
+   "label": "Child"
+  },
+  {
+   "default": "0",
+   "fieldname": "if_the_child_is_breathless",
+   "fieldtype": "Check",
+   "label": "If the child is breathless "
+  },
+  {
+   "default": "0",
+   "fieldname": "if_the_child_is_having_chest_in_drawing",
+   "fieldtype": "Check",
+   "label": "If the child is having chest in drawing "
+  },
+  {
+   "default": "0",
+   "fieldname": "if_the_child_is_drowsy_or_constantly_crying",
+   "fieldtype": "Check",
+   "label": "if the child is drowsy or constantly crying"
+  },
+  {
+   "default": "0",
+   "fieldname": "if_the_child_is_refusing_breast_feeding_or_any_feed",
+   "fieldtype": "Check",
+   "label": "If the child is refusing breast feeding or any feed"
+  },
+  {
+   "default": "0",
+   "fieldname": "none4",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "respiratory_issue",
+   "fieldtype": "Select",
+   "label": "Respiratory Issue",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval:doc.age && doc.age > 5\n",
+   "fieldname": "red_flags_adult",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "adult",
+   "fieldtype": "Heading",
+   "label": "Adult"
+  },
+  {
+   "default": "0",
+   "fieldname": "high_fever_more_than_3_days",
+   "fieldtype": "Check",
+   "label": "High fever more than 3 days"
+  },
+  {
+   "default": "0",
+   "fieldname": "associated_with_chills",
+   "fieldtype": "Check",
+   "label": "Associated with chills"
+  },
+  {
+   "default": "0",
+   "fieldname": "discoloured_nasal_discharge_or_sputum_discolor",
+   "fieldtype": "Check",
+   "label": "Discoloured nasal discharge or sputum discolor"
+  },
+  {
+   "default": "0",
+   "fieldname": "sputum",
+   "fieldtype": "Check",
+   "label": "bloody sputum"
+  },
+  {
+   "default": "0",
+   "fieldname": "finding_difficulty_to_swallow",
+   "fieldtype": "Check",
+   "label": "finding difficulty to swallow"
+  },
+  {
+   "default": "0",
+   "fieldname": "tender_lymphnodes_in_the_neck",
+   "fieldtype": "Check",
+   "label": "tender lymphnodes in the neck"
+  },
+  {
+   "default": "0",
+   "fieldname": "breathing_difficulty",
+   "fieldtype": "Check",
+   "label": "breathing difficulty"
+  },
+  {
+   "default": "0",
+   "fieldname": "chest_pain",
+   "fieldtype": "Check",
+   "label": "chest pain "
+  },
+  {
+   "default": "0",
+   "fieldname": "any_change_in_the_sound_while_coughing",
+   "fieldtype": "Check",
+   "label": "Any change in the sound while coughing "
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "section_break_jrpo",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_sayy",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5do_you_haveh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Do you have</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "fever",
+   "fieldtype": "Check",
+   "label": "Fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "cough",
+   "fieldtype": "Check",
+   "label": "Cough"
+  },
+  {
+   "default": "0",
+   "fieldname": "cold",
+   "fieldtype": "Check",
+   "label": "Cold"
+  },
+  {
+   "default": "0",
+   "fieldname": "headache",
+   "fieldtype": "Check",
+   "label": "Headache"
+  },
+  {
+   "depends_on": "eval: doc.fever == 1;",
+   "fieldname": "if_fever_section",
+   "fieldtype": "Section Break",
+   "label": "If Fever"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "select_ygoh",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "fever_since",
+   "fieldtype": "Select",
+   "label": "If fever, since when",
+   "options": "One to two days\nMore than 3 days\nMore than 5 days"
+  },
+  {
+   "fieldname": "severity_fever",
+   "fieldtype": "Select",
+   "label": "Severity of the fever",
+   "options": "Low\nModerate\nHigh\nCombined High and Low"
+  },
+  {
+   "fieldname": "column_break_utxd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fever_most",
+   "fieldtype": "Select",
+   "label": "In a day, when do you feel fever the most?",
+   "options": "\nAll Day\nMorning\nEvening\nNight"
+  },
+  {
+   "fieldname": "fever_withchills",
+   "fieldtype": "Select",
+   "label": "Is fever associated with chills",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.cough == 1;",
+   "fieldname": "if_cough_section",
+   "fieldtype": "Section Break",
+   "label": "If Cough"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "select_upnm",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "howlong_cough",
+   "fieldtype": "Data",
+   "label": "Since, how long do you have cough?"
+  },
+  {
+   "fieldname": "cough_occurrence",
+   "fieldtype": "Heading",
+   "label": "<h5>Is there a specific time of occurrence of cough?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "day",
+   "fieldtype": "Check",
+   "label": "Day"
+  },
+  {
+   "default": "0",
+   "fieldname": "night",
+   "fieldtype": "Check",
+   "label": "Night"
+  },
+  {
+   "default": "0",
+   "fieldname": "lying_down",
+   "fieldtype": "Check",
+   "label": "Lying down"
+  },
+  {
+   "default": "0",
+   "fieldname": "talking",
+   "fieldtype": "Check",
+   "label": "Talking"
+  },
+  {
+   "default": "0",
+   "fieldname": "seasonal",
+   "fieldtype": "Check",
+   "label": "Seasonal"
+  },
+  {
+   "depends_on": "eval: doc.seasonal == 1;",
+   "fieldname": "if_seasonal",
+   "fieldtype": "Data",
+   "label": "If seasonal, which season"
+  },
+  {
+   "default": "0",
+   "fieldname": "constant",
+   "fieldtype": "Check",
+   "label": "Constant"
+  },
+  {
+   "default": "0",
+   "fieldname": "after_contact_with_pet_animals",
+   "fieldtype": "Check",
+   "label": "After contact with pet animals"
+  },
+  {
+   "default": "0",
+   "fieldname": "others",
+   "fieldtype": "Check",
+   "label": "Others"
+  },
+  {
+   "fieldname": "other_describe",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "fieldname": "howis_cough",
+   "fieldtype": "Select",
+   "label": "How is the cough?",
+   "options": "Dry\nWet"
+  },
+  {
+   "fieldname": "column_break_ehuj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sputum_color",
+   "fieldtype": "Select",
+   "label": "What is the color of the sputum?",
+   "options": "Clear\nYellow\nGreen\nRed or Pink"
+  },
+  {
+   "fieldname": "following_symptoms",
+   "fieldtype": "Heading",
+   "label": "<h5>Do you have the following symptom(s)?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "wheezing",
+   "fieldtype": "Check",
+   "label": "Wheezing"
+  },
+  {
+   "default": "0",
+   "fieldname": "shortness_of_breath",
+   "fieldtype": "Check",
+   "label": "Shortness of Breath"
+  },
+  {
+   "default": "0",
+   "fieldname": "pain_chest",
+   "fieldtype": "Check",
+   "label": "Pain / Tightness of Chest"
+  },
+  {
+   "default": "0",
+   "fieldname": "bloody_sputum",
+   "fieldtype": "Check",
+   "label": "Bloody Sputum"
+  },
+  {
+   "default": "0",
+   "fieldname": "weight_loss",
+   "fieldtype": "Check",
+   "label": "Weight Loss"
+  },
+  {
+   "default": "0",
+   "fieldname": "hoarseness",
+   "fieldtype": "Check",
+   "label": "Hoarseness"
+  },
+  {
+   "default": "0",
+   "fieldname": "throat_buring",
+   "fieldtype": "Check",
+   "label": "Burning feeling in a throat at night/early in the morning"
+  },
+  {
+   "default": "0",
+   "fieldname": "stuffy_nose",
+   "fieldtype": "Check",
+   "label": "Nasal Congestion/ Stuffy nose"
+  },
+  {
+   "default": "0",
+   "fieldname": "runny_nose",
+   "fieldtype": "Check",
+   "label": "Runny Nose"
+  },
+  {
+   "depends_on": "eval: doc.cold == 1;",
+   "fieldname": "if_cold_section",
+   "fieldtype": "Section Break",
+   "label": "If Cold"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "select_umxs",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "cold_sincewhen",
+   "fieldtype": "Data",
+   "label": "If cold, since how long"
+  },
+  {
+   "fieldname": "cause_cold",
+   "fieldtype": "Heading",
+   "label": "<h5>Do the following cause the cold and sneezing?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "cold_weather",
+   "fieldtype": "Check",
+   "label": "Cold Weather"
+  },
+  {
+   "default": "0",
+   "fieldname": "wind",
+   "fieldtype": "Check",
+   "label": "Wind"
+  },
+  {
+   "default": "0",
+   "fieldname": "known_allergy",
+   "fieldtype": "Check",
+   "label": "Known Allergy"
+  },
+  {
+   "depends_on": "eval: doc.known_allergy == 1;",
+   "fieldname": "any_allergy",
+   "fieldtype": "Data",
+   "label": "If any Allergy, please describe"
+  },
+  {
+   "default": "0",
+   "fieldname": "other_cause",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.other_cause == 1;",
+   "fieldname": "coldother_describe",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "default": "0",
+   "fieldname": "cause_none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "nasal_congestion",
+   "fieldtype": "Select",
+   "label": "Nasal congestion/Stuffy nose?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.headache == 1;",
+   "fieldname": "if_headache_section",
+   "fieldtype": "Section Break",
+   "label": "If Headache"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "select_beav",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "since_headache",
+   "fieldtype": "Data",
+   "label": "If headache, since how long"
+  },
+  {
+   "fieldname": "severity",
+   "fieldtype": "Select",
+   "label": "Severity",
+   "options": "Mild\nModerate\nVery severe / Prostrating (patient has to lie down due to pain)"
+  },
+  {
+   "fieldname": "h5character_of_headacheh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Character of headache</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "throbbing",
+   "fieldtype": "Check",
+   "label": "Throbbing"
+  },
+  {
+   "default": "0",
+   "fieldname": "stabbing",
+   "fieldtype": "Check",
+   "label": "Stabbing"
+  },
+  {
+   "default": "0",
+   "fieldname": "pounding",
+   "fieldtype": "Check",
+   "label": "Pounding"
+  },
+  {
+   "default": "0",
+   "fieldname": "dull_continuous",
+   "fieldtype": "Check",
+   "label": "Dull Continuous"
+  },
+  {
+   "default": "0",
+   "fieldname": "headache_others",
+   "fieldtype": "Check",
+   "label": "Others"
+  },
+  {
+   "fieldname": "headache_other",
+   "fieldtype": "Data",
+   "label": "If other, please describe"
+  },
+  {
+   "fieldname": "when_feelpain",
+   "fieldtype": "Select",
+   "label": "When do you feel pain the most?",
+   "options": "Day\nNight\nBoth"
+  },
+  {
+   "fieldname": "section_break_tlbd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "select_zfpp",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5past_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Past history</h5>"
+  },
+  {
+   "fieldname": "any_history_of_asthama",
+   "fieldtype": "Select",
+   "label": "Any history of Asthama",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "any_history_of_allergy",
+   "fieldtype": "Select",
+   "label": "Any history of Allergy",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "past_symptoms",
+   "fieldtype": "Select",
+   "label": "Have you had these symptoms in the past also",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_lgcz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "select_ffsm",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5family_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Family History</h5>"
+  },
+  {
+   "fieldname": "history_asthma",
+   "fieldtype": "Select",
+   "label": "Family history of Asthma?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "allergy_history",
+   "fieldtype": "Select",
+   "label": "Family history of Allergy?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "physical_exam",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical Examination</h5>"
+  },
+  {
+   "fieldname": "throat_examination",
+   "fieldtype": "Data",
+   "label": "Throat Examination"
+  },
+  {
+   "fieldname": "sinus_tenderness",
+   "fieldtype": "Select",
+   "label": "Sinus Tenderness",
+   "options": "Present\nAbsent"
+  },
+  {
+   "fieldname": "lab_test",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "fieldname": "lab_previous",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc.)?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.lab_previous == 'Yes';",
+   "fieldname": "if_yes_please_upload",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:18:17.316849",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Respiratory Issue",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

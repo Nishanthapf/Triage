@@ -1,0 +1,592 @@
+{
+ "actions": [],
+ "autoname": "format:HDA{###}",
+ "creation": "2025-10-11 18:24:20.702269",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_dane",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "any_sudden_severe",
+  "headche_associated",
+  "slurred_speech",
+  "headache_nasal",
+  "none_headache",
+  "headache",
+  "present_chief_complaints_section",
+  "do_you_have_headache",
+  "since_when",
+  "which_part_of_the_head",
+  "column_break_nnft",
+  "check_pdxh",
+  "seviarity",
+  "how_did_it_start",
+  "which_time_of_the_day_is_the_most",
+  "section_break_orah",
+  "character_of_the_headche_column",
+  "throbbing",
+  "stabbing",
+  "pounding",
+  "dull_continuous",
+  "other_option",
+  "if_other_please_describe",
+  "column_break_lulk",
+  "check_zmlp",
+  "does_it_get_worse_with_column",
+  "coughing",
+  "bending_forward",
+  "exposure_to_cold",
+  "exposure_to_sun",
+  "while_working_on_laptop",
+  "associted__symptoms_section",
+  "any_fever",
+  "any_cold",
+  "any_cough",
+  "if_yes_describe_the_color_of_the_sputum",
+  "any_throat_pain",
+  "any_blurring_of_vision",
+  "column_break_kekz",
+  "check_yift",
+  "any_nausea_or_vomiting",
+  "if_yes_does_vomiting_relieve_headache",
+  "does_the_headache_cause_sleep_disturbance",
+  "any_dizziness",
+  "if_yes_have_you_fallen_due_to_diziness",
+  "past_history_section",
+  "any_history_of_hypertension",
+  "any_history_of_heart_diseases",
+  "any_history_of_diabetes",
+  "any_history_of_thyroid_issues",
+  "column_break_rpwb",
+  "check_mrai",
+  "any_past_history_of_vision_problem",
+  "any_history_of_fall_in_the_past_6_months",
+  "any_history_of_head_injury",
+  "occupation_history_section",
+  "does_your_work_involved_very_loud_sound",
+  "column_break_uvtp",
+  "check_reps",
+  "do_you_have_very_long_working_hours",
+  "does_your_work_involved_lots_of_stress",
+  "physical_examination_section",
+  "check_dwfp",
+  "check_vision_with_snellens_chart",
+  "lab_test_section",
+  "previous_lab_reports",
+  "column_break_lrol",
+  "check_vojh",
+  "if_yes_please_upload"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_dane",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_sudden_severe",
+   "fieldtype": "Check",
+   "label": "Any sudden severe headache with BP more than 180/120 mm of hg"
+  },
+  {
+   "default": "0",
+   "fieldname": "headche_associated",
+   "fieldtype": "Check",
+   "label": "Any headche associated with drowsiness/ agitation/confused state"
+  },
+  {
+   "default": "0",
+   "fieldname": "slurred_speech",
+   "fieldtype": "Check",
+   "label": "Any headche with slurred speech/ drooling of saliva and weakness in limbs"
+  },
+  {
+   "default": "0",
+   "fieldname": "headache_nasal",
+   "fieldtype": "Check",
+   "label": "Headache with nasal bleed (sudden)"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_headache",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "headache",
+   "fieldtype": "Select",
+   "label": "Headache",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "present_chief_complaints_section",
+   "fieldtype": "Section Break",
+   "label": "Present chief complaints"
+  },
+  {
+   "fieldname": "do_you_have_headache",
+   "fieldtype": "Select",
+   "label": "Do you have headache",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "since_when",
+   "fieldtype": "Data",
+   "label": "Since when"
+  },
+  {
+   "fieldname": "which_part_of_the_head",
+   "fieldtype": "Data",
+   "label": "Which part of the head"
+  },
+  {
+   "fieldname": "column_break_nnft",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_pdxh",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "seviarity",
+   "fieldtype": "Select",
+   "label": "Seviarity",
+   "options": "Mild\nModerate\nSevere"
+  },
+  {
+   "fieldname": "how_did_it_start",
+   "fieldtype": "Select",
+   "label": "How did it start",
+   "options": "Sudden\nOver few days\nOver many years"
+  },
+  {
+   "fieldname": "which_time_of_the_day_is_the_most",
+   "fieldtype": "Select",
+   "label": "Which time of the day is the most",
+   "options": "Early morning\nEvening\nThroughout the day"
+  },
+  {
+   "fieldname": "section_break_orah",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "character_of_the_headche_column",
+   "fieldtype": "Column Break",
+   "label": "Character of the headche"
+  },
+  {
+   "default": "0",
+   "fieldname": "throbbing",
+   "fieldtype": "Check",
+   "label": "Throbbing"
+  },
+  {
+   "default": "0",
+   "fieldname": "stabbing",
+   "fieldtype": "Check",
+   "label": "Stabbing"
+  },
+  {
+   "default": "0",
+   "fieldname": "pounding",
+   "fieldtype": "Check",
+   "label": "Pounding"
+  },
+  {
+   "default": "0",
+   "fieldname": "dull_continuous",
+   "fieldtype": "Check",
+   "label": "Dull continuous"
+  },
+  {
+   "default": "0",
+   "fieldname": "other_option",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.other_option == 1;",
+   "fieldname": "if_other_please_describe",
+   "fieldtype": "Data",
+   "label": "If Other please Describe"
+  },
+  {
+   "fieldname": "column_break_lulk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_zmlp",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "does_it_get_worse_with_column",
+   "fieldtype": "Heading",
+   "label": "<h5>Does it get worse with</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "coughing",
+   "fieldtype": "Check",
+   "label": "Coughing"
+  },
+  {
+   "default": "0",
+   "fieldname": "bending_forward",
+   "fieldtype": "Check",
+   "label": "Bending forward"
+  },
+  {
+   "default": "0",
+   "fieldname": "exposure_to_cold",
+   "fieldtype": "Check",
+   "label": "Exposure to cold"
+  },
+  {
+   "default": "0",
+   "fieldname": "exposure_to_sun",
+   "fieldtype": "Check",
+   "label": "Exposure to sun"
+  },
+  {
+   "default": "0",
+   "fieldname": "while_working_on_laptop",
+   "fieldtype": "Check",
+   "label": "While working on laptop"
+  },
+  {
+   "fieldname": "associted__symptoms_section",
+   "fieldtype": "Section Break",
+   "label": "Associated symptoms"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_fever",
+   "fieldtype": "Select",
+   "label": "Any fever",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_cold",
+   "fieldtype": "Select",
+   "label": "Any cold",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_cough",
+   "fieldtype": "Select",
+   "label": "Any cough",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "if_yes_describe_the_color_of_the_sputum",
+   "fieldtype": "Data",
+   "label": "If yes, describe the color of the sputum"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_throat_pain",
+   "fieldtype": "Select",
+   "label": "Any throat pain",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_blurring_of_vision",
+   "fieldtype": "Select",
+   "label": "Any blurring of vision",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_kekz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_yift",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_nausea_or_vomiting",
+   "fieldtype": "Select",
+   "label": "Any nausea or vomiting",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "if_yes_does_vomiting_relieve_headache",
+   "fieldtype": "Select",
+   "label": "If yes, Does vomiting relieve headache",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "does_the_headache_cause_sleep_disturbance",
+   "fieldtype": "Select",
+   "label": "Does the headache cause sleep disturbance",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_dizziness",
+   "fieldtype": "Select",
+   "label": "Any dizziness",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "if_yes_have_you_fallen_due_to_diziness",
+   "fieldtype": "Select",
+   "label": "If Yes, have you fallen due to diziness",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "past_history_section",
+   "fieldtype": "Section Break",
+   "label": "Past history"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_hypertension",
+   "fieldtype": "Select",
+   "label": "Any History of Hypertension",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_heart_diseases",
+   "fieldtype": "Select",
+   "label": "Any History of Heart diseases",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_diabetes",
+   "fieldtype": "Select",
+   "label": "Any History of Diabetes",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_thyroid_issues",
+   "fieldtype": "Select",
+   "label": "Any history of Thyroid issues",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_rpwb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_mrai",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_past_history_of_vision_problem",
+   "fieldtype": "Select",
+   "label": "Any past history of vision problem",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_fall_in_the_past_6_months",
+   "fieldtype": "Select",
+   "label": "Any history of fall in the past 6 months",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_head_injury",
+   "fieldtype": "Select",
+   "label": "Any history of head injury",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "occupation_history_section",
+   "fieldtype": "Section Break",
+   "label": "Occupation History"
+  },
+  {
+   "default": "No",
+   "fieldname": "does_your_work_involved_very_loud_sound",
+   "fieldtype": "Select",
+   "label": "Does your work involved very loud sound",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_uvtp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_reps",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "do_you_have_very_long_working_hours",
+   "fieldtype": "Select",
+   "label": "Do you have very long working hours",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "does_your_work_involved_lots_of_stress",
+   "fieldtype": "Select",
+   "label": "Does your work involved lots of stress",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "physical_examination_section",
+   "fieldtype": "Section Break",
+   "label": "Physical examination"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_dwfp",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "check_vision_with_snellens_chart",
+   "fieldtype": "Data",
+   "label": "Check vision with snellen's chart"
+  },
+  {
+   "fieldname": "lab_test_section",
+   "fieldtype": "Section Break",
+   "label": "Lab test"
+  },
+  {
+   "default": "No",
+   "fieldname": "previous_lab_reports",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_lrol",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_vojh",
+   "fieldtype": "Check"
+  },
+  {
+   "depends_on": "eval:doc.previous_lab_reports==\"Yes\";",
+   "fieldname": "if_yes_please_upload",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:24:20.702269",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Headache",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

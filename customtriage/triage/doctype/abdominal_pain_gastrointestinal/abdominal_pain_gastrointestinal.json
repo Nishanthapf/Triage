@@ -1,0 +1,874 @@
+{
+ "actions": [],
+ "autoname": "format:APD{###}",
+ "creation": "2025-10-11 18:18:53.709464",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_tab",
+  "basic_info",
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_rhwj",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "sudden_abdominalpain_vomiting",
+  "abdominal_pain_with_vomiting",
+  "worsening_of_abdominal_pain",
+  "any_bloating_sensation",
+  "any_weight_loss",
+  "change_in_color_of_stools",
+  "history_of_abdominai",
+  "none",
+  "abdominal_pain_gastrointestinal",
+  "section_break_zfnt",
+  "present_complaints_column",
+  "abdominal_distension",
+  "abdomial_symptom",
+  "swelling_food",
+  "weight_change",
+  "appetite_changes",
+  "abdominal_pain",
+  "yes_abdominalpain",
+  "abdominalpain_start",
+  "h5nature_of_the_abdominal_painh5",
+  "constant_continuous",
+  "colicky",
+  "cramping",
+  "dull_aching",
+  "stabbing",
+  "burning",
+  "bloating",
+  "other_gastric",
+  "gasother_describe",
+  "column_break_rrnb",
+  "check_dmle",
+  "pain_increasing",
+  "hunger",
+  "after_food",
+  "urination",
+  "pressure",
+  "movement",
+  "coughing",
+  "straining",
+  "unsure_gaspain",
+  "other_paingas",
+  "pain_other_describe",
+  "relieves_pain",
+  "medication",
+  "medication_describe",
+  "food",
+  "leaning_forward",
+  "squatting",
+  "gastric_vomit",
+  "passing_of_stool",
+  "gastric_none",
+  "dontknow_gastric",
+  "gasother_relief",
+  "relief_other",
+  "section_break_mwnp",
+  "check_ugdt",
+  "otherbody_pain",
+  "yes_radiates",
+  "severity_of_the_pain",
+  "section_break_dkpy",
+  "column_break_rrhl",
+  "associated_complaints",
+  "abnomial_symptoms",
+  "fever",
+  "constipation",
+  "unable_to_pass_the_gas",
+  "blenching",
+  "hiccups",
+  "stool_color",
+  "diarrhea",
+  "vomiting",
+  "night_sweats",
+  "difficulty_in_breathing",
+  "pedal_oedema",
+  "abd_none",
+  "column_break_zecv",
+  "check_sksj",
+  "shortness_breath",
+  "difficulty_in_urination",
+  "buring_sensation",
+  "jaundice",
+  "none_gastricpain",
+  "others",
+  "other_symptoms",
+  "tired_easily",
+  "past_history",
+  "acidity_reflux",
+  "section_break_wxhv",
+  "check_slhq",
+  "lifestyle_history",
+  "spicy_food",
+  "food_ontime",
+  "food_outside",
+  "section_break_rrpy",
+  "column_break_awqi",
+  "check_lkxh",
+  "menstrual_history",
+  "last_menstruation_period",
+  "menstrual_cycle",
+  "any_white_discharge",
+  "discharge_character",
+  "foul_smelling",
+  "section_break_ufab",
+  "check_gtte",
+  "family_history",
+  "stomach_cancer",
+  "lab_test",
+  "previous_labtest",
+  "yes_upload"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "basic_info",
+   "fieldtype": "Section Break",
+   "label": "Basic Information of the Patient"
+  },
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_rhwj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "default": "0",
+   "fieldname": "sudden_abdominalpain_vomiting",
+   "fieldtype": "Check",
+   "label": "Any sudden onset abdominal pain with vomiting and drowsiness "
+  },
+  {
+   "default": "0",
+   "fieldname": "abdominal_pain_with_vomiting",
+   "fieldtype": "Check",
+   "label": "abdominal pain with vomiting "
+  },
+  {
+   "default": "0",
+   "fieldname": "worsening_of_abdominal_pain",
+   "fieldtype": "Check",
+   "label": "Worsening of abdominal pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_bloating_sensation",
+   "fieldtype": "Check",
+   "label": "Any bloating sensation"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_weight_loss",
+   "fieldtype": "Check",
+   "label": "any weight loss"
+  },
+  {
+   "default": "0",
+   "fieldname": "change_in_color_of_stools",
+   "fieldtype": "Check",
+   "label": "Change in color of stools"
+  },
+  {
+   "default": "0",
+   "fieldname": "history_of_abdominai",
+   "fieldtype": "Check",
+   "label": "If more than 50 years with first time history of abdominal pain "
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "default": "No",
+   "fieldname": "abdominal_pain_gastrointestinal",
+   "fieldtype": "Select",
+   "label": "Abdominal pain Gastrointestinal",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_zfnt",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "present_complaints_column",
+   "fieldtype": "Column Break",
+   "label": "Present Complaints"
+  },
+  {
+   "default": "No",
+   "fieldname": "abdominal_distension",
+   "fieldtype": "Select",
+   "label": "Do you have abdominal distension?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "abdomial_symptom",
+   "fieldtype": "Select",
+   "label": "Since when have you had this symptom?",
+   "options": "Over few days\nOver few months\nOver few years\nSuddenly"
+  },
+  {
+   "default": "No",
+   "fieldname": "swelling_food",
+   "fieldtype": "Select",
+   "label": "Does the swelling increase after taking food",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "weight_change",
+   "fieldtype": "Select",
+   "label": "Weight change",
+   "options": "Weight gain\nWeight loss\nNo change"
+  },
+  {
+   "fieldname": "appetite_changes",
+   "fieldtype": "Select",
+   "label": "Has the patient experienced any change in appetite",
+   "options": "Appetite increased\nAppetite decreased"
+  },
+  {
+   "default": "No",
+   "fieldname": "abdominal_pain",
+   "fieldtype": "Select",
+   "label": "Do you have the abodominal pain",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.abdominal_pain == 'Yes';",
+   "fieldname": "yes_abdominalpain",
+   "fieldtype": "Select",
+   "label": "If Yes, Which area of the abdomen",
+   "options": "Right Upper\nRight Lower\nLeft Upper\nLeft Lower\nAll over"
+  },
+  {
+   "fieldname": "abdominalpain_start",
+   "fieldtype": "Select",
+   "label": "How did the abdominal pain start",
+   "options": "Sudden\nGradual"
+  },
+  {
+   "fieldname": "h5nature_of_the_abdominal_painh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Nature of the abdominal pain</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "constant_continuous",
+   "fieldtype": "Check",
+   "label": "Constant/ Continuous"
+  },
+  {
+   "default": "0",
+   "fieldname": "colicky",
+   "fieldtype": "Check",
+   "label": "Colicky / Intermittent (comes & goes)"
+  },
+  {
+   "default": "0",
+   "fieldname": "cramping",
+   "fieldtype": "Check",
+   "label": "Cramping"
+  },
+  {
+   "default": "0",
+   "fieldname": "dull_aching",
+   "fieldtype": "Check",
+   "label": "Dull, aching"
+  },
+  {
+   "default": "0",
+   "fieldname": "stabbing",
+   "fieldtype": "Check",
+   "label": "Stabbing"
+  },
+  {
+   "default": "0",
+   "fieldname": "burning",
+   "fieldtype": "Check",
+   "label": "Burning"
+  },
+  {
+   "default": "0",
+   "fieldname": "bloating",
+   "fieldtype": "Check",
+   "label": "Bloating"
+  },
+  {
+   "default": "0",
+   "fieldname": "other_gastric",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.other_gastric == 1;",
+   "fieldname": "gasother_describe",
+   "fieldtype": "Data",
+   "label": "Other [describe]"
+  },
+  {
+   "fieldname": "column_break_rrnb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_dmle",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "pain_increasing",
+   "fieldtype": "Heading",
+   "label": "<h5>When does the pain increase</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "hunger",
+   "fieldtype": "Check",
+   "label": "Hunger"
+  },
+  {
+   "default": "0",
+   "fieldname": "after_food",
+   "fieldtype": "Check",
+   "label": "After Food"
+  },
+  {
+   "default": "0",
+   "fieldname": "urination",
+   "fieldtype": "Check",
+   "label": "Urination"
+  },
+  {
+   "default": "0",
+   "fieldname": "pressure",
+   "fieldtype": "Check",
+   "label": "Pressure"
+  },
+  {
+   "default": "0",
+   "fieldname": "movement",
+   "fieldtype": "Check",
+   "label": "Movement"
+  },
+  {
+   "default": "0",
+   "fieldname": "coughing",
+   "fieldtype": "Check",
+   "label": "Coughing"
+  },
+  {
+   "default": "0",
+   "fieldname": "straining",
+   "fieldtype": "Check",
+   "label": "Straining"
+  },
+  {
+   "default": "0",
+   "fieldname": "unsure_gaspain",
+   "fieldtype": "Check",
+   "label": "Don't know/Unsure"
+  },
+  {
+   "default": "0",
+   "fieldname": "other_paingas",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.other_paingas == 1;",
+   "fieldname": "pain_other_describe",
+   "fieldtype": "Data",
+   "label": "Other [describe]"
+  },
+  {
+   "fieldname": "relieves_pain",
+   "fieldtype": "Heading",
+   "label": "<h5>What relieves/lessens the pain</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "medication",
+   "fieldtype": "Check",
+   "label": "Medication"
+  },
+  {
+   "depends_on": "eval: doc.medication == 1;",
+   "fieldname": "medication_describe",
+   "fieldtype": "Data",
+   "label": "Medications [describe]"
+  },
+  {
+   "default": "0",
+   "fieldname": "food",
+   "fieldtype": "Check",
+   "label": "Food"
+  },
+  {
+   "default": "0",
+   "fieldname": "leaning_forward",
+   "fieldtype": "Check",
+   "label": "Leaning forward"
+  },
+  {
+   "default": "0",
+   "fieldname": "squatting",
+   "fieldtype": "Check",
+   "label": "Squatting"
+  },
+  {
+   "default": "0",
+   "fieldname": "gastric_vomit",
+   "fieldtype": "Check",
+   "label": "Vomiting"
+  },
+  {
+   "default": "0",
+   "fieldname": "passing_of_stool",
+   "fieldtype": "Check",
+   "label": "Passing of stool"
+  },
+  {
+   "default": "0",
+   "fieldname": "gastric_none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "default": "0",
+   "fieldname": "dontknow_gastric",
+   "fieldtype": "Check",
+   "label": "Don't know/Unsure"
+  },
+  {
+   "default": "0",
+   "fieldname": "gasother_relief",
+   "fieldtype": "Check",
+   "label": "Other"
+  },
+  {
+   "depends_on": "eval: doc.gasother_relief == 1;",
+   "fieldname": "relief_other",
+   "fieldtype": "Data",
+   "label": "Other [describe]"
+  },
+  {
+   "fieldname": "section_break_mwnp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_ugdt",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "otherbody_pain",
+   "fieldtype": "Select",
+   "label": "Does the pain go to other part of the body",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.otherbody_pain == 'Yes';",
+   "fieldname": "yes_radiates",
+   "fieldtype": "Select",
+   "label": "If yes, where does it radiates",
+   "options": "to the chest/neck\nto the back\nto the groin\nto the right shoulder"
+  },
+  {
+   "fieldname": "severity_of_the_pain",
+   "fieldtype": "Select",
+   "label": "Severity of the pain",
+   "options": "Mild\nModerate\nSevere"
+  },
+  {
+   "fieldname": "section_break_dkpy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_rrhl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "associated_complaints",
+   "fieldtype": "Heading",
+   "label": "<h5>Associated complaints</h5>"
+  },
+  {
+   "fieldname": "abnomial_symptoms",
+   "fieldtype": "Heading",
+   "label": "<h5>Do you have the following symptoms?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "fever",
+   "fieldtype": "Check",
+   "label": "Fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "constipation",
+   "fieldtype": "Check",
+   "label": "Constipation"
+  },
+  {
+   "default": "0",
+   "fieldname": "unable_to_pass_the_gas",
+   "fieldtype": "Check",
+   "label": "Unable to pass the gas"
+  },
+  {
+   "default": "0",
+   "fieldname": "blenching",
+   "fieldtype": "Check",
+   "label": "Blenching/Burping"
+  },
+  {
+   "default": "0",
+   "fieldname": "hiccups",
+   "fieldtype": "Check",
+   "label": "Hiccups"
+  },
+  {
+   "default": "0",
+   "fieldname": "stool_color",
+   "fieldtype": "Check",
+   "label": "Change in the color of the stool"
+  },
+  {
+   "default": "0",
+   "fieldname": "diarrhea",
+   "fieldtype": "Check",
+   "label": "Diarrhea"
+  },
+  {
+   "default": "0",
+   "fieldname": "vomiting",
+   "fieldtype": "Check",
+   "label": "Vomiting"
+  },
+  {
+   "default": "0",
+   "fieldname": "night_sweats",
+   "fieldtype": "Check",
+   "label": "Night Sweats"
+  },
+  {
+   "default": "0",
+   "fieldname": "difficulty_in_breathing",
+   "fieldtype": "Check",
+   "label": "Difficulty in Breathing"
+  },
+  {
+   "default": "0",
+   "fieldname": "pedal_oedema",
+   "fieldtype": "Check",
+   "label": "Pedal Oedema/Feet Swelling"
+  },
+  {
+   "default": "0",
+   "fieldname": "abd_none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "column_break_zecv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_sksj",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "0",
+   "fieldname": "shortness_breath",
+   "fieldtype": "Check",
+   "label": "Sudden Shortness of breath that wakes you up at night"
+  },
+  {
+   "default": "0",
+   "fieldname": "difficulty_in_urination",
+   "fieldtype": "Check",
+   "label": "Difficulty in Urination"
+  },
+  {
+   "default": "0",
+   "fieldname": "buring_sensation",
+   "fieldtype": "Check",
+   "label": "Burning Sensation during Urination"
+  },
+  {
+   "default": "0",
+   "fieldname": "jaundice",
+   "fieldtype": "Check",
+   "label": "Jaundice"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_gastricpain",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "default": "0",
+   "fieldname": "others",
+   "fieldtype": "Check",
+   "label": "Others"
+  },
+  {
+   "depends_on": "eval: doc.others == 1;",
+   "fieldname": "other_symptoms",
+   "fieldtype": "Data",
+   "label": "If others, please describe"
+  },
+  {
+   "default": "No",
+   "fieldname": "tired_easily",
+   "fieldtype": "Select",
+   "label": "Do you feel tired easily?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "past_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Past History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "acidity_reflux",
+   "fieldtype": "Select",
+   "label": "Any history of acidity and reflux in the past?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_wxhv",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_slhq",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "lifestyle_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Personal and Lifestyle History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "spicy_food",
+   "fieldtype": "Select",
+   "label": "Do you eat very Spicy food/Oily food?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "food_ontime",
+   "fieldtype": "Select",
+   "label": "Do you take your food on time?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "food_outside",
+   "fieldtype": "Select",
+   "label": "Did you take any food outside?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.gender == 'Female';",
+   "fieldname": "section_break_rrpy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_awqi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_lkxh",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "menstrual_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Menstrual History</h5>"
+  },
+  {
+   "fieldname": "last_menstruation_period",
+   "fieldtype": "Date",
+   "label": "Last menstruation period"
+  },
+  {
+   "fieldname": "menstrual_cycle",
+   "fieldtype": "Select",
+   "label": "Menstrual Cycle",
+   "options": "Regular\nIrregular"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_white_discharge",
+   "fieldtype": "Select",
+   "label": "Any white discharge",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "discharge_character",
+   "fieldtype": "Select",
+   "label": "Character of the discharge",
+   "options": "Curd-like\nGreenish\nWhite\nWatery"
+  },
+  {
+   "default": "No",
+   "fieldname": "foul_smelling",
+   "fieldtype": "Select",
+   "label": "Foul smelling",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_ufab",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_gtte",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "family_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Family History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "stomach_cancer",
+   "fieldtype": "Select",
+   "label": "Family history of stomach cancer?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "lab_test",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "previous_labtest",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.previous_labtest == 'Yes';",
+   "fieldname": "yes_upload",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:18:53.709464",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Abdominal pain Gastrointestinal",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

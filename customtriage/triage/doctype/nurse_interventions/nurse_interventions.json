@@ -1,0 +1,978 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "autoincrement",
+ "creation": "2025-09-19 16:34:47.106073",
+ "default_view": "List",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_information_of_the_patient_section",
+  "patient_unique_id",
+  "patient_name",
+  "age",
+  "gender",
+  "community_name",
+  "occupation",
+  "column_break_ilvw",
+  "address",
+  "health_insurance",
+  "date",
+  "created_by",
+  "section_break_viyj",
+  "description_of_current_symptoms",
+  "known_chronic_condition",
+  "chn_comment",
+  "column_break_zmni",
+  "hypertension",
+  "diabetes",
+  "cancer",
+  "thyroid_issues",
+  "others",
+  "none",
+  "if_other_then_please_specify",
+  "personal_history",
+  "any_history_of_addiction_column",
+  "tobacco_consumption",
+  "drinking_alcohol",
+  "drug_abuse",
+  "addition_none",
+  "any_allergy",
+  "any_surgeries",
+  "if_yes_please_describe",
+  "any_hospitalization",
+  "oral_health",
+  "vision",
+  "hearing_impairment",
+  "attained_menarche",
+  "mental_health_section",
+  "composed",
+  "anxious",
+  "depressed",
+  "loss_of_appetite",
+  "loss_of_weight",
+  "weight_gain",
+  "insomnia",
+  "excessive_sleep",
+  "palpitation",
+  "section_break_iwkj",
+  "h5menstrual_historyh5_column",
+  "gravida1",
+  "lmp_date",
+  "menstrual_cycle",
+  "any_white_discharge",
+  "character_of_the_discharge",
+  "foul_smelling",
+  "section_break_abvj",
+  "h5medication_historyh5",
+  "medicines_last6",
+  "medicine_yes",
+  "h5family_historyh5",
+  "history_bp",
+  "history_diabetes",
+  "heart_diseases",
+  "stroke",
+  "kidney_disease",
+  "sudden_death",
+  "familyhistory_none",
+  "physical_examination_section",
+  "temperature",
+  "pulse",
+  "respiration",
+  "saturation",
+  "height",
+  "weight",
+  "column_break_tloo",
+  "bmi",
+  "bmi_category",
+  "blood_pressure_mmhg",
+  "rbg_level",
+  "piccle",
+  "primary_diagnosis",
+  "symptoms",
+  "screening_for_diebetes",
+  "diabetic_follow_up",
+  "screening_for_hypertension",
+  "hypertension_follow_up",
+  "respiratory_issue",
+  "chest_pain",
+  "abdominal_pain",
+  "diarrhea",
+  "vomiting",
+  "back_pain_and_neck_pain",
+  "shoulder_and_hand_pain",
+  "leg_or_knee_or_hip_pain",
+  "foot_and_ankle_pain",
+  "column_break_qrah",
+  "anemia_adolescent",
+  "anemia_children",
+  "pregnancy_care",
+  "postnatal_care",
+  "thyroid_problem",
+  "skin_problem",
+  "lymph_node",
+  "jaundice",
+  "headache",
+  "dyspepsia",
+  "fatigue",
+  "eye_problem",
+  "constipation",
+  "section_break_qgir",
+  "screening_for_diebetes_button",
+  "diabetic_follow_up_form",
+  "button_kapr",
+  "hypertension_follow_up_form",
+  "respiratory_issue_fever_cough_cold_and_headache_form",
+  "chest_pain_form",
+  "abdominal_pain_form",
+  "diarrhea_form",
+  "vomiting_form",
+  "back_pain_and_neck_pain_form",
+  "button_klpy",
+  "leg_or_knee_or_hip_pain_form",
+  "foot_and_ankle_pain_form",
+  "anemia_adolescent_form",
+  "anemia_children_form",
+  "pregnancy_care_form",
+  "postnatal_care_form",
+  "column_break_zjdk",
+  "thyroid_problem_form",
+  "skin_problem_form",
+  "button_smfg",
+  "jaundice_form",
+  "headache_form",
+  "dyspepsia_form",
+  "fatigue_form",
+  "eye_problem_form",
+  "constipation_form"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_information_of_the_patient_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Information of the Patient"
+  },
+  {
+   "fieldname": "patient_unique_id",
+   "fieldtype": "Data",
+   "label": "Patient ID"
+  },
+  {
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Age"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender",
+   "options": "\nMale\nFemale\nOthers"
+  },
+  {
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "occupation",
+   "fieldtype": "Data",
+   "label": "Occupation"
+  },
+  {
+   "fieldname": "column_break_ilvw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Address"
+  },
+  {
+   "fieldname": "health_insurance",
+   "fieldtype": "Select",
+   "label": "Do you have any Health Insurance",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "label": "Created By"
+  },
+  {
+   "fieldname": "section_break_viyj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description_of_current_symptoms",
+   "fieldtype": "Small Text",
+   "label": "Description of Current Symptoms"
+  },
+  {
+   "fieldname": "known_chronic_condition",
+   "fieldtype": "Data",
+   "label": "Known Chronic Condition"
+  },
+  {
+   "fieldname": "chn_comment",
+   "fieldtype": "Small Text",
+   "label": "CHN Comment"
+  },
+  {
+   "fieldname": "column_break_zmni",
+   "fieldtype": "Column Break",
+   "label": "Any Comorbidities"
+  },
+  {
+   "default": "0",
+   "fieldname": "hypertension",
+   "fieldtype": "Check",
+   "label": "Hypertension"
+  },
+  {
+   "default": "0",
+   "fieldname": "diabetes",
+   "fieldtype": "Check",
+   "label": "Diabetes"
+  },
+  {
+   "default": "0",
+   "fieldname": "cancer",
+   "fieldtype": "Check",
+   "label": "Cancer"
+  },
+  {
+   "default": "0",
+   "fieldname": "thyroid_issues",
+   "fieldtype": "Check",
+   "label": "Thyroid Issues"
+  },
+  {
+   "default": "0",
+   "fieldname": "others",
+   "fieldtype": "Check",
+   "label": "Others"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "if_other_then_please_specify",
+   "fieldtype": "Data",
+   "label": "If Other, then please specify"
+  },
+  {
+   "fieldname": "personal_history",
+   "fieldtype": "Section Break",
+   "label": "Personal and Lifestyle History"
+  },
+  {
+   "fieldname": "any_history_of_addiction_column",
+   "fieldtype": "Column Break",
+   "label": "Any History of Addiction"
+  },
+  {
+   "default": "0",
+   "fieldname": "tobacco_consumption",
+   "fieldtype": "Check",
+   "label": "Tobacco Consumption (smoke/smokeless)"
+  },
+  {
+   "default": "0",
+   "fieldname": "drinking_alcohol",
+   "fieldtype": "Check",
+   "label": "Drinking Alcohol"
+  },
+  {
+   "default": "0",
+   "fieldname": "drug_abuse",
+   "fieldtype": "Check",
+   "label": "Drug Abuse"
+  },
+  {
+   "default": "0",
+   "fieldname": "addition_none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_allergy",
+   "fieldtype": "Select",
+   "label": "Any Allergy",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_surgeries",
+   "fieldtype": "Select",
+   "label": "Any Surgeries",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "if_yes_please_describe",
+   "fieldtype": "Data",
+   "label": "If Yes, Please describe"
+  },
+  {
+   "fieldname": "any_hospitalization",
+   "fieldtype": "Select",
+   "label": "Any Hospitalisation in the recent past (In the last 2 years)",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "oral_health",
+   "fieldtype": "Data",
+   "label": "Oral Health"
+  },
+  {
+   "fieldname": "vision",
+   "fieldtype": "Data",
+   "label": "Vision"
+  },
+  {
+   "default": "No",
+   "fieldname": "hearing_impairment",
+   "fieldtype": "Select",
+   "label": "Hearing Impairment",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "attained_menarche",
+   "fieldtype": "Select",
+   "label": "Have you attained Menarche",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "mental_health_section",
+   "fieldtype": "Section Break",
+   "label": "Mental health "
+  },
+  {
+   "default": "0",
+   "fieldname": "composed",
+   "fieldtype": "Check",
+   "label": "Composed "
+  },
+  {
+   "default": "0",
+   "fieldname": "anxious",
+   "fieldtype": "Check",
+   "label": "Anxious"
+  },
+  {
+   "default": "0",
+   "fieldname": "depressed",
+   "fieldtype": "Check",
+   "label": "Depressed"
+  },
+  {
+   "default": "0",
+   "fieldname": "loss_of_appetite",
+   "fieldtype": "Check",
+   "label": "Loss of appetite "
+  },
+  {
+   "default": "0",
+   "fieldname": "loss_of_weight",
+   "fieldtype": "Check",
+   "label": "Loss of weight"
+  },
+  {
+   "default": "0",
+   "fieldname": "weight_gain",
+   "fieldtype": "Check",
+   "label": "Weight gain"
+  },
+  {
+   "default": "0",
+   "fieldname": "insomnia",
+   "fieldtype": "Check",
+   "label": "Insomnia "
+  },
+  {
+   "default": "0",
+   "fieldname": "excessive_sleep",
+   "fieldtype": "Check",
+   "label": "Excessive sleep"
+  },
+  {
+   "default": "0",
+   "fieldname": "palpitation",
+   "fieldtype": "Check",
+   "label": "Palpitation"
+  },
+  {
+   "fieldname": "section_break_iwkj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "h5menstrual_historyh5_column",
+   "fieldtype": "Column Break",
+   "label": "Menstrual History"
+  },
+  {
+   "fieldname": "gravida1",
+   "fieldtype": "Data",
+   "label": "How many children do you have (Gravida-1)"
+  },
+  {
+   "fieldname": "lmp_date",
+   "fieldtype": "Data",
+   "label": "Last menstruation period"
+  },
+  {
+   "fieldname": "menstrual_cycle",
+   "fieldtype": "Select",
+   "label": "Menstrual Cycle",
+   "options": "\nRegular\nIrregular"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_white_discharge",
+   "fieldtype": "Select",
+   "label": "Any White Discharge",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "character_of_the_discharge",
+   "fieldtype": "Select",
+   "label": "Character of the discharge",
+   "options": "\nCurd-like\nGreenish\nWhite\nWater"
+  },
+  {
+   "default": "No",
+   "fieldname": "foul_smelling",
+   "fieldtype": "Select",
+   "label": "Foul Smelling ",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "section_break_abvj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "h5medication_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Medication History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "medicines_last6",
+   "fieldtype": "Select",
+   "label": "Have you been taking any medicines regularly for the last 6 months",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "medicine_yes",
+   "fieldtype": "Attach",
+   "label": "If Yes, please provide details (Upload if prescriptions are available)"
+  },
+  {
+   "fieldname": "h5family_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Family History</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "history_bp",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Hypertension"
+  },
+  {
+   "default": "0",
+   "fieldname": "history_diabetes",
+   "fieldtype": "Check",
+   "label": "Diabetes"
+  },
+  {
+   "default": "0",
+   "fieldname": "heart_diseases",
+   "fieldtype": "Check",
+   "label": "Heart Diseases"
+  },
+  {
+   "default": "0",
+   "fieldname": "stroke",
+   "fieldtype": "Check",
+   "label": "Stroke"
+  },
+  {
+   "default": "0",
+   "fieldname": "kidney_disease",
+   "fieldtype": "Check",
+   "label": "Kidney Disease"
+  },
+  {
+   "default": "0",
+   "fieldname": "sudden_death",
+   "fieldtype": "Check",
+   "label": "Sudden Death"
+  },
+  {
+   "default": "0",
+   "fieldname": "familyhistory_none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "physical_examination_section",
+   "fieldtype": "Section Break",
+   "label": "Physical Examination"
+  },
+  {
+   "description": "<i>Iin degree Fahrenheit</i>",
+   "fieldname": "temperature",
+   "fieldtype": "Data",
+   "label": "Temperature (F)"
+  },
+  {
+   "description": "<i>Beats per minute</i>",
+   "fieldname": "pulse",
+   "fieldtype": "Data",
+   "label": "Pulse (b/m)"
+  },
+  {
+   "description": "<i>Beats per minute</i>",
+   "fieldname": "respiration",
+   "fieldtype": "Data",
+   "label": "Respiration (b/m)"
+  },
+  {
+   "description": "<i>Percentage</i>",
+   "fieldname": "saturation",
+   "fieldtype": "Data",
+   "label": "Saturation (Spo2)"
+  },
+  {
+   "fieldname": "height",
+   "fieldtype": "Float",
+   "label": "Height (cm)"
+  },
+  {
+   "description": "<i>In KG</i>",
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "label": "Weight (Kg)"
+  },
+  {
+   "fieldname": "column_break_tloo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bmi",
+   "fieldtype": "Data",
+   "label": "BMI"
+  },
+  {
+   "fieldname": "bmi_category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "BMI category",
+   "options": "\nUnderweight\nNormal\nOverweight\nObese"
+  },
+  {
+   "fieldname": "blood_pressure_mmhg",
+   "fieldtype": "Data",
+   "label": "Blood pressure (mm/)hg"
+  },
+  {
+   "description": "<i>gm/dl</i>",
+   "fieldname": "rbg_level",
+   "fieldtype": "Data",
+   "label": "Random Blood Glucose Level (gm/dl)"
+  },
+  {
+   "fieldname": "piccle",
+   "fieldtype": "Small Text",
+   "label": "PICCLE (Pallor, Icterus, Cyanosis, Clubbing, Lymphnode enlargement, Edema)"
+  },
+  {
+   "fieldname": "primary_diagnosis",
+   "fieldtype": "Data",
+   "label": "Primary Diagnosis by Community Health Nurse (Based on the detailed assessment during the triage)"
+  },
+  {
+   "fieldname": "symptoms",
+   "fieldtype": "Section Break",
+   "label": "Detailed Examination based on the Symptoms"
+  },
+  {
+   "default": "0",
+   "fieldname": "screening_for_diebetes",
+   "fieldtype": "Check",
+   "label": "Screening for Diebetes"
+  },
+  {
+   "default": "0",
+   "fieldname": "diabetic_follow_up",
+   "fieldtype": "Check",
+   "label": "Diabetic Follow up"
+  },
+  {
+   "default": "0",
+   "fieldname": "screening_for_hypertension",
+   "fieldtype": "Check",
+   "label": "Screening for Hypertension"
+  },
+  {
+   "default": "0",
+   "fieldname": "hypertension_follow_up",
+   "fieldtype": "Check",
+   "label": "Hypertension Follow up"
+  },
+  {
+   "default": "0",
+   "fieldname": "respiratory_issue",
+   "fieldtype": "Check",
+   "label": "Respiratory Issue (Fever, Cough, Cold and Headache)"
+  },
+  {
+   "default": "0",
+   "fieldname": "chest_pain",
+   "fieldtype": "Check",
+   "label": "Chest Pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "abdominal_pain",
+   "fieldtype": "Check",
+   "label": "Abdominal Pain and Distension"
+  },
+  {
+   "default": "0",
+   "fieldname": "diarrhea",
+   "fieldtype": "Check",
+   "label": "Diarrhea"
+  },
+  {
+   "default": "0",
+   "fieldname": "vomiting",
+   "fieldtype": "Check",
+   "label": "Vomiting"
+  },
+  {
+   "default": "0",
+   "fieldname": "back_pain_and_neck_pain",
+   "fieldtype": "Check",
+   "label": "Back Pain and Neck Pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "shoulder_and_hand_pain",
+   "fieldtype": "Check",
+   "label": "Shoulder and Hand Pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "leg_or_knee_or_hip_pain",
+   "fieldtype": "Check",
+   "label": "Leg or Knee or Hip Pain"
+  },
+  {
+   "default": "0",
+   "fieldname": "foot_and_ankle_pain",
+   "fieldtype": "Check",
+   "label": "Foot and Ankle Pain"
+  },
+  {
+   "fieldname": "column_break_qrah",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "anemia_adolescent",
+   "fieldtype": "Check",
+   "label": "Anemia Adolescent"
+  },
+  {
+   "default": "0",
+   "fieldname": "anemia_children",
+   "fieldtype": "Check",
+   "label": "Anemia Children"
+  },
+  {
+   "default": "0",
+   "fieldname": "pregnancy_care",
+   "fieldtype": "Check",
+   "label": "Pregnancy Care"
+  },
+  {
+   "default": "0",
+   "fieldname": "postnatal_care",
+   "fieldtype": "Check",
+   "label": "Postnatal Care"
+  },
+  {
+   "default": "0",
+   "fieldname": "thyroid_problem",
+   "fieldtype": "Check",
+   "label": "Thyroid Problem"
+  },
+  {
+   "default": "0",
+   "fieldname": "skin_problem",
+   "fieldtype": "Check",
+   "label": "Skin Problem"
+  },
+  {
+   "default": "0",
+   "fieldname": "lymph_node",
+   "fieldtype": "Check",
+   "label": "Lymph Node Enlargement"
+  },
+  {
+   "default": "0",
+   "fieldname": "jaundice",
+   "fieldtype": "Check",
+   "label": "Jaundice"
+  },
+  {
+   "default": "0",
+   "fieldname": "headache",
+   "fieldtype": "Check",
+   "label": "Headache"
+  },
+  {
+   "default": "0",
+   "fieldname": "dyspepsia",
+   "fieldtype": "Check",
+   "label": "Dyspepsia"
+  },
+  {
+   "default": "0",
+   "fieldname": "fatigue",
+   "fieldtype": "Check",
+   "label": "Fatigue"
+  },
+  {
+   "default": "0",
+   "fieldname": "eye_problem",
+   "fieldtype": "Check",
+   "label": "Eye Problem (Painful or red eye)"
+  },
+  {
+   "default": "0",
+   "fieldname": "constipation",
+   "fieldtype": "Check",
+   "label": "Constipation"
+  },
+  {
+   "fieldname": "section_break_qgir",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.screening_for_diebetes==1;",
+   "fieldname": "screening_for_diebetes_button",
+   "fieldtype": "Button",
+   "label": "Screening for Diebetes Form"
+  },
+  {
+   "depends_on": "eval:doc.diabetic_follow_up ==1;",
+   "fieldname": "diabetic_follow_up_form",
+   "fieldtype": "Button",
+   "label": "Diabetic Follow up Form"
+  },
+  {
+   "depends_on": "eval:doc.screening_for_hypertension ==1;",
+   "fieldname": "button_kapr",
+   "fieldtype": "Button",
+   "label": "Screening for Hypertension Form"
+  },
+  {
+   "depends_on": "eval:doc.hypertension_follow_up ==1;",
+   "fieldname": "hypertension_follow_up_form",
+   "fieldtype": "Button",
+   "label": "Hypertension Follow up Form"
+  },
+  {
+   "depends_on": "eval:doc.respiratory_issue ==1;",
+   "fieldname": "respiratory_issue_fever_cough_cold_and_headache_form",
+   "fieldtype": "Button",
+   "label": "Respiratory Issue (Fever, Cough, Cold and Headache) Form"
+  },
+  {
+   "depends_on": "eval:doc.chest_pain ==1;",
+   "fieldname": "chest_pain_form",
+   "fieldtype": "Button",
+   "label": "Chest Pain Form"
+  },
+  {
+   "depends_on": "eval:doc.abdominal_pain ==1;",
+   "fieldname": "abdominal_pain_form",
+   "fieldtype": "Button",
+   "label": "Abdominal Pain and Distension Form"
+  },
+  {
+   "depends_on": "eval:doc.diarrhea ==1;",
+   "fieldname": "diarrhea_form",
+   "fieldtype": "Button",
+   "label": "Diarrhea Form"
+  },
+  {
+   "depends_on": "eval:doc.vomiting ==1;",
+   "fieldname": "vomiting_form",
+   "fieldtype": "Button",
+   "label": "Vomiting Form"
+  },
+  {
+   "depends_on": "eval:doc.back_pain_and_neck_pain ==1;",
+   "fieldname": "back_pain_and_neck_pain_form",
+   "fieldtype": "Button",
+   "label": "Back Pain and Neck Pain Form"
+  },
+  {
+   "depends_on": "eval:doc.shoulder_and_hand_pain ==1;",
+   "fieldname": "button_klpy",
+   "fieldtype": "Button",
+   "label": "Shoulder and Hand Pain Form"
+  },
+  {
+   "depends_on": "eval:doc.leg_or_knee_or_hip_pain ==1;",
+   "fieldname": "leg_or_knee_or_hip_pain_form",
+   "fieldtype": "Button",
+   "label": "Leg or Knee or Hip Pain Form"
+  },
+  {
+   "depends_on": "eval:doc.foot_and_ankle_pain ==1;",
+   "fieldname": "foot_and_ankle_pain_form",
+   "fieldtype": "Button",
+   "label": "Foot and Ankle Pain Form"
+  },
+  {
+   "depends_on": "eval:doc.anemia_adolescent ==1;",
+   "fieldname": "anemia_adolescent_form",
+   "fieldtype": "Button",
+   "label": "Anemia - Adolescent Form"
+  },
+  {
+   "depends_on": "eval:doc.anemia_children ==1;",
+   "fieldname": "anemia_children_form",
+   "fieldtype": "Button",
+   "label": "Anemia - Children Form"
+  },
+  {
+   "depends_on": "eval:doc.pregnancy_care ==1;",
+   "fieldname": "pregnancy_care_form",
+   "fieldtype": "Button",
+   "label": "Pregnancy Care Form"
+  },
+  {
+   "depends_on": "eval:doc.postnatal_care ==1;",
+   "fieldname": "postnatal_care_form",
+   "fieldtype": "Button",
+   "label": "Postnatal Care Form"
+  },
+  {
+   "fieldname": "column_break_zjdk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.thyroid_problem ==1;",
+   "fieldname": "thyroid_problem_form",
+   "fieldtype": "Button",
+   "label": "Thyroid Problem Form"
+  },
+  {
+   "depends_on": "eval:doc.skin_problem ==1;",
+   "fieldname": "skin_problem_form",
+   "fieldtype": "Button",
+   "label": "Skin Problem Form"
+  },
+  {
+   "depends_on": "eval:doc.lymph_node ==1;",
+   "fieldname": "button_smfg",
+   "fieldtype": "Button",
+   "label": "Lymph Node Enlargement Form"
+  },
+  {
+   "depends_on": "eval:doc.jaundice ==1;",
+   "fieldname": "jaundice_form",
+   "fieldtype": "Button",
+   "label": "Jaundice Form"
+  },
+  {
+   "depends_on": "eval:doc.headache ==1;",
+   "fieldname": "headache_form",
+   "fieldtype": "Button",
+   "label": "Headache Form"
+  },
+  {
+   "depends_on": "eval:doc.dyspepsia ==1;",
+   "fieldname": "dyspepsia_form",
+   "fieldtype": "Button",
+   "label": "Dyspepsia Form"
+  },
+  {
+   "depends_on": "eval:doc.fatigue ==1;",
+   "fieldname": "fatigue_form",
+   "fieldtype": "Button",
+   "label": "Fatigue Form"
+  },
+  {
+   "depends_on": "eval:doc.eye_problem ==1;",
+   "fieldname": "eye_problem_form",
+   "fieldtype": "Button",
+   "label": "Eye Problem (Painful or red eye) Form"
+  },
+  {
+   "depends_on": "eval:doc.constipation ==1;",
+   "fieldname": "constipation_form",
+   "fieldtype": "Button",
+   "label": "Constipation"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-26 15:35:52.376276",
+ "modified_by": "tech4socialsector@azimpremjifoundation.org",
+ "module": "Triage",
+ "name": "Nurse Interventions",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "patient_name"
+}

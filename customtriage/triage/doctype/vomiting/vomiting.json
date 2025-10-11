@@ -1,0 +1,552 @@
+{
+ "actions": [],
+ "autoname": "format:VOM{###}",
+ "creation": "2025-10-11 18:19:22.863594",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_tab",
+  "basic_info",
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_rhwj",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "red_flags_child",
+  "child",
+  "dehydration",
+  "sever_dehydration",
+  "none_vomiting_child",
+  "vomiting",
+  "red_flags_adult",
+  "adult",
+  "if_vomiting_with_mild_dehydration",
+  "if_vomiting_with_sever_dehydration_and_drowsiness",
+  "blood_in_the_vomit",
+  "none_vomiting",
+  "section_break_dkpy",
+  "present_complaints_column",
+  "suffering_vomiting",
+  "since_howlong",
+  "happen_shortly",
+  "sudden_vomit",
+  "vomit_colour",
+  "outside_food",
+  "travelled_anywhere",
+  "jatra_functions",
+  "pregnant_women",
+  "column_break_lgzd",
+  "check_mflx",
+  "h4associated_complaintsh4",
+  "following_complaints",
+  "cough",
+  "abdominal_pain",
+  "relived_vomiting",
+  "diarrhoea",
+  "acidity",
+  "acidity_relieved",
+  "fever",
+  "headache",
+  "change_in_vision",
+  "giddiness",
+  "ringing_in_ears",
+  "none",
+  "section_break_piry",
+  "column_break_ltmp",
+  "check_vdwf",
+  "h5personal_and_lifestyle_historyh5",
+  "spicy_oily",
+  "food_on_time",
+  "section_break_ghle",
+  "past_history_column",
+  "history_past",
+  "migrane_diagnose",
+  "acidity_diagnose",
+  "column_break_jbpy",
+  "check_auuw",
+  "occupation_history",
+  "noise_factory",
+  "section_break_cvvz",
+  "check_gycf",
+  "physical",
+  "degree_dehydration",
+  "oral_cavity",
+  "lab_test",
+  "previous_report",
+  "upload_report"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "basic_info",
+   "fieldtype": "Section Break",
+   "label": "Basic Information of the Patient"
+  },
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_rhwj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "fieldname": "red_flags_child",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "child",
+   "fieldtype": "Heading",
+   "label": "Child"
+  },
+  {
+   "default": "0",
+   "fieldname": "dehydration",
+   "fieldtype": "Check",
+   "label": "If vomiting with mild dehydration"
+  },
+  {
+   "default": "0",
+   "fieldname": "sever_dehydration",
+   "fieldtype": "Check",
+   "label": "If vomiting with sever dehydration and drowsiness"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_vomiting_child",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "default": "No",
+   "fieldname": "vomiting",
+   "fieldtype": "Select",
+   "label": "Vomiting",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "red_flags_adult",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "adult",
+   "fieldtype": "Heading",
+   "label": "Adult"
+  },
+  {
+   "default": "0",
+   "fieldname": "if_vomiting_with_mild_dehydration",
+   "fieldtype": "Check",
+   "label": "If vomiting with mild dehydration"
+  },
+  {
+   "default": "0",
+   "fieldname": "if_vomiting_with_sever_dehydration_and_drowsiness",
+   "fieldtype": "Check",
+   "label": "If vomiting with sever dehydration and drowsiness"
+  },
+  {
+   "default": "0",
+   "fieldname": "blood_in_the_vomit",
+   "fieldtype": "Check",
+   "label": "Blood in the vomit"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_vomiting",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "section_break_dkpy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "present_complaints_column",
+   "fieldtype": "Column Break",
+   "label": "Present Complaints"
+  },
+  {
+   "default": "No",
+   "fieldname": "suffering_vomiting",
+   "fieldtype": "Select",
+   "label": "Are you suffering from Vomiting",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "since_howlong",
+   "fieldtype": "Data",
+   "label": "Since when have you had this symptom?"
+  },
+  {
+   "default": "No",
+   "fieldname": "happen_shortly",
+   "fieldtype": "Select",
+   "label": "Does it happen shortly after taking a meal?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "sudden_vomit",
+   "fieldtype": "Select",
+   "label": "Does the vomit occur suddenly without any provocation?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "vomit_colour",
+   "fieldtype": "Data",
+   "label": "Colour of vomit? please describe"
+  },
+  {
+   "default": "No",
+   "fieldname": "outside_food",
+   "fieldtype": "Select",
+   "label": "Did you have food outside recently?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "travelled_anywhere",
+   "fieldtype": "Select",
+   "label": "Have you travelled anywhere recently?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "jatra_functions",
+   "fieldtype": "Select",
+   "label": "Have you attended any Jatra's/Family functions/social gatherings etc.?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "depends_on": "eval: doc.gender == 'Female' || doc.age < 18;",
+   "fieldname": "pregnant_women",
+   "fieldtype": "Select",
+   "label": "Are you pregnant (Women only)",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "column_break_lgzd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_mflx",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h4associated_complaintsh4",
+   "fieldtype": "Heading",
+   "label": "<h4>Associated Complaints</h4>"
+  },
+  {
+   "fieldname": "following_complaints",
+   "fieldtype": "Heading",
+   "label": "<h5>Do you have the following complaints?</h5>"
+  },
+  {
+   "default": "0",
+   "fieldname": "cough",
+   "fieldtype": "Check",
+   "label": "Cough"
+  },
+  {
+   "default": "0",
+   "fieldname": "abdominal_pain",
+   "fieldtype": "Check",
+   "label": "Abdominal Pain"
+  },
+  {
+   "default": "No",
+   "depends_on": "eval:doc.abdominal_pain == 1\n",
+   "fieldname": "relived_vomiting",
+   "fieldtype": "Select",
+   "label": "Is the pain relieved by vomiting",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "0",
+   "fieldname": "diarrhoea",
+   "fieldtype": "Check",
+   "label": "Diarrhea"
+  },
+  {
+   "default": "0",
+   "fieldname": "acidity",
+   "fieldtype": "Check",
+   "label": "Acidity"
+  },
+  {
+   "default": "No",
+   "depends_on": "eval:doc.acidity == 1",
+   "fieldname": "acidity_relieved",
+   "fieldtype": "Select",
+   "label": " Is it relieved by vomiting",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "0",
+   "fieldname": "fever",
+   "fieldtype": "Check",
+   "label": "Fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "headache",
+   "fieldtype": "Check",
+   "label": "Headache"
+  },
+  {
+   "default": "0",
+   "fieldname": "change_in_vision",
+   "fieldtype": "Check",
+   "label": "Change in Vision"
+  },
+  {
+   "default": "0",
+   "fieldname": "giddiness",
+   "fieldtype": "Check",
+   "label": "Giddiness"
+  },
+  {
+   "default": "0",
+   "fieldname": "ringing_in_ears",
+   "fieldtype": "Check",
+   "label": "Ringing in Ears"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "section_break_piry",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ltmp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_vdwf",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5personal_and_lifestyle_historyh5",
+   "fieldtype": "Heading",
+   "label": "<h5>Personal and Lifestyle History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "spicy_oily",
+   "fieldtype": "Select",
+   "label": "Do you eat very spicy food/oily food?",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "food_on_time",
+   "fieldtype": "Select",
+   "label": "Do you take your food on time?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "section_break_ghle",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "past_history_column",
+   "fieldtype": "Column Break",
+   "label": "Past History"
+  },
+  {
+   "default": "No",
+   "fieldname": "history_past",
+   "fieldtype": "Select",
+   "label": "Similar history in the past?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "migrane_diagnose",
+   "fieldtype": "Select",
+   "label": "Have you been diagnosed with migrane?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "acidity_diagnose",
+   "fieldtype": "Select",
+   "label": "Have you been diagnosed with acidity?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "column_break_jbpy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_auuw",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "occupation_history",
+   "fieldtype": "Heading",
+   "label": "<h5>Occupation History</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "noise_factory",
+   "fieldtype": "Select",
+   "label": "Do you work in the factory with very loud noise?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "section_break_cvvz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_gycf",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "physical",
+   "fieldtype": "Heading",
+   "label": "<h5>Physical Examination</h5>"
+  },
+  {
+   "fieldname": "degree_dehydration",
+   "fieldtype": "Select",
+   "label": "Degree of dehydration?",
+   "options": "\nMild\nModerate\nSevere"
+  },
+  {
+   "default": "Absent",
+   "fieldname": "oral_cavity",
+   "fieldtype": "Select",
+   "label": "Oral Cavity for any caries?",
+   "options": "\nPresent\nAbsent"
+  },
+  {
+   "fieldname": "lab_test",
+   "fieldtype": "Heading",
+   "label": "<h5>Laboratory Test</h5>"
+  },
+  {
+   "default": "No",
+   "fieldname": "previous_report",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)?",
+   "options": "Yes\nNo"
+  },
+  {
+   "depends_on": "eval: doc.previous_report == 'Yes';",
+   "fieldname": "upload_report",
+   "fieldtype": "Attach",
+   "label": "If yes, please upload the report"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:19:22.863594",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Vomiting",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

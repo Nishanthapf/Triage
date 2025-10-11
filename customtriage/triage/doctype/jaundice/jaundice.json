@@ -1,0 +1,628 @@
+{
+ "actions": [],
+ "autoname": "format:JAD{###}",
+ "creation": "2025-10-11 18:25:51.777868",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_id",
+  "patient_name",
+  "age",
+  "gender",
+  "column_break_dane",
+  "community_name",
+  "date",
+  "created_by",
+  "red_flags_section",
+  "red_flag_adult",
+  "adults",
+  "any_jaundice_refer_for_lab_test",
+  "severe_abdominal_pain_or_tenderness",
+  "patient_is_confusedagitated_or_drowsy",
+  "high_fever",
+  "vomiting_blood",
+  "blood_in_stool_or_black_stoolnot_passing_urine",
+  "any_painful_lymphnode",
+  "none",
+  "jaundices",
+  "red_flag_child",
+  "children",
+  "jaundice",
+  "abdominal",
+  "child_is_confusedagitated_or_drowsy",
+  "fever_jaundice",
+  "excessive_vomiting",
+  "not_passing_urine",
+  "none_jaundice",
+  "present_chief_complaints_section",
+  "check_iepj",
+  "do_you_have_jaundice",
+  "since_when",
+  "onset",
+  "onset_copyhave_you_eaten_outside_recently",
+  "have_you_travelled_recently",
+  "associated_symptoms_section",
+  "any_fever",
+  "any_chills",
+  "do_you_have_itchy_skin",
+  "have_you_lost_weight",
+  "any_abdominal_bloting",
+  "any_abdominal_pain",
+  "if_yes",
+  "does_the_pain_radiated_to_the_right_shoulder",
+  "column_break_pvco",
+  "check_uheh",
+  "any_swelling_of_legs",
+  "urine_output_reduced",
+  "what_is_the_color_of_urine",
+  "what_is_the_color_of_the_stool",
+  "reduced_appetite",
+  "nausea_vomiting",
+  "past_history_section",
+  "any_history_of_hypertension",
+  "any_history_of_heart_diseases",
+  "any_history_of_diabetes",
+  "any_history_of_thyroid_issues",
+  "column_break_mxpe",
+  "check_rkwa",
+  "any_past_history_of_blood_transfusion",
+  "any_surgeries_in_the_past",
+  "are_you_on_tb_drugs_now",
+  "diagnosed_with_liver_problem",
+  "personal_history_section",
+  "column_break_suuz",
+  "check_rcsw",
+  "h5any_history_of_addiction",
+  "how_many_years_have_been_drinking",
+  "how_often_do_you_drink",
+  "do_you_have_tatoos_on_your_body",
+  "family_history_section",
+  "check_ylws",
+  "any_family_history_of_jaundice",
+  "physical_examination_section",
+  "check_rvmy",
+  "skin_changes_in_on_the_abdomen",
+  "look_for_hepatic_flap_and_tremor",
+  "abdominal_examination",
+  "lab_test_section",
+  "check_wkjy",
+  "previous_lab_reports",
+  "if_yes_please_upload"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Patient ID",
+   "options": "Nurse Interventions",
+   "search_index": 1
+  },
+  {
+   "fetch_from": "patient_id.patient_name",
+   "fetch_if_empty": 1,
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name of the Patient"
+  },
+  {
+   "fetch_from": "patient_id.age",
+   "fetch_if_empty": 1,
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age"
+  },
+  {
+   "fetch_from": "patient_id.gender",
+   "fetch_if_empty": 1,
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_dane",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_id.community_name",
+   "fetch_if_empty": 1,
+   "fieldname": "community_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Community Name"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Created By"
+  },
+  {
+   "fieldname": "red_flags_section",
+   "fieldtype": "Section Break",
+   "label": "Red Flags"
+  },
+  {
+   "fieldname": "red_flag_adult",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "adults",
+   "fieldtype": "Heading",
+   "label": "Adults"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_jaundice_refer_for_lab_test",
+   "fieldtype": "Check",
+   "label": "Any Jaundice refer for lab test"
+  },
+  {
+   "default": "0",
+   "fieldname": "severe_abdominal_pain_or_tenderness",
+   "fieldtype": "Check",
+   "label": "Severe abdominal pain or tenderness"
+  },
+  {
+   "default": "0",
+   "fieldname": "patient_is_confusedagitated_or_drowsy",
+   "fieldtype": "Check",
+   "label": "Patient is confused/agitated or drowsy"
+  },
+  {
+   "default": "0",
+   "fieldname": "high_fever",
+   "fieldtype": "Check",
+   "label": "High fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "vomiting_blood",
+   "fieldtype": "Check",
+   "label": "Vomiting blood"
+  },
+  {
+   "default": "0",
+   "fieldname": "blood_in_stool_or_black_stoolnot_passing_urine",
+   "fieldtype": "Check",
+   "label": "Blood in stool or black stoolNot passing urine"
+  },
+  {
+   "default": "0",
+   "fieldname": "any_painful_lymphnode",
+   "fieldtype": "Check",
+   "label": "Any painful lymphnode"
+  },
+  {
+   "default": "0",
+   "fieldname": "none",
+   "fieldtype": "Check",
+   "label": "None"
+  },
+  {
+   "fieldname": "jaundices",
+   "fieldtype": "Select",
+   "label": "Jaundices",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "red_flag_child",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "children",
+   "fieldtype": "Heading",
+   "label": "Children"
+  },
+  {
+   "default": "0",
+   "fieldname": "jaundice",
+   "fieldtype": "Check",
+   "label": "Any Jaundice refer for lab test"
+  },
+  {
+   "default": "0",
+   "fieldname": "abdominal",
+   "fieldtype": "Check",
+   "label": "Severe abdominal pain or tenderness"
+  },
+  {
+   "default": "0",
+   "fieldname": "child_is_confusedagitated_or_drowsy",
+   "fieldtype": "Check",
+   "label": "Child is confused/agitated or drowsy"
+  },
+  {
+   "default": "0",
+   "fieldname": "fever_jaundice",
+   "fieldtype": "Check",
+   "label": "High fever"
+  },
+  {
+   "default": "0",
+   "fieldname": "excessive_vomiting",
+   "fieldtype": "Check",
+   "label": "Excessive vomiting"
+  },
+  {
+   "default": "0",
+   "fieldname": "not_passing_urine",
+   "fieldtype": "Check",
+   "label": "Not passing urine"
+  },
+  {
+   "default": "0",
+   "fieldname": "none_jaundice",
+   "fieldtype": "Check",
+   "label": "None "
+  },
+  {
+   "fieldname": "present_chief_complaints_section",
+   "fieldtype": "Section Break",
+   "label": "Present chief complaints"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_iepj",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "do_you_have_jaundice",
+   "fieldtype": "Select",
+   "label": "Do you have jaundice",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "since_when",
+   "fieldtype": "Data",
+   "label": "Since when"
+  },
+  {
+   "fieldname": "onset",
+   "fieldtype": "Select",
+   "label": "Onset",
+   "options": "\nSudden\nGradual"
+  },
+  {
+   "default": "No",
+   "fieldname": "onset_copyhave_you_eaten_outside_recently",
+   "fieldtype": "Select",
+   "label": "Have you eaten outside recently",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "have_you_travelled_recently",
+   "fieldtype": "Select",
+   "label": "Have you travelled recently",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "associated_symptoms_section",
+   "fieldtype": "Section Break",
+   "label": "Associated Symptoms"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_fever",
+   "fieldtype": "Select",
+   "label": "Any Fever",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_chills",
+   "fieldtype": "Select",
+   "label": "Any chills",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "do_you_have_itchy_skin",
+   "fieldtype": "Select",
+   "label": "Do you have itchy skin",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "have_you_lost_weight",
+   "fieldtype": "Select",
+   "label": "Have you lost weight",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_abdominal_bloting",
+   "fieldtype": "Select",
+   "label": "Any abdominal bloting",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_abdominal_pain",
+   "fieldtype": "Select",
+   "label": "Any abdominal pain",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "if_yes",
+   "fieldtype": "Data",
+   "label": "If Yes"
+  },
+  {
+   "default": "No",
+   "fieldname": "does_the_pain_radiated_to_the_right_shoulder",
+   "fieldtype": "Select",
+   "label": "Does the pain radiated to the right shoulder",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "column_break_pvco",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_uheh",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_swelling_of_legs",
+   "fieldtype": "Select",
+   "label": "Any swelling of legs",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "urine_output_reduced",
+   "fieldtype": "Select",
+   "label": "Urine output reduced",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "what_is_the_color_of_urine",
+   "fieldtype": "Data",
+   "label": "What is the color of urine"
+  },
+  {
+   "fieldname": "what_is_the_color_of_the_stool",
+   "fieldtype": "Data",
+   "label": "What is the color of the stool"
+  },
+  {
+   "default": "No",
+   "fieldname": "reduced_appetite",
+   "fieldtype": "Select",
+   "label": "Reduced appetite",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "nausea_vomiting",
+   "fieldtype": "Select",
+   "label": "Nausea/vomiting",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "past_history_section",
+   "fieldtype": "Section Break",
+   "label": "Past history"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_hypertension",
+   "fieldtype": "Select",
+   "label": "Any History of Hypertension",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_heart_diseases",
+   "fieldtype": "Select",
+   "label": "Any History of Heart diseases",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_diabetes",
+   "fieldtype": "Select",
+   "label": "Any History of Diabetes",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_history_of_thyroid_issues",
+   "fieldtype": "Select",
+   "label": "Any history of Thyroid issues",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "column_break_mxpe",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_rkwa",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_past_history_of_blood_transfusion",
+   "fieldtype": "Select",
+   "label": "Any past history of blood transfusion",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_surgeries_in_the_past",
+   "fieldtype": "Select",
+   "label": "Any surgeries in the past",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "are_you_on_tb_drugs_now",
+   "fieldtype": "Select",
+   "label": "Are you on TB drugs now",
+   "options": "\nYes\nNo"
+  },
+  {
+   "default": "No",
+   "fieldname": "diagnosed_with_liver_problem",
+   "fieldtype": "Select",
+   "label": "Have you been diagnosed with liver problem in the past",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "personal_history_section",
+   "fieldtype": "Section Break",
+   "label": "Personal History"
+  },
+  {
+   "fieldname": "column_break_suuz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_rcsw",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "h5any_history_of_addiction",
+   "fieldtype": "Heading",
+   "label": "<h5>Any history of addiction</h5>"
+  },
+  {
+   "depends_on": "eval: doc.drinking_alcohol == 1;",
+   "fieldname": "how_many_years_have_been_drinking",
+   "fieldtype": "Data",
+   "label": "How many years have been drinking"
+  },
+  {
+   "depends_on": "eval: doc.drinking_alcohol == 1;",
+   "fieldname": "how_often_do_you_drink",
+   "fieldtype": "Data",
+   "label": "How often do you drink"
+  },
+  {
+   "default": "No",
+   "fieldname": "do_you_have_tatoos_on_your_body",
+   "fieldtype": "Select",
+   "label": "Do you have tatoos on your body",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "family_history_section",
+   "fieldtype": "Section Break",
+   "label": "Family history"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_ylws",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "any_family_history_of_jaundice",
+   "fieldtype": "Select",
+   "label": "Any family history of jaundice",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "physical_examination_section",
+   "fieldtype": "Section Break",
+   "label": "Physical examination"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_rvmy",
+   "fieldtype": "Check"
+  },
+  {
+   "fieldname": "skin_changes_in_on_the_abdomen",
+   "fieldtype": "Attach",
+   "label": "Skin changes in on the abdomen"
+  },
+  {
+   "fieldname": "look_for_hepatic_flap_and_tremor",
+   "fieldtype": "Data",
+   "label": "Look for hepatic flap and tremor"
+  },
+  {
+   "fieldname": "abdominal_examination",
+   "fieldtype": "Data",
+   "label": "Abdominal examination"
+  },
+  {
+   "fieldname": "lab_test_section",
+   "fieldtype": "Section Break",
+   "label": "Lab test"
+  },
+  {
+   "default": "0",
+   "description": "Check if section is completed",
+   "fieldname": "check_wkjy",
+   "fieldtype": "Check"
+  },
+  {
+   "default": "No",
+   "fieldname": "previous_lab_reports",
+   "fieldtype": "Select",
+   "label": "Do you have any previous lab reports (Blood test/ECG/scans etc)",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "if_yes_please_upload",
+   "fieldtype": "Data",
+   "label": "If yes please upload"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-11 18:25:51.777868",
+ "modified_by": "Administrator",
+ "module": "Triage",
+ "name": "Jaundice",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}
