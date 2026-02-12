@@ -1,34 +1,263 @@
+// frappe.ui.form.on('Nurse Interventions', {
+//     refresh: function(frm) {
+//         // Hide all buttons initially
+//         [
+//             'screening_for_diebetes_button', 'diabetic_follow_up_form', 'button_kapr',
+//             'hypertension_follow_up_form', 'respiratory_issue_fever_cough_cold_and_headache_form',
+//             'chest_pain_form', 'abdominal_pain_form', 'diarrhea_form', 'vomiting_form',
+//             'back_pain_and_neck_pain_form', 'button_klpy', 'leg_or_knee_or_hip_pain_form',
+//             'foot_and_ankle_pain_form', 'anemia_adolescent_form', 'anemia_children_form',
+//             'pregnancy_care_form', 'postnatal_care_form', 'thyroid_problem_form',
+//             'skin_problem_form', 'button_smfg', 'jaundice_form', 'headache_form',
+//             'dyspepsia_form', 'fatigue_form', 'eye_problem_form', 'constipation_form'
+//         ].forEach(btn => frm.set_df_property(btn, 'hidden', 1));
+
+//         // Show buttons based on checkboxes
+//         frm.set_df_property('screening_for_diebetes_button', 'hidden', !frm.doc.screening_for_diebetes);
+//         frm.set_df_property('diabetic_follow_up_form', 'hidden', !frm.doc.diabetic_follow_up);
+//         frm.set_df_property('button_kapr', 'hidden', !frm.doc.screening_for_hypertension);
+//         frm.set_df_property('hypertension_follow_up_form', 'hidden', !frm.doc.hypertension_follow_up);
+//         frm.set_df_property('respiratory_issue_fever_cough_cold_and_headache_form', 'hidden', !frm.doc.respiratory_issue);
+//         frm.set_df_property('chest_pain_form', 'hidden', !frm.doc.chest_pain);
+//         frm.set_df_property('abdominal_pain_form', 'hidden', !frm.doc.abdominal_pain);
+//         frm.set_df_property('diarrhea_form', 'hidden', !frm.doc.diarrhea);
+//         frm.set_df_property('vomiting_form', 'hidden', !frm.doc.vomiting);
+//         frm.set_df_property('back_pain_and_neck_pain_form', 'hidden', !frm.doc.back_pain_and_neck_pain);
+//         frm.set_df_property('button_klpy', 'hidden', !frm.doc.shoulder_and_hand_pain);
+//         frm.set_df_property('leg_or_knee_or_hip_pain_form', 'hidden', !frm.doc.leg_or_knee_or_hip_pain);
+//         frm.set_df_property('foot_and_ankle_pain_form', 'hidden', !frm.doc.foot_and_ankle_pain);
+//         frm.set_df_property('anemia_adolescent_form', 'hidden', !frm.doc.anemia_adolescent);
+//         frm.set_df_property('anemia_children_form', 'hidden', !frm.doc.anemia_children);
+//         frm.set_df_property('pregnancy_care_form', 'hidden', !frm.doc.pregnancy_care);
+//         frm.set_df_property('postnatal_care_form', 'hidden', !frm.doc.postnatal_care);
+//         frm.set_df_property('thyroid_problem_form', 'hidden', !frm.doc.thyroid_problem);
+//         frm.set_df_property('skin_problem_form', 'hidden', !frm.doc.skin_problem);
+//         frm.set_df_property('button_smfg', 'hidden', !frm.doc.lymph_node);
+//         frm.set_df_property('jaundice_form', 'hidden', !frm.doc.jaundice);
+//         frm.set_df_property('headache_form', 'hidden', !frm.doc.headache);
+//         frm.set_df_property('dyspepsia_form', 'hidden', !frm.doc.dyspepsia);
+//         frm.set_df_property('fatigue_form', 'hidden', !frm.doc.fatigue);
+//         frm.set_df_property('eye_problem_form', 'hidden', !frm.doc.eye_problem);
+//         frm.set_df_property('constipation_form', 'hidden', !frm.doc.constipation);
+
+//         apply_color_formatting(frm);
+
+//         // Always bind navigation with save, every refresh
+//         bind_all_navigation(frm);
+//     },
+
+//     // All checkbox onchange logic unchanged...
+//     screening_for_diebetes: function(frm) { frm.set_df_property('screening_for_diebetes_button', 'hidden', !frm.doc.screening_for_diebetes); },
+//     diabetic_follow_up: function(frm) { frm.set_df_property('diabetic_follow_up_form', 'hidden', !frm.doc.diabetic_follow_up); },
+//     screening_for_hypertension: function(frm) { frm.set_df_property('button_kapr', 'hidden', !frm.doc.screening_for_hypertension); },
+//     hypertension_follow_up: function(frm) { frm.set_df_property('hypertension_follow_up_form', 'hidden', !frm.doc.hypertension_follow_up); },
+//     respiratory_issue: function(frm) { frm.set_df_property('respiratory_issue_fever_cough_cold_and_headache_form', 'hidden', !frm.doc.respiratory_issue); },
+//     chest_pain: function(frm) { frm.set_df_property('chest_pain_form', 'hidden', !frm.doc.chest_pain); },
+//     abdominal_pain: function(frm) { frm.set_df_property('abdominal_pain_form', 'hidden', !frm.doc.abdominal_pain); },
+//     diarrhea: function(frm) { frm.set_df_property('diarrhea_form', 'hidden', !frm.doc.diarrhea); },
+//     vomiting: function(frm) { frm.set_df_property('vomiting_form', 'hidden', !frm.doc.vomiting); },
+//     back_pain_and_neck_pain: function(frm) { frm.set_df_property('back_pain_and_neck_pain_form', 'hidden', !frm.doc.back_pain_and_neck_pain); },
+//     shoulder_and_hand_pain: function(frm) { frm.set_df_property('button_klpy', 'hidden', !frm.doc.shoulder_and_hand_pain); },
+//     leg_or_knee_or_hip_pain: function(frm) { frm.set_df_property('leg_or_knee_or_hip_pain_form', 'hidden', !frm.doc.leg_or_knee_or_hip_pain); },
+//     foot_and_ankle_pain: function(frm) { frm.set_df_property('foot_and_ankle_pain_form', 'hidden', !frm.doc.foot_and_ankle_pain); },
+//     anemia_adolescent: function(frm) { frm.set_df_property('anemia_adolescent_form', 'hidden', !frm.doc.anemia_adolescent); },
+//     anemia_children: function(frm) { frm.set_df_property('anemia_children_form', 'hidden', !frm.doc.anemia_children); },
+//     pregnancy_care: function(frm) { frm.set_df_property('pregnancy_care_form', 'hidden', !frm.doc.pregnancy_care); },
+//     postnatal_care: function(frm) { frm.set_df_property('postnatal_care_form', 'hidden', !frm.doc.postnatal_care); },
+//     thyroid_problem: function(frm) { frm.set_df_property('thyroid_problem_form', 'hidden', !frm.doc.thyroid_problem); },
+//     skin_problem: function(frm) { frm.set_df_property('skin_problem_form', 'hidden', !frm.doc.skin_problem); },
+//     lymph_node: function(frm) { frm.set_df_property('button_smfg', 'hidden', !frm.doc.lymph_node); },
+//     jaundice: function(frm) { frm.set_df_property('jaundice_form', 'hidden', !frm.doc.jaundice); },
+//     headache: function(frm) { frm.set_df_property('headache_form', 'hidden', !frm.doc.headache); },
+//     dyspepsia: function(frm) { frm.set_df_property('dyspepsia_form', 'hidden', !frm.doc.dyspepsia); },
+//     fatigue: function(frm) { frm.set_df_property('fatigue_form', 'hidden', !frm.doc.fatigue); },
+//     eye_problem: function(frm) { frm.set_df_property('eye_problem_form', 'hidden', !frm.doc.eye_problem); },
+//     constipation: function(frm) { frm.set_df_property('constipation_form', 'hidden', !frm.doc.constipation); },
+
+//     validate: function(frm) {
+//         if ((frm.doc.screening_for_diebetes || frm.doc.diabetic_follow_up) && !frm.doc.rbg_level) {
+//             frappe.throw('RBG Level is required for Diabetes-related interventions.');
+//         }
+//     }
+// });
+
+// function apply_color_formatting(frm) {
+//     [
+//         { field: 'temperature', fn: v => v < 100 ? 'green' : 'red' },
+//         { field: 'pulse', fn: v => v > 100 ? 'red' : (v < 60 ? 'blue' : 'green') },
+//         { field: 'saturation', fn: v => v < 90 ? 'red' : 'green' },
+//         { field: 'blood_pressure_mmhg', fn: v => v > 140 ? 'red' : (v < 90 ? 'blue' : 'green') },
+//         { field: 'rbg_level', fn: v => v > 200 ? 'red' : (v < 70 ? 'blue' : 'green') }
+//     ].forEach(f => {
+//         if (frm.doc[f.field]) {
+//             let $field = frm.get_field(f.field).$input;
+//             $field.css({ 'background-color': f.fn(frm.doc[f.field]), 'color': 'white' });
+//         }
+//     });
+// }
+
+// function bind_all_navigation(frm) {
+//     const nav_map = [
+//         {btn: 'screening_for_diebetes_button', doc: 'Screening for Diabetes',          idfield: 'patient_unique_id'},
+//         {btn: 'diabetic_follow_up_form',      doc: 'Diabetes Followup',                idfield: 'patient_id'},
+//         {btn: 'button_kapr',                  doc: 'Screening for Hypertension',       idfield: 'patient_id'},
+//         {btn: 'hypertension_follow_up_form',  doc: 'Hypertension Follow up',           idfield: 'patient_id'},
+//         {btn: 'respiratory_issue_fever_cough_cold_and_headache_form', doc: 'Respiratory Issue', idfield: 'patient_id'},
+//         {btn: 'chest_pain_form',              doc: 'Chest Pain',                       idfield: 'patient_id'},
+//         {btn: 'abdominal_pain_form',          doc: 'Abdominal pain Gastrointestinal',  idfield: 'patient_id'},
+//         {btn: 'diarrhea_form',                doc: 'Diarrhea',                         idfield: 'patient_id'},
+//         {btn: 'vomiting_form',                doc: 'Vomiting',                         idfield: 'patient_id'},
+//         {btn: 'back_pain_and_neck_pain_form', doc: 'Back and Neck Pain',               idfield: 'patient_id'},
+//         {btn: 'button_klpy',                  doc: 'Shoulder and Hand Pain',           idfield: 'patient_id'},
+//         {btn: 'leg_or_knee_or_hip_pain_form', doc: 'Leg or Knee or Hip pain',          idfield: 'patient_id'},
+//         {btn: 'foot_and_ankle_pain_form',     doc: 'Foot and Ankle Pain',              idfield: 'patient_id'},
+//         {btn: 'anemia_adolescent_form',       doc: 'Anemia-Adolescents',               idfield: 'patient_id'},
+//         {btn: 'anemia_children_form',         doc: 'Anemia- Children',                 idfield: 'patient_id'},
+//         {btn: 'pregnancy_care_form',          doc: 'Pregnancy Care',                   idfield: 'patient_id'},
+//         {btn: 'postnatal_care_form',          doc: 'Postnatal Care',                   idfield: 'patient_id'},
+//         {btn: 'thyroid_problem_form',         doc: 'Thyroid Problem',                  idfield: 'patient_id'},
+//         {btn: 'skin_problem_form',            doc: 'Skin Problem',                     idfield: 'patient_id'},
+//         {btn: 'button_smfg',                  doc: 'Lymph node Enlargement',           idfield: 'patient_id'},
+//         {btn: 'jaundice_form',                doc: 'Jaundice',                         idfield: 'patient_id'},
+//         {btn: 'headache_form',                doc: 'Headache',                         idfield: 'patient_id'},
+//         {btn: 'dyspepsia_form',               doc: 'Dyspepsia_Acidity',                idfield: 'patient_id'},
+//         {btn: 'fatigue_form',                 doc: 'Fatigue',                          idfield: 'patient_id'},
+//         {btn: 'eye_problem_form',             doc: 'Eye problem',                      idfield: 'patient_id'},
+//         {btn: 'constipation_form',            doc: 'Constipation',                     idfield: 'patient_id'}
+//     ];
+
+//     nav_map.forEach(item => {
+//         if (frm.fields_dict[item.btn]) {
+//             frm.fields_dict[item.btn].$input.off('click').on('click', function() {
+//                 // Save and navigate, even if no changes were made
+//                 save_and_navigate(frm, item.doc, item.idfield);
+//             });
+//         }
+//     });
+// }
+
+// function save_and_navigate(frm, doctype_name, patient_id_field) {
+//     frm.save()
+//         .then(() => {
+//             // Show user feedback for successful save
+//             frappe.msgprint({
+//                 title: 'Success',
+//                 message: 'Nurse Interventions form saved successfully.',
+//                 indicator: 'green'
+//             });
+
+//             // Check if a record exists for the given doctype using patient_unique_id
+//             const patient_unique_id_value = frm.doc.patient_unique_id ? frm.doc.patient_unique_id.toString() : '';
+
+//             frappe.call({
+//                 method: 'frappe.client.get_list',
+//                 args: {
+//                     doctype: doctype_name,
+//                     filters: {
+//                         [patient_id_field]: patient_unique_id_value
+//                     },
+//                     fields: ['name'],
+//                     limit_page_length: 1
+//                 },
+//                 callback: function(response) {
+//                     if (response.message && response.message.length > 0) {
+//                         // Record exists, fetch full document
+//                         frappe.call({
+//                             method: 'frappe.client.get',
+//                             args: {
+//                                 doctype: doctype_name,
+//                                 name: response.message[0].name
+//                             },
+//                             callback: function(full_response) {
+//                                 if (full_response.message) {
+//                                     // Open the form with full data
+//                                     frappe.route_options = full_response.message;
+//                                     frappe.set_route('Form', doctype_name, response.message[0].name);
+//                                 }
+//                             }
+//                         });
+//                     } else {
+//                         // No record exists, create a new form with pre-filled details
+//                         let route_options = {
+//                             patient_name: frm.doc.patient_name || '',
+//                             age: frm.doc.age || '',
+//                             gender: frm.doc.gender || '',
+//                             community_name: frm.doc.community_name || '',
+//                             temperature: frm.doc.temperature || '',
+//                             pulse: frm.doc.pulse || '',
+//                             saturation: frm.doc.saturation || '',
+//                             blood_pressure_mmhg: frm.doc.blood_pressure_mmhg || '',
+//                             rbg_level: frm.doc.rbg_level || '',
+//                             screening_for_diebetes: frm.doc.screening_for_diebetes || 0,
+//                             diabetic_follow_up: frm.doc.diabetic_follow_up || 0,
+//                             screening_for_hypertension: frm.doc.screening_for_hypertension || 0,
+//                             hypertension_follow_up: frm.doc.hypertension_follow_up || 0,
+//                             respiratory_issue: frm.doc.respiratory_issue || 0,
+//                             chest_pain: frm.doc.chest_pain || 0,
+//                             abdominal_pain: frm.doc.abdominal_pain || 0,
+//                             diarrhea: frm.doc.diarrhea || 0,
+//                             vomiting: frm.doc.vomiting || 0,
+//                             back_pain_and_neck_pain: frm.doc.back_pain_and_neck_pain || 0,
+//                             shoulder_and_hand_pain: frm.doc.shoulder_and_hand_pain || 0,
+//                             leg_or_knee_or_hip_pain: frm.doc.leg_or_knee_or_hip_pain || 0,
+//                             foot_and_ankle_pain: frm.doc.foot_and_ankle_pain || 0,
+//                             anemia_adolescent: frm.doc.anemia_adolescent || 0,
+//                             anemia_children: frm.doc.anemia_children || 0,
+//                             pregnancy_care: frm.doc.pregnancy_care || 0,
+//                             postnatal_care: frm.doc.postnatal_care || 0,
+//                             thyroid_problem: frm.doc.thyroid_problem || 0,
+//                             skin_problem: frm.doc.skin_problem || 0,
+//                             lymph_node: frm.doc.lymph_node || 0,
+//                             jaundice: frm.doc.jaundice || 0,
+//                             headache: frm.doc.headache || 0,
+//                             dyspepsia: frm.doc.dyspepsia || 0,
+//                             fatigue: frm.doc.fatigue || 0,
+//                             eye_problem: frm.doc.eye_problem || 0,
+//                             constipation: frm.doc.constipation || 0
+//                         };
+//                         route_options[patient_id_field] = patient_unique_id_value;
+//                         frappe.route_options = route_options;
+//                         frappe.new_doc(doctype_name);
+//                     }
+//                 },
+//                 error: function(error) {
+//                     frappe.msgprint({
+//                         title: 'Error',
+//                         message: `Failed to check for existing ${doctype_name} record. Please verify the field '${patient_id_field}' exists and is queryable. Error: ${error.message || 'No detailed error'}`,
+//                         indicator: 'red'
+//                     });
+//                 }
+//             });
+//         })
+//         .catch((error) => {
+//             frappe.msgprint({
+//                 title: 'Error',
+//                 message: 'Failed to save Nurse Interventions form. Please try again.',
+//                 indicator: 'red'
+//             });
+//         });
+// }
+
+
+
+
+
 frappe.ui.form.on('Nurse Interventions', {
-    refresh: function(frm) {
+    refresh: function (frm) {
         // Hide all buttons initially
-        frm.set_df_property('screening_for_diebetes_button', 'hidden', 1);
-        frm.set_df_property('diabetic_follow_up_form', 'hidden', 1);
-        frm.set_df_property('button_kapr', 'hidden', 1);
-        frm.set_df_property('hypertension_follow_up_form', 'hidden', 1);
-        frm.set_df_property('respiratory_issue_fever_cough_cold_and_headache_form', 'hidden', 1);
-        frm.set_df_property('chest_pain_form', 'hidden', 1);
-        frm.set_df_property('abdominal_pain_form', 'hidden', 1);
-        frm.set_df_property('diarrhea_form', 'hidden', 1);
-        frm.set_df_property('vomiting_form', 'hidden', 1);
-        frm.set_df_property('back_pain_and_neck_pain_form', 'hidden', 1);
-        frm.set_df_property('button_klpy', 'hidden', 1);
-        frm.set_df_property('leg_or_knee_or_hip_pain_form', 'hidden', 1);
-        frm.set_df_property('foot_and_ankle_pain_form', 'hidden', 1);
-        frm.set_df_property('anemia_adolescent_form', 'hidden', 1);
-        frm.set_df_property('anemia_children_form', 'hidden', 1);
-        frm.set_df_property('pregnancy_care_form', 'hidden', 1);
-        frm.set_df_property('postnatal_care_form', 'hidden', 1);
-        frm.set_df_property('thyroid_problem_form', 'hidden', 1);
-        frm.set_df_property('skin_problem_form', 'hidden', 1);
-        frm.set_df_property('button_smfg', 'hidden', 1);
-        frm.set_df_property('jaundice_form', 'hidden', 1);
-        frm.set_df_property('headache_form', 'hidden', 1);
-        frm.set_df_property('dyspepsia_form', 'hidden', 1);
-        frm.set_df_property('fatigue_form', 'hidden', 1);
-        frm.set_df_property('eye_problem_form', 'hidden', 1);
-        frm.set_df_property('constipation_form', 'hidden', 1);
+        [
+            'screening_for_diebetes_button', 'diabetic_follow_up_form', 'button_kapr',
+            'hypertension_follow_up_form', 'respiratory_issue_fever_cough_cold_and_headache_form',
+            'chest_pain_form', 'abdominal_pain_form', 'diarrhea_form', 'vomiting_form',
+            'back_pain_and_neck_pain_form', 'button_klpy', 'leg_or_knee_or_hip_pain_form',
+            'foot_and_ankle_pain_form', 'anemia_adolescent_form', 'anemia_children_form',
+            'anemia_adults',  // New button for Anemia - adults
+            'pregnancy_care_form', 'postnatal_care_form', 'thyroid_problem_form',
+            'skin_problem_form', 'button_smfg', 'jaundice_form', 'headache_form',
+            'dyspepsia_form', 'fatigue_form', 'eye_problem_form', 'constipation_form'
+        ].forEach(btn => frm.set_df_property(btn, 'hidden', 1));
 
-        // Show buttons based on respective checkboxes
+        // Show buttons based on corresponding checkboxes
         frm.set_df_property('screening_for_diebetes_button', 'hidden', !frm.doc.screening_for_diebetes);
         frm.set_df_property('diabetic_follow_up_form', 'hidden', !frm.doc.diabetic_follow_up);
         frm.set_df_property('button_kapr', 'hidden', !frm.doc.screening_for_hypertension);
@@ -44,6 +273,7 @@ frappe.ui.form.on('Nurse Interventions', {
         frm.set_df_property('foot_and_ankle_pain_form', 'hidden', !frm.doc.foot_and_ankle_pain);
         frm.set_df_property('anemia_adolescent_form', 'hidden', !frm.doc.anemia_adolescent);
         frm.set_df_property('anemia_children_form', 'hidden', !frm.doc.anemia_children);
+        frm.set_df_property('anemia_adults', 'hidden', !frm.doc.anemia);  // Controlled by 'anemia' checkbox
         frm.set_df_property('pregnancy_care_form', 'hidden', !frm.doc.pregnancy_care);
         frm.set_df_property('postnatal_care_form', 'hidden', !frm.doc.postnatal_care);
         frm.set_df_property('thyroid_problem_form', 'hidden', !frm.doc.thyroid_problem);
@@ -56,439 +286,173 @@ frappe.ui.form.on('Nurse Interventions', {
         frm.set_df_property('eye_problem_form', 'hidden', !frm.doc.eye_problem);
         frm.set_df_property('constipation_form', 'hidden', !frm.doc.constipation);
 
-        // Apply color formatting to all relevant fields - without triggering alerts
         apply_color_formatting(frm);
-
-        // Button click events to save Nurse Interventions and navigate to Doctype
-        frm.fields_dict['screening_for_diebetes_button'].$input.click(function() {
-            if (frm.doc.screening_for_diebetes) {
-                save_and_navigate(frm, 'Screening for Diabetes');
-            }
-        });
-
-        frm.fields_dict['diabetic_follow_up_form'].$input.click(function() {
-            if (frm.doc.diabetic_follow_up) {
-                save_and_navigate(frm, 'Diabetes Followup');
-            }
-        });
-
-        frm.fields_dict['button_kapr'].$input.click(function() {
-            if (frm.doc.screening_for_hypertension) {
-                save_and_navigate(frm, 'Screening for Hypertension');
-            }
-        });
-
-        frm.fields_dict['hypertension_follow_up_form'].$input.click(function() {
-            if (frm.doc.hypertension_follow_up) {
-                save_and_navigate(frm, 'Hypertension Follow up');
-            }
-        });
-
-        frm.fields_dict['respiratory_issue_fever_cough_cold_and_headache_form'].$input.click(function() {
-            if (frm.doc.respiratory_issue) {
-                save_and_navigate(frm, 'Respiratory Issue');
-            }
-        });
-
-        frm.fields_dict['chest_pain_form'].$input.click(function() {
-            if (frm.doc.chest_pain) {
-                save_and_navigate(frm, 'Chest Pain');
-            }
-        });
-
-        frm.fields_dict['abdominal_pain_form'].$input.click(function() {
-            if (frm.doc.abdominal_pain) {
-                save_and_navigate(frm, 'Abdominal pain Gastrointestinal');
-            }
-        });
-
-        frm.fields_dict['diarrhea_form'].$input.click(function() {
-            if (frm.doc.diarrhea) {
-                save_and_navigate(frm, 'Diarrhea');
-            }
-        });
-
-        frm.fields_dict['vomiting_form'].$input.click(function() {
-            if (frm.doc.vomiting) {
-                save_and_navigate(frm, 'Vomiting');
-            }
-        });
-
-        frm.fields_dict['back_pain_and_neck_pain_form'].$input.click(function() {
-            if (frm.doc.back_pain_and_neck_pain) {
-                save_and_navigate(frm, 'Back and Neck Pain');
-            }
-        });
-
-        frm.fields_dict['button_klpy'].$input.click(function() {
-            if (frm.doc.shoulder_and_hand_pain) {
-                save_and_navigate(frm, 'Shoulder and Hand Pain');
-            }
-        });
-
-        frm.fields_dict['leg_or_knee_or_hip_pain_form'].$input.click(function() {
-            if (frm.doc.leg_or_knee_or_hip_pain) {
-                save_and_navigate(frm, 'Leg or Knee or Hip Pain');
-            }
-        });
-
-        frm.fields_dict['foot_and_ankle_pain_form'].$input.click(function() {
-            if (frm.doc.foot_and_ankle_pain) {
-                save_and_navigate(frm, 'Foot and Ankle Pain');
-            }
-        });
-
-        frm.fields_dict['anemia_adolescent_form'].$input.click(function() {
-            if (frm.doc.anemia_adolescent) {
-                save_and_navigate(frm, 'Anemia-Adolescents');
-            }
-        });
-
-        frm.fields_dict['anemia_children_form'].$input.click(function() {
-            if (frm.doc.anemia_children) {
-                save_and_navigate(frm, 'Anemia- Children');
-            }
-        });
-
-        frm.fields_dict['pregnancy_care_form'].$input.click(function() {
-            if (frm.doc.pregnancy_care) {
-                save_and_navigate(frm, 'Pregnancy Care');
-            }
-        });
-
-        frm.fields_dict['postnatal_care_form'].$input.click(function() {
-            if (frm.doc.postnatal_care) {
-                save_and_navigate(frm, 'Postnatal Care');
-            }
-        });
-
-        frm.fields_dict['thyroid_problem_form'].$input.click(function() {
-            if (frm.doc.thyroid_problem) {
-                save_and_navigate(frm, 'Thyroid Problem');
-            }
-        });
-
-        frm.fields_dict['skin_problem_form'].$input.click(function() {
-            if (frm.doc.skin_problem) {
-                save_and_navigate(frm, 'Skin Problem');
-            }
-        });
-
-        frm.fields_dict['button_smfg'].$input.click(function() {
-            if (frm.doc.lymph_node) {
-                save_and_navigate(frm, 'Lymph Node Enlargement');
-            }
-        });
-
-        frm.fields_dict['jaundice_form'].$input.click(function() {
-            if (frm.doc.jaundice) {
-                save_and_navigate(frm, 'Jaundice');
-            }
-        });
-
-        frm.fields_dict['headache_form'].$input.click(function() {
-            if (frm.doc.headache) {
-                save_and_navigate(frm, 'Headache');
-            }
-        });
-
-        frm.fields_dict['dyspepsia_form'].$input.click(function() {
-            if (frm.doc.dyspepsia) {
-                save_and_navigate(frm, 'Dyspepsia_Acidity');
-            }
-        });
-
-        frm.fields_dict['fatigue_form'].$input.click(function() {
-            if (frm.doc.fatigue) {
-                save_and_navigate(frm, 'Fatigue');
-            }
-        });
-
-        frm.fields_dict['eye_problem_form'].$input.click(function() {
-            if (frm.doc.eye_problem) {
-                save_and_navigate(frm, 'Eye Problem');
-            }
-        });
-
-        frm.fields_dict['constipation_form'].$input.click(function() {
-            if (frm.doc.constipation) {
-                save_and_navigate(frm, 'Constipation');
-            }
-        });
+        bind_all_navigation(frm);  // Re-bind navigation on every refresh
     },
 
-    // Temperature field trigger for color formatting
-    temperature: function(frm) {
-        if (frm.doc.temperature) {
-            let $temperatureField = frm.get_field('temperature').$input;
-            let color = frm.doc.temperature < 100 ? 'green' : 'red';
-            $temperatureField.css('background-color', color);
-            $temperatureField.css('color', 'white');
-        } else {
-            let $temperatureField = frm.get_field('temperature').$input;
-            $temperatureField.css('background-color', '');
-            $temperatureField.css('color', '');
-        }
-    },
+    // Checkbox onchange handlers
+    screening_for_diebetes: function (frm) { frm.set_df_property('screening_for_diebetes_button', 'hidden', !frm.doc.screening_for_diebetes); },
+    diabetic_follow_up: function (frm) { frm.set_df_property('diabetic_follow_up_form', 'hidden', !frm.doc.diabetic_follow_up); },
+    screening_for_hypertension: function (frm) { frm.set_df_property('button_kapr', 'hidden', !frm.doc.screening_for_hypertension); },
+    hypertension_follow_up: function (frm) { frm.set_df_property('hypertension_follow_up_form', 'hidden', !frm.doc.hypertension_follow_up); },
+    respiratory_issue: function (frm) { frm.set_df_property('respiratory_issue_fever_cough_cold_and_headache_form', 'hidden', !frm.doc.respiratory_issue); },
+    chest_pain: function (frm) { frm.set_df_property('chest_pain_form', 'hidden', !frm.doc.chest_pain); },
+    abdominal_pain: function (frm) { frm.set_df_property('abdominal_pain_form', 'hidden', !frm.doc.abdominal_pain); },
+    diarrhea: function (frm) { frm.set_df_property('diarrhea_form', 'hidden', !frm.doc.diarrhea); },
+    vomiting: function (frm) { frm.set_df_property('vomiting_form', 'hidden', !frm.doc.vomiting); },
+    back_pain_and_neck_pain: function (frm) { frm.set_df_property('back_pain_and_neck_pain_form', 'hidden', !frm.doc.back_pain_and_neck_pain); },
+    shoulder_and_hand_pain: function (frm) { frm.set_df_property('button_klpy', 'hidden', !frm.doc.shoulder_and_hand_pain); },
+    leg_or_knee_or_hip_pain: function (frm) { frm.set_df_property('leg_or_knee_or_hip_pain_form', 'hidden', !frm.doc.leg_or_knee_or_hip_pain); },
+    foot_and_ankle_pain: function (frm) { frm.set_df_property('foot_and_ankle_pain_form', 'hidden', !frm.doc.foot_and_ankle_pain); },
+    anemia_adolescent: function (frm) { frm.set_df_property('anemia_adolescent_form', 'hidden', !frm.doc.anemia_adolescent); },
+    anemia_children: function (frm) { frm.set_df_property('anemia_children_form', 'hidden', !frm.doc.anemia_children); },
+    anemia: function (frm) { frm.set_df_property('anemia_adults', 'hidden', !frm.doc.anemia); },  // New handler
+    pregnancy_care: function (frm) { frm.set_df_property('pregnancy_care_form', 'hidden', !frm.doc.pregnancy_care); },
+    postnatal_care: function (frm) { frm.set_df_property('postnatal_care_form', 'hidden', !frm.doc.postnatal_care); },
+    thyroid_problem: function (frm) { frm.set_df_property('thyroid_problem_form', 'hidden', !frm.doc.thyroid_problem); },
+    skin_problem: function (frm) { frm.set_df_property('skin_problem_form', 'hidden', !frm.doc.skin_problem); },
+    lymph_node: function (frm) { frm.set_df_property('button_smfg', 'hidden', !frm.doc.lymph_node); },
+    jaundice: function (frm) { frm.set_df_property('jaundice_form', 'hidden', !frm.doc.jaundice); },
+    headache: function (frm) { frm.set_df_property('headache_form', 'hidden', !frm.doc.headache); },
+    dyspepsia: function (frm) { frm.set_df_property('dyspepsia_form', 'hidden', !frm.doc.dyspepsia); },
+    fatigue: function (frm) { frm.set_df_property('fatigue_form', 'hidden', !frm.doc.fatigue); },
+    eye_problem: function (frm) { frm.set_df_property('eye_problem_form', 'hidden', !frm.doc.eye_problem); },
+    constipation: function (frm) { frm.set_df_property('constipation_form', 'hidden', !frm.doc.constipation); },
 
-    // Pulse field trigger for color formatting
-    pulse: function(frm) {
-        if (frm.doc.pulse) {
-            let $pulseField = frm.get_field('pulse').$input;
-            let color;
-            if (frm.doc.pulse > 100) {
-                color = 'red';
-            } else if (frm.doc.pulse < 60) {
-                color = 'blue';
-            } else {
-                color = 'green';
-            }
-            $pulseField.css('background-color', color);
-            $pulseField.css('color', 'white');
-        } else {
-            let $pulseField = frm.get_field('pulse').$input;
-            $pulseField.css('background-color', '');
-            $pulseField.css('color', '');
-        }
-    },
-
-    // Saturation field trigger for color formatting
-    saturation: function(frm) {
-        if (frm.doc.saturation) {
-            let $saturationField = frm.get_field('saturation').$input;
-            let color = frm.doc.saturation < 90 ? 'red' : 'green';
-            $saturationField.css('background-color', color);
-            $saturationField.css('color', 'white');
-        } else {
-            let $saturationField = frm.get_field('saturation').$input;
-            $saturationField.css('background-color', '');
-            $saturationField.css('color', '');
-        }
-    },
-
-    // Blood Pressure (mmHg) field trigger for color formatting
-    blood_pressure_mmhg: function(frm) {
-        if (frm.doc.blood_pressure_mmhg) {
-            let $bpField = frm.get_field('blood_pressure_mmhg').$input;
-            let color;
-            if (frm.doc.blood_pressure_mmhg > 140) {
-                color = 'red';
-            } else if (frm.doc.blood_pressure_mmhg < 90) {
-                color = 'blue';
-            } else {
-                color = 'green';
-            }
-            $bpField.css('background-color', color);
-            $bpField.css('color', 'white');
-        } else {
-            let $bpField = frm.get_field('blood_pressure_mmhg').$input;
-            $bpField.css('background-color', '');
-            $bpField.css('color', '');
-        }
-    },
-
-    // RBG level trigger - with GRBS alert only when user interacts
-    rbg_level: function(frm) {
-        // Apply color formatting
-        if (frm.doc.rbg_level !== undefined && frm.doc.rbg_level !== null && frm.doc.rbg_level !== '') {
-            let $rbgField = frm.get_field('rbg_level').$input;
-            let color;
-            if (frm.doc.rbg_level > 200) {
-                color = 'red';
-            } else if (frm.doc.rbg_level < 70) {
-                color = 'blue';
-            } else {
-                color = 'green';
-            }
-            $rbgField.css('background-color', color);
-            $rbgField.css('color', 'white');
-        } else {
-            let $rbgField = frm.get_field('rbg_level').$input;
-            $rbgField.css('background-color', '');
-            $rbgField.css('color', '');
-            
-            // Show GRBS alert only if user manually triggered this (not during form load)
-            if (frm._user_interacting && frm.is_new()) {
-                frappe.msgprint({
-                    title: 'Alert',
-                    message: 'GRBS is not recordable until a value is entered for RBG Level.',
-                    indicator: 'orange'
-                });
-            }
-        }
-    },
-
-    // Checkbox trigger functions
-    screening_for_diebetes: function(frm) {
-        frm._user_interacting = true; // Flag that user is interacting
-        frm.set_df_property('screening_for_diebetes_button', 'hidden', !frm.doc.screening_for_diebetes);
-    },
-    diabetic_follow_up: function(frm) {
-        frm._user_interacting = true; // Flag that user is interacting
-        frm.set_df_property('diabetic_follow_up_form', 'hidden', !frm.doc.diabetic_follow_up);
-    },
-    screening_for_hypertension: function(frm) {
-        frm.set_df_property('button_kapr', 'hidden', !frm.doc.screening_for_hypertension);
-    },
-    hypertension_follow_up: function(frm) {
-        frm.set_df_property('hypertension_follow_up_form', 'hidden', !frm.doc.hypertension_follow_up);
-    },
-    respiratory_issue: function(frm) {
-        frm.set_df_property('respiratory_issue_fever_cough_cold_and_headache_form', 'hidden', !frm.doc.respiratory_issue);
-    },
-    chest_pain: function(frm) {
-        frm.set_df_property('chest_pain_form', 'hidden', !frm.doc.chest_pain);
-    },
-    abdominal_pain: function(frm) {
-        frm.set_df_property('abdominal_pain_form', 'hidden', !frm.doc.abdominal_pain);
-    },
-    diarrhea: function(frm) {
-        frm.set_df_property('diarrhea_form', 'hidden', !frm.doc.diarrhea);
-    },
-    vomiting: function(frm) {
-        frm.set_df_property('vomiting_form', 'hidden', !frm.doc.vomiting);
-    },
-    back_pain_and_neck_pain: function(frm) {
-        frm.set_df_property('back_pain_and_neck_pain_form', 'hidden', !frm.doc.back_pain_and_neck_pain);
-    },
-    shoulder_and_hand_pain: function(frm) {
-        frm.set_df_property('button_klpy', 'hidden', !frm.doc.shoulder_and_hand_pain);
-    },
-    leg_or_knee_or_hip_pain: function(frm) {
-        frm.set_df_property('leg_or_knee_or_hip_pain_form', 'hidden', !frm.doc.leg_or_knee_or_hip_pain);
-    },
-    foot_and_ankle_pain: function(frm) {
-        frm.set_df_property('foot_and_ankle_pain_form', 'hidden', !frm.doc.foot_and_ankle_pain);
-    },
-    anemia_adolescent: function(frm) {
-        frm.set_df_property('anemia_adolescent_form', 'hidden', !frm.doc.anemia_adolescent);
-    },
-    anemia_children: function(frm) {
-        frm.set_df_property('anemia_children_form', 'hidden', !frm.doc.anemia_children);
-    },
-    pregnancy_care: function(frm) {
-        frm.set_df_property('pregnancy_care_form', 'hidden', !frm.doc.pregnancy_care);
-    },
-    postnatal_care: function(frm) {
-        frm.set_df_property('postnatal_care_form', 'hidden', !frm.doc.postnatal_care);
-    },
-    thyroid_problem: function(frm) {
-        frm.set_df_property('thyroid_problem_form', 'hidden', !frm.doc.thyroid_problem);
-    },
-    skin_problem: function(frm) {
-        frm.set_df_property('skin_problem_form', 'hidden', !frm.doc.skin_problem);
-    },
-    lymph_node: function(frm) {
-        frm.set_df_property('button_smfg', 'hidden', !frm.doc.lymph_node);
-    },
-    jaundice: function(frm) {
-        frm.set_df_property('jaundice_form', 'hidden', !frm.doc.jaundice);
-    },
-    headache: function(frm) {
-        frm.set_df_property('headache_form', 'hidden', !frm.doc.headache);
-    },
-    dyspepsia: function(frm) {
-        frm.set_df_property('dyspepsia_form', 'hidden', !frm.doc.dyspepsia);
-    },
-    fatigue: function(frm) {
-        frm.set_df_property('fatigue_form', 'hidden', !frm.doc.fatigue);
-    },
-    eye_problem: function(frm) {
-        frm.set_df_property('eye_problem_form', 'hidden', !frm.doc.eye_problem);
-    },
-    constipation: function(frm) {
-        frm.set_df_property('constipation_form', 'hidden', !frm.doc.constipation);
-    },
-
-    // Validate before save to check critical fields
-    validate: function(frm) {
-        if (frm.doc.screening_for_diebetes || frm.doc.diabetic_follow_up) {
-            if (!frm.doc.rbg_level) {
-                frappe.throw('RBG Level is required for Diabetes-related interventions.');
-            }
+    validate: function (frm) {
+        if ((frm.doc.screening_for_diebetes || frm.doc.diabetic_follow_up) && !frm.doc.rbg_level) {
+            frappe.throw('RBS Level is required for Diabetes-related interventions.');
         }
     }
 });
 
-// Helper function to apply color formatting without triggering alerts
 function apply_color_formatting(frm) {
-    // Temperature
-    if (frm.doc.temperature) {
-        let $temperatureField = frm.get_field('temperature').$input;
-        let color = frm.doc.temperature < 100 ? 'green' : 'red';
-        $temperatureField.css('background-color', color);
-        $temperatureField.css('color', 'white');
-    }
-    
-    // Pulse
-    if (frm.doc.pulse) {
-        let $pulseField = frm.get_field('pulse').$input;
-        let color;
-        if (frm.doc.pulse > 100) {
-            color = 'red';
-        } else if (frm.doc.pulse < 60) {
-            color = 'blue';
-        } else {
-            color = 'green';
+    [
+        { field: 'temperature', fn: v => v > 100 ? 'red' : 'green' },
+        { field: 'pulse', fn: v => v > 100 ? 'red' : (v < 60 ? 'blue' : 'green') },
+        { field: 'saturation', fn: v => v < 90 ? 'red' : 'green' },
+        { field: 'blood_pressure_mmhg', fn: v => v > 140 ? 'red' : (v < 90 ? 'blue' : 'green') },
+        { field: 'rbg_level', fn: v => v > 200 ? 'red' : (v < 70 ? 'blue' : 'green') }
+    ].forEach(f => {
+        if (frm.doc[f.field]) {
+            let $field = frm.get_field(f.field).$input;
+            if ($field && $field.length) {
+                $field.css({ 'background-color': f.fn(frm.doc[f.field]), 'color': 'white', 'font-weight': 'bold' });
+            }
         }
-        $pulseField.css('background-color', color);
-        $pulseField.css('color', 'white');
-    }
-    
-    // Saturation
-    if (frm.doc.saturation) {
-        let $saturationField = frm.get_field('saturation').$input;
-        let color = frm.doc.saturation < 90 ? 'red' : 'green';
-        $saturationField.css('background-color', color);
-        $saturationField.css('color', 'white');
-    }
-    
-    // Blood Pressure
-    if (frm.doc.blood_pressure_mmhg) {
-        let $bpField = frm.get_field('blood_pressure_mmhg').$input;
-        let color;
-        if (frm.doc.blood_pressure_mmhg > 140) {
-            color = 'red';
-        } else if (frm.doc.blood_pressure_mmhg < 90) {
-            color = 'blue';
-        } else {
-            color = 'green';
-        }
-        $bpField.css('background-color', color);
-        $bpField.css('color', 'white');
-    }
-    
-    // RBG Level - only color formatting, no alerts
-    if (frm.doc.rbg_level !== undefined && frm.doc.rbg_level !== null && frm.doc.rbg_level !== '') {
-        let $rbgField = frm.get_field('rbg_level').$input;
-        let color;
-        if (frm.doc.rbg_level > 200) {
-            color = 'red';
-        } else if (frm.doc.rbg_level < 70) {
-            color = 'blue';
-        } else {
-            color = 'green';
-        }
-        $rbgField.css('background-color', color);
-        $rbgField.css('color', 'white');
-    }
+    });
 }
 
-// Function to save Nurse Interventions and navigate to Doctype with data
-function save_and_navigate(frm, doctype_name) {
-    frm.save().then(() => {
-        const data = {
-            'patient_id': frm.doc.patient_unique_id || '',
-            'patient_name': frm.doc.patient_name || '',
-            'age': frm.doc.age || '',
-            'gender': frm.doc.gender || '',
-            'community_name': frm.doc.community_name || ''
-        };
-        frappe.new_doc(doctype_name, data).then(() => {
-            frappe.msgprint(__('Nurse Interventions form saved successfully! Navigating to {0} form.', [doctype_name]));
+function bind_all_navigation(frm) {
+    const nav_map = [
+        { btn: 'screening_for_diebetes_button', doc: 'Screening for Diabetes', idfield: 'patient_unique_id' },
+        { btn: 'diabetic_follow_up_form', doc: 'Diabetes Followup', idfield: 'patient_id' },
+        { btn: 'button_kapr', doc: 'Screening for Hypertension', idfield: 'patient_id' },
+        { btn: 'hypertension_follow_up_form', doc: 'Hypertension Follow up', idfield: 'patient_id' },
+        { btn: 'respiratory_issue_fever_cough_cold_and_headache_form', doc: 'Respiratory Issue', idfield: 'patient_id' },
+        { btn: 'chest_pain_form', doc: 'Chest Pain', idfield: 'patient_id' },
+        { btn: 'abdominal_pain_form', doc: 'Abdominal pain Gastrointestinal', idfield: 'patient_id' },
+        { btn: 'diarrhea_form', doc: 'Diarrhea', idfield: 'patient_id' },
+        { btn: 'vomiting_form', doc: 'Vomiting', idfield: 'patient_id' },
+        { btn: 'back_pain_and_neck_pain_form', doc: 'Back and Neck Pain', idfield: 'patient_id' },
+        { btn: 'button_klpy', doc: 'Shoulder and Hand Pain', idfield: 'patient_id' },
+        { btn: 'leg_or_knee_or_hip_pain_form', doc: 'Leg or Knee or Hip pain', idfield: 'patient_id' },
+        { btn: 'foot_and_ankle_pain_form', doc: 'Foot and Ankle Pain', idfield: 'patient_id' },
+        { btn: 'anemia_adolescent_form', doc: 'Anemia-Adolescents', idfield: 'patient_id' },
+        { btn: 'anemia_children_form', doc: 'Anemia- Children', idfield: 'patient_id' },
+        { btn: 'anemia_adults', doc: 'Anemia - adults', idfield: 'patient_id' },
+        { btn: 'pregnancy_care_form', doc: 'Pregnancy Care', idfield: 'patient_id' },
+        { btn: 'postnatal_care_form', doc: 'Postnatal Care', idfield: 'patient_id' },
+        { btn: 'thyroid_problem_form', doc: 'Thyroid Problem', idfield: 'patient_id' },
+        { btn: 'skin_problem_form', doc: 'Skin Problem', idfield: 'patient_id' },
+        { btn: 'button_smfg', doc: 'Lymph node Enlargement', idfield: 'patient_id' },
+        { btn: 'jaundice_form', doc: 'Jaundice', idfield: 'patient_id' },
+        { btn: 'headache_form', doc: 'Headache', idfield: 'patient_id' },
+        { btn: 'dyspepsia_form', doc: 'Dyspepsia_Acidity', idfield: 'patient_id' },
+        { btn: 'fatigue_form', doc: 'Fatigue', idfield: 'patient_id' },
+        { btn: 'eye_problem_form', doc: 'Eye problem', idfield: 'patient_id' },
+        { btn: 'constipation_form', doc: 'Constipation', idfield: 'patient_id' }
+    ];
+
+    nav_map.forEach(item => {
+        const field = frm.fields_dict[item.btn];
+
+        if (!field || !field.wrapper) return;
+
+        const $btn = $(field.wrapper).find('button');
+
+        if (!$btn.length) return;
+
+        // 🔒 Prevent multiple bindings
+        $btn.off('click.nurseNav');
+
+        $btn.on('click.nurseNav', function () {
+            save_and_navigate(frm, item.doc, item.idfield);
         });
-    }).catch((error) => {
-        console.error('Failed to save Nurse Interventions:', error);
-        frappe.msgprint(__('Failed to save Nurse Interventions form. Please try again.'));
     });
+}
+
+
+function save_and_navigate(frm, doctype_name, patient_id_field) {
+    frm.save()
+        .then(() => {
+            frappe.msgprint({
+                title: __('Success'),
+                message: __('Nurse Interventions form saved successfully.'),
+                indicator: 'green'
+            });
+
+            const patient_unique_id_value = frm.doc.patient_unique_id ? frm.doc.patient_unique_id.toString() : '';
+
+            frappe.call({
+                method: 'frappe.client.get_list',
+                args: {
+                    doctype: doctype_name,
+                    filters: {
+                        [patient_id_field]: patient_unique_id_value
+                    },
+                    fields: ['name'],
+                    limit_page_length: 1
+                },
+                callback: function (response) {
+                    if (response.message && response.message.length > 0) {
+                        // Existing record found → open it
+                        frappe.set_route('Form', doctype_name, response.message[0].name);
+                    } else {
+                        // No record → create new with pre-filled data
+                        let route_options = {
+                            patient_name: frm.doc.patient_name || '',
+                            patient_unique_id: frm.doc.patient_unique_id || '',
+                            age: frm.doc.age || '',
+                            gender: frm.doc.gender || '',
+                            community_name: frm.doc.community_name || '',
+                            temperature: frm.doc.temperature || '',
+                            pulse: frm.doc.pulse || '',
+                            saturation: frm.doc.saturation || '',
+                            bp: frm.doc.bp || '',
+                            rbg_level: frm.doc.rbg_level || ''
+                        };
+                        // Add patient ID field
+                        route_options[patient_id_field] = patient_unique_id_value;
+
+                        frappe.route_options = route_options;
+                        frappe.new_doc(doctype_name);
+                    }
+                },
+                error: function (err) {
+                    frappe.msgprint({
+                        title: __('Error'),
+                        message: __('Failed to check existing record. Error: ') + (err.message || 'Unknown'),
+                        indicator: 'red'
+                    });
+                }
+            });
+        })
+        .catch(() => {
+            frappe.msgprint({
+                title: __('Error'),
+                message: __('Failed to save Nurse Interventions form.'),
+                indicator: 'red'
+            });
+        });
 }

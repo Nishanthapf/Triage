@@ -1,6 +1,6 @@
 frappe.ui.form.on('Nurse Interventions', {
     // When temperature field is changed
-    temperature: function(frm) {
+    temperature: function (frm) {
         if (frm.doc.temperature > 100) {
             frappe.msgprint({
                 title: __('Alert'),
@@ -11,7 +11,7 @@ frappe.ui.form.on('Nurse Interventions', {
     },
 
     // When pulse field is changed
-    pulse: function(frm) {
+    pulse: function (frm) {
         let sweating = frm.doc.sweating ? ' with sweating' : '';
         if (frm.doc.pulse < 60) {
             frappe.msgprint({
@@ -29,7 +29,7 @@ frappe.ui.form.on('Nurse Interventions', {
     },
 
     // When saturation field is changed
-    saturation: function(frm) {
+    saturation: function (frm) {
         if (frm.doc.saturation < 90) {
             frappe.msgprint({
                 title: __('Alert'),
@@ -40,7 +40,7 @@ frappe.ui.form.on('Nurse Interventions', {
     },
 
     // When blood_pressure_mmhg field is changed
-    blood_pressure_mmhg: function(frm) {
+    blood_pressure_mmhg: function (frm) {
         if (frm.doc.blood_pressure_mmhg < 90) {
             frappe.msgprint({
                 title: __('Alert'),
@@ -57,7 +57,7 @@ frappe.ui.form.on('Nurse Interventions', {
     },
 
     // When rbg_level field is changed
-    rbg_level: function(frm) {
+    rbg_level: function (frm) {
         if (frm.doc.rbg_level > 200) {
             frappe.msgprint({
                 title: __('Alert'),

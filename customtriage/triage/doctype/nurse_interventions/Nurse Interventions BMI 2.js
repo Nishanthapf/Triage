@@ -1,6 +1,6 @@
 frappe.ui.form.on("Nurse Interventions", {
     refresh(frm) {
-         if (!frm.doc.created_by) {
+        if (!frm.doc.created_by) {
             frm.set_value("created_by", frappe.session.user_email);
         }
 
@@ -62,7 +62,7 @@ function calculate_bmi_and_category(frm) {
 
         setTimeout(() => {
             apply_bmi_color(frm);
-        }, 300); 
+        }, 300);
     } else {
         frm.set_value('bmi', '');
         frm.set_value('bmi_category', '');
@@ -76,13 +76,13 @@ function apply_bmi_color(frm, clear = false) {
 
     if (!clear) {
         if (category === 'Underweight') {
-            color = '#FFC107'; 
+            color = '#FFC107';
         } else if (category === 'Normal') {
             color = '#28A745';
         } else if (category === 'Overweight') {
-            color = '#FD7E14'; 
+            color = '#FD7E14';
         } else if (category === 'Obese') {
-            color = '#DC3545'; 
+            color = '#DC3545';
         }
     }
     let bmiField = frm.get_field('bmi');
