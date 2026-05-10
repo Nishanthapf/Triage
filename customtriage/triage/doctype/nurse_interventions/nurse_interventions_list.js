@@ -717,7 +717,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const temperature = parseFloat(record.temperature || 0);
           const pulse = parseInt(record.pulse || 0);
           const saturation = parseInt(record.saturation || 0);
-          const bpParts = (record.bp || '').split('/').map(p => parseInt(p.trim()) || 0);
+          const bpParts = (record.blood_pressure_mmhg || '').split('/').map(p => parseInt(p.trim()) || 0);
           const sys = bpParts[0] || 0;
           const dia = bpParts[1] || 0;
           const rbg = parseFloat(record.rbg_level || 0);
@@ -791,7 +791,7 @@ frappe.listview_settings["Nurse Interventions"] = {
         <td style="border: 1px solid #ccc; padding: 5px;"><b>Weight:</b> ${record.weight || "N/A"} kg</td>
         <td style="border: 1px solid #ccc; padding: 5px;"><b>Temperature:</b> ${checkAbnormal(record.temperature, 'temp')} °F</td>
         <td style="border: 1px solid #ccc; padding: 5px;"><b>Pulse:</b> ${checkAbnormal(record.pulse, 'pulse')} bpm</td>
-        <td style="border: 1px solid #ccc; padding: 5px;"><b>BP:</b> ${checkAbnormal(record.bp, 'bp')} mmHg</td>
+        <td style="border: 1px solid #ccc; padding: 5px;"><b>BP:</b> ${checkAbnormal(record.blood_pressure_mmhg, 'bp')} mmHg</td>
       </tr>
       <tr>
         <td style="border: 1px solid #ccc; padding: 5px;"><b>GRBS:</b> ${checkAbnormal(record.rbg_level, 'rbs')} mg/dL</td>
@@ -832,7 +832,25 @@ frappe.listview_settings["Nurse Interventions"] = {
         const isFemale = record.gender === "Female";
         const menstrual = isFemale ? (record.menstrual_history || "No menstrual history recorded.") : "N/A";
         const personal = `<b>Personal:</b> ${record.personal_history || "N/A"}<br><b>Lifestyle:</b> ${record.lifestyle_habits || "N/A"}`;
-        const comorbidities = `<b>Comorbidities:</b> ${record.associated_comorbidities || "None"}<br><b>Family History:</b> ${record.family_history || "None"}`;
+        const comorbidityList = [];
+        if (record.hypertension && record.hypertension !== "0") comorbidityList.push("Hypertension");
+        if (record.diabetes && record.diabetes !== "0") comorbidityList.push("Diabetes");
+        if (record.cancer && record.cancer !== "0") comorbidityList.push("Cancer");
+        if (record.thyroid_issues && record.thyroid_issues !== "0") comorbidityList.push("Thyroid Issues");
+        if (record.others && record.others !== "0" && record.if_other_then_please_specify) comorbidityList.push(record.if_other_then_please_specify);
+        else if (record.others && record.others !== "0") comorbidityList.push("Others");
+        const comorbidityText = comorbidityList.length > 0 ? comorbidityList.join(", ") : "None";
+
+        const familyHistoryList = [];
+        if (record.history_bp && record.history_bp !== "0") familyHistoryList.push("Hypertension");
+        if (record.history_diabetes && record.history_diabetes !== "0") familyHistoryList.push("Diabetes");
+        if (record.heart_diseases && record.heart_diseases !== "0") familyHistoryList.push("Heart Diseases");
+        if (record.stroke && record.stroke !== "0") familyHistoryList.push("Stroke");
+        if (record.kidney_disease && record.kidney_disease !== "0") familyHistoryList.push("Kidney Disease");
+        if (record.sudden_death && record.sudden_death !== "0") familyHistoryList.push("Sudden Death");
+        const familyHistoryText = familyHistoryList.length > 0 ? familyHistoryList.join(", ") : "None";
+
+        const comorbidities = `<b>Comorbidities:</b> ${comorbidityText}<br><b>Family History:</b> ${familyHistoryText}`;
 
         return `
     <table class="summary-table" style="width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 12px;">
@@ -923,10 +941,10 @@ frappe.listview_settings["Nurse Interventions"] = {
                 flags.push(`Abnormal Pulse Rate (${record.pulse} bpm)`);
               if (record.saturation && parseInt(record.saturation) < 90)
                 flags.push(`Low SpO₂ (${record.saturation}%)`);
-              if (record.bp) {
-                const bpParts = record.bp.split("/").map(p => parseInt(p.trim()) || 0);
+              if (record.blood_pressure_mmhg) {
+                const bpParts = record.blood_pressure_mmhg.split("/").map(p => parseInt(p.trim()) || 0);
                 if (bpParts[0] > 140 || bpParts[1] > 90)
-                  flags.push(`High BP (${record.bp} mmHg)`);
+                  flags.push(`High BP (${record.blood_pressure_mmhg} mmHg)`);
               }
               if (record.rbg_level) {
                 const rbg = parseFloat(record.rbg_level);
@@ -1685,12 +1703,15 @@ frappe.listview_settings["Nurse Interventions"] = {
             if (rec.spicy_food && (rec.spicy_food === "Yes" || rec.spicy_food === true)) conditions.push("consumes spicy food");
             if (rec.food_ontime && (rec.food_ontime === "Yes" || rec.food_ontime === true)) conditions.push("eats food on time");
             if (rec.food_outside && (rec.food_outside === "Yes" || rec.food_outside === true)) conditions.push("consumes food from outside");
-            if (rec.check_lkxh && (rec.check_lkxh === "1" || rec.check_lkxh === true)) conditions.push("has menstrual history noted");
-            if (rec.last_menstruation_period && rec.last_menstruation_period !== "0" && rec.last_menstruation_period !== "") conditions.push(`last menstruation period: ${rec.last_menstruation_period}`);
-            if (rec.menstrual_cycle && (rec.menstrual_cycle === "Yes" || rec.menstrual_cycle === true)) conditions.push("has irregular menstrual cycle");
-            if (rec.any_white_discharge && (rec.any_white_discharge === "Yes" || rec.any_white_discharge === true)) conditions.push("has <span class='danger'>white discharge</span>");
-            if (rec.discharge_character && rec.discharge_character !== "0" && rec.discharge_character !== "") conditions.push(`discharge character: ${rec.discharge_character}`);
-            if (rec.foul_smelling && (rec.foul_smelling === "Yes" || rec.foul_smelling === true)) conditions.push("has <span class='danger'>foul-smelling discharge</span>");
+            const patientIsFemale = (currentRecord.gender || "").toLowerCase() === "female";
+            if (patientIsFemale) {
+              if (rec.check_lkxh && (rec.check_lkxh === "1" || rec.check_lkxh === true)) conditions.push("has menstrual history noted");
+              if (rec.last_menstruation_period && rec.last_menstruation_period !== "0" && rec.last_menstruation_period !== "") conditions.push(`last menstruation period: ${rec.last_menstruation_period}`);
+              if (rec.menstrual_cycle && (rec.menstrual_cycle === "Yes" || rec.menstrual_cycle === true)) conditions.push("has irregular menstrual cycle");
+              if (rec.any_white_discharge && (rec.any_white_discharge === "Yes" || rec.any_white_discharge === true)) conditions.push("has <span class='danger'>white discharge</span>");
+              if (rec.discharge_character && rec.discharge_character !== "0" && rec.discharge_character !== "") conditions.push(`discharge character: ${rec.discharge_character}`);
+              if (rec.foul_smelling && (rec.foul_smelling === "Yes" || rec.foul_smelling === true)) conditions.push("has <span class='danger'>foul-smelling discharge</span>");
+            }
             if (rec.check_gtte && (rec.check_gtte === "1" || rec.check_gtte === true)) conditions.push("has family history noted");
             if (rec.stomach_cancer && (rec.stomach_cancer === "Yes" || rec.stomach_cancer === true)) conditions.push("has family history of <span class='danger'>stomach cancer</span>");
             if (rec.yes_upload && rec.yes_upload !== "0" && rec.yes_upload !== "") conditions.push("has uploaded a lab report");
@@ -5646,10 +5667,10 @@ frappe.listview_settings["Nurse Interventions"] = {
               flags.push(`Abnormal Pulse Rate (${record.pulse} bpm)`);
             if (record.saturation && parseInt(record.saturation) < 90)
               flags.push(`Low SpO₂ (${record.saturation}%)`);
-            if (record.bp) {
-              const bpParts = record.bp.split("/").map(p => parseInt(p.trim()) || 0);
+            if (record.blood_pressure_mmhg) {
+              const bpParts = record.blood_pressure_mmhg.split("/").map(p => parseInt(p.trim()) || 0);
               if (bpParts[0] > 140 || bpParts[1] > 90)
-                flags.push(`High BP (${record.bp} mmHg)`);
+                flags.push(`High BP (${record.blood_pressure_mmhg} mmHg)`);
             }
             if (record.rbg_level) {
               const rbg = parseFloat(record.rbg_level);
