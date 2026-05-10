@@ -69,7 +69,7 @@ frappe.ui.form.on('Respiratory Issue', {
                 "select_beav"
             ];
             fieldsToClear.forEach(field => {
-                if (frm.fields_dict[field]) {
+                if (frm.fields_dict[field] && frm.doc[field]) {
                     frm.set_value(field, 0);
                 }
             });
@@ -100,15 +100,17 @@ frappe.ui.form.on('Respiratory Issue', {
 
         if (hasRealRedFlag) {
             frm.set_df_property("respiratory_issue", "label", "Still want to continue with Clinical Template?");
-            frm.set_df_property("respiratory_issue", "options", ["Yes", "No"]);
+            frm.set_df_property("respiratory_issue", "options", "Yes\nNo");
             frm.set_df_property("respiratory_issue", "reqd", 1);
         } else {
-            frm.set_value("respiratory_issue", "");
+            if (frm.doc.respiratory_issue) {
+                frm.set_value("respiratory_issue", "");
+            }
             frm.set_df_property("respiratory_issue", "reqd", 0);
         }
     },
 
-    // Validate: check completion checkboxes only for symptoms the user indicated
+    // Validate: all checks only apply when the clinical template is open (respiratory_issue === "Yes")
     validate(frm) {
         if (frm.doc.respiratory_issue === "Yes") {
             if (!frm.doc.check_sayy) {
@@ -126,13 +128,12 @@ frappe.ui.form.on('Respiratory Issue', {
             if (frm.doc.headache && !frm.doc.select_beav) {
                 frappe.throw("Please complete the 'If Headache' section.");
             }
-        }
-
-        if (!frm.doc.select_zfpp) {
-            frappe.throw("Please complete the Past History section.");
-        }
-        if (!frm.doc.select_ffsm) {
-            frappe.throw("Please complete the Family History & Laboratory Test section.");
+            if (!frm.doc.select_zfpp) {
+                frappe.throw("Please complete the Past History section.");
+            }
+            if (!frm.doc.select_ffsm) {
+                frappe.throw("Please complete the Family History & Laboratory Test section.");
+            }
         }
     }
 });
@@ -147,7 +148,9 @@ function applyCheckboxColors(frm) {
 
     Object.keys(checkboxColors).forEach(fieldname => {
         if (!frm.fields_dict[fieldname]) return;
+        const color = checkboxColors[fieldname];
         const checkbox = frm.fields_dict[fieldname].$wrapper.find('input[type="checkbox"]');
+
         checkbox.css({
             'appearance': 'none',
             'width': '16px',
@@ -155,12 +158,13 @@ function applyCheckboxColors(frm) {
             'border': '2px solid #ccc',
             'border-radius': '4px',
             'cursor': 'pointer',
-            'background-color': checkbox.is(':checked') ? checkboxColors[fieldname] : '#fff'
+            'background-color': checkbox.is(':checked') ? color : '#fff'
         });
-        checkbox.off('change').on('change', function () {
-            $(this).css('background-color', this.checked ? checkboxColors[fieldname] : '#fff');
+
+        // Namespaced event so Frappe's own change listener is not affected
+        checkbox.off('change.colorize').on('change.colorize', function () {
+            $(this).css('background-color', this.checked ? color : '#fff');
         });
-        checkbox.trigger('change');
     });
 }
 
