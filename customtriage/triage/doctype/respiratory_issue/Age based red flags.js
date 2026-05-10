@@ -111,7 +111,7 @@ function handle_age_based_sections(frm) {
         adult_fields.forEach(fn => {
             if (frm.fields_dict[fn]) {
                 frm.toggle_display(fn, false);
-                frm.set_value(fn, 0);
+                // frm.set_value(fn, 0);
             }
         });
 
@@ -130,7 +130,7 @@ function handle_age_based_sections(frm) {
         child_fields.forEach(fn => {
             if (frm.fields_dict[fn]) {
                 frm.toggle_display(fn, false);
-                frm.set_value(fn, 0);
+                // frm.set_value(fn, 0);
             }
         });
 
