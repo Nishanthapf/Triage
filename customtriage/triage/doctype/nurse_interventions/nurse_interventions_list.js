@@ -830,8 +830,51 @@ frappe.listview_settings["Nurse Interventions"] = {
 
       const getHistoryHtml = (record) => {
         const isFemale = record.gender === "Female";
-        const menstrual = isFemale ? (record.menstrual_history || "No menstrual history recorded.") : "N/A";
-        const personal = `<b>Personal:</b> ${record.personal_history || "N/A"}<br><b>Lifestyle:</b> ${record.lifestyle_habits || "N/A"}`;
+        
+        let menstrual = "N/A";
+        if (isFemale) {
+          const mList = [];
+          if (record.gravida1) mList.push(`Gravida-1: ${record.gravida1}`);
+          if (record.lmp_date) mList.push(`LMP: ${record.lmp_date}`);
+          if (record.menstrual_cycle) mList.push(`Cycle: ${record.menstrual_cycle}`);
+          if (record.any_white_discharge === "Yes") {
+             let wd = "White Discharge";
+             if (record.character_of_the_discharge) wd += ` (${record.character_of_the_discharge})`;
+             if (record.foul_smelling === "Yes") wd += " [Foul Smelling]";
+             mList.push(wd);
+          }
+          menstrual = mList.length > 0 ? mList.join("<br>") : "None";
+        }
+
+        const lifestyleList = [];
+        if (record.tobacco_consumption && record.tobacco_consumption !== "0") lifestyleList.push("Tobacco");
+        if (record.drinking_alcohol && record.drinking_alcohol !== "0") lifestyleList.push("Alcohol");
+        if (record.drug_abuse && record.drug_abuse !== "0") lifestyleList.push("Drug Abuse");
+        const lifestyleText = lifestyleList.length > 0 ? lifestyleList.join(", ") : "None";
+
+        const personalList = [];
+        if (record.any_allergy === "Yes") personalList.push("Allergies");
+        if (record.any_surgeries === "Yes") personalList.push("Surgeries" + (record.if_yes_please_describe ? ` (${record.if_yes_please_describe})` : ""));
+        if (record.any_hospitalization === "Yes") personalList.push("Recent Hospitalisation");
+        if (record.oral_health) personalList.push(`Oral Health: ${record.oral_health}`);
+        if (record.vision) personalList.push(`Vision: ${record.vision}`);
+        if (record.hearing_impairment === "Yes") personalList.push("Hearing Impairment");
+        const personalText = personalList.length > 0 ? personalList.join(", ") : "None";
+
+        const mentalHealthList = [];
+        if (record.composed && record.composed !== "0") mentalHealthList.push("Composed");
+        if (record.anxious && record.anxious !== "0") mentalHealthList.push("Anxious");
+        if (record.depressed && record.depressed !== "0") mentalHealthList.push("Depressed");
+        if (record.loss_of_appetite && record.loss_of_appetite !== "0") mentalHealthList.push("Loss of appetite");
+        if (record.loss_of_weight && record.loss_of_weight !== "0") mentalHealthList.push("Loss of weight");
+        if (record.weight_gain && record.weight_gain !== "0") mentalHealthList.push("Weight gain");
+        if (record.insomnia && record.insomnia !== "0") mentalHealthList.push("Insomnia");
+        if (record.excessive_sleep && record.excessive_sleep !== "0") mentalHealthList.push("Excessive sleep");
+        if (record.palpitation && record.palpitation !== "0") mentalHealthList.push("Palpitation");
+        const mentalHealthText = mentalHealthList.length > 0 ? mentalHealthList.join(", ") : "None";
+
+        const personal = `<b>Personal:</b> ${personalText}<br><b>Lifestyle:</b> ${lifestyleText}<br><b>Mental Health:</b> ${mentalHealthText}`;
+
         const comorbidityList = [];
         if (record.hypertension && record.hypertension !== "0") comorbidityList.push("Hypertension");
         if (record.diabetes && record.diabetes !== "0") comorbidityList.push("Diabetes");
