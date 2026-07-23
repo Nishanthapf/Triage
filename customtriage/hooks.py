@@ -60,9 +60,12 @@ app_license = "mit"
 # home_page = "login"
 
 # website user home page (by Role)
-# role_home_page = {
-# 	"Role": "home_page"
-# }
+role_home_page = {
+	"Nurse": "triage-dashboard"
+}
+
+# Boot session hook - sets desk home page per role
+boot_session = "customtriage.boot.boot_session"
 
 # Generators
 # ----------
@@ -177,9 +180,9 @@ app_license = "mit"
 # Overriding Methods
 # ------------------------------
 #
-# override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "customtriage.event.get_events"
-# }
+override_whitelisted_methods = {
+	"get_triage_data": "customtriage.api.get_triage_data"
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,

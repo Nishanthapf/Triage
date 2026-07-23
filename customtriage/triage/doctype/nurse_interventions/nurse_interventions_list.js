@@ -1,3 +1,5 @@
+
+
 const ensureLoader = () => {
   if (!document.getElementById("pdf-loader")) {
     const loaderStyle = `
@@ -5,38 +7,88 @@ const ensureLoader = () => {
         #pdf-loader {
           position: fixed;
           top: 0; left: 0; right: 0; bottom: 0;
-          background: rgba(255, 255, 255, 0.8);
+          background: rgba(15, 23, 42, 0.65);
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
           z-index: 9999;
           display: none;
           align-items: center;
           justify-content: center;
           flex-direction: column;
-          font-family: sans-serif;
+          font-family: 'Segoe UI', Arial, sans-serif;
         }
-        .spinner {
-          width: 60px;
-          height: 60px;
-          border: 6px solid #e0e0e0;
-          border-top: 6px solid #000;
+        #pdf-loader-card {
+          background: #ffffff;
+          border-radius: 16px;
+          padding: 36px 48px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+          box-shadow: 0 25px 60px rgba(0,0,0,0.25), 0 8px 20px rgba(0,0,0,0.12);
+          min-width: 280px;
+        }
+        .pdf-spinner-ring {
+          width: 64px;
+          height: 64px;
+          position: relative;
+        }
+        .pdf-spinner-ring::before,
+        .pdf-spinner-ring::after {
+          content: '';
+          position: absolute;
           border-radius: 50%;
-          animation: spin 1s linear infinite;
+          top: 0; left: 0; right: 0; bottom: 0;
         }
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
+        .pdf-spinner-ring::before {
+          border: 5px solid #e8f0fe;
+        }
+        .pdf-spinner-ring::after {
+          border: 5px solid transparent;
+          border-top-color: #1a73e8;
+          border-right-color: #1a73e8;
+          animation: pdf-spin 0.85s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+        }
+        @keyframes pdf-spin {
+          0%   { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
         }
-        #pdf-loader-text {
-          margin-top: 16px;
-          font-size: 16px;
-          color: #000;
-          font-weight: 500;
+        #pdf-loader-title {
+          font-size: 17px;
+          font-weight: 700;
+          color: #1e293b;
+          letter-spacing: 0.01em;
           text-align: center;
+        }
+        #pdf-loader-text {
+          font-size: 13px;
+          color: #64748b;
+          font-weight: 400;
+          text-align: center;
+          letter-spacing: 0.02em;
+        }
+        .pdf-dots span {
+          display: inline-block;
+          width: 7px; height: 7px;
+          margin: 0 3px;
+          background: #1a73e8;
+          border-radius: 50%;
+          animation: pdf-bounce 1.2s infinite ease-in-out;
+        }
+        .pdf-dots span:nth-child(1) { animation-delay: 0s; }
+        .pdf-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .pdf-dots span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes pdf-bounce {
+          0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+          40%            { transform: scale(1);   opacity: 1; }
         }
         .custom-alert {
           padding: 14px 18px;
           border-radius: 5px;
           margin-bottom: 20px;
           font-weight: bold;
+          page-break-inside: avoid;
+          break-inside: avoid;
         }
         .custom-alert.red {
           background: #ffe5e5;
@@ -115,6 +167,9 @@ const ensureLoader = () => {
           background-color: #e9ecef;
           padding: 10px;
           border-radius: 5px;
+          page-break-inside: avoid;
+          break-inside: avoid;
+          overflow: hidden;
         }
         .full-records ul {
           margin: 0;
@@ -236,7 +291,7 @@ const ensureLoader = () => {
   font-size: 1.1em;
   color: #004085;
 }
-..anemia-adults-summary {
+.anemia-adults-summary {
   background-color: #f8f9fa;
   padding: 15px;
   border-radius: 5px;
@@ -359,8 +414,12 @@ const ensureLoader = () => {
 
       </style>
       <div id="pdf-loader">
-        <div class="spinner"></div>
-        <div id="pdf-loader-text">Please wait, generating PDF...</div>
+        <div id="pdf-loader-card">
+          <div class="pdf-spinner-ring"></div>
+          <div id="pdf-loader-title">Generating Report</div>
+          <div id="pdf-loader-text">Please wait, this may take a moment</div>
+          <div class="pdf-dots"><span></span><span></span><span></span></div>
+        </div>
       </div>
     `;
     document.body.insertAdjacentHTML("beforeend", loaderStyle);
@@ -654,7 +713,11 @@ frappe.listview_settings["Nurse Interventions"] = {
     applyButtonStyles();
 
     // Re-check periodically for dynamic loading (infinite scroll)
-    setInterval(applyButtonStyles, 1000);
+    // Clear any interval from a previous onload so they don't stack up
+    if (window.__nurseIntListStyleInterval) {
+      clearInterval(window.__nurseIntListStyleInterval);
+    }
+    window.__nurseIntListStyleInterval = setInterval(applyButtonStyles, 1000);
   },
   button: {
     show: function () {
@@ -668,6 +731,14 @@ frappe.listview_settings["Nurse Interventions"] = {
     },
     action: async function (doc) {
       ensureLoader();
+
+      // Preload html2pdf in background so it's ready when user clicks "Download as PDF"
+      if (typeof html2pdf === "undefined" && !document.getElementById("html2pdf-script")) {
+        const preloadScript = document.createElement("script");
+        preloadScript.id = "html2pdf-script";
+        preloadScript.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js";
+        document.head.appendChild(preloadScript);
+      }
 
       const formatDate = (rawDate) => {
         if (!rawDate) return "Not specified";
@@ -809,7 +880,7 @@ frappe.listview_settings["Nurse Interventions"] = {
 
         // Append symtoms table data if available (this part might need customization based on how 'symptoms' field stores data)
         // Assuming 'symptoms' might be a child table or simple text field.
-        // Based on previous code, there isn't a direct usage of 'symptoms' child table in standard summary, 
+        // Based on previous code, there isn't a direct usage of 'symptoms' child table in standard summary,
         // but 'primary_diagnosis' is present.
 
         let additional = "";
@@ -830,7 +901,7 @@ frappe.listview_settings["Nurse Interventions"] = {
 
       const getHistoryHtml = (record) => {
         const isFemale = record.gender === "Female";
-        
+
         let menstrual = "N/A";
         if (isFemale) {
           const mList = [];
@@ -852,13 +923,60 @@ frappe.listview_settings["Nurse Interventions"] = {
         if (record.drug_abuse && record.drug_abuse !== "0") lifestyleList.push("Drug Abuse");
         const lifestyleText = lifestyleList.length > 0 ? lifestyleList.join(", ") : "None";
 
+        const FRAPPE_META_FIELDS = new Set([
+          'name', 'doctype', 'parent', 'parentfield', 'parenttype',
+          'idx', 'owner', 'creation', 'modified', 'modified_by',
+          'docstatus', '__islocal', '__unsaved', 'amended_from'
+        ]);
+
+        const extractFrappeChildValue = (v) => {
+          if (!v || typeof v !== 'object') return '';
+          // Try known value fields first
+          if (v.value && typeof v.value === 'string') return v.value.trim();
+          if (v.label && typeof v.label === 'string') return v.label.trim();
+          // For Frappe Table Multiselect, the actual option value sits in a
+          // non-metadata field — find it by excluding all standard meta keys.
+          const key = Object.keys(v).find(k => !FRAPPE_META_FIELDS.has(k) && v[k] && typeof v[k] === 'string');
+          return key ? v[key].trim() : '';
+        };
+
+        const toStr = (val) => {
+          if (!val) return '';
+          if (typeof val === 'string') return val.trim();
+          if (typeof val === 'number') return String(val);
+          if (Array.isArray(val)) {
+            return val.map(v => (typeof v === 'string' ? v.trim() : extractFrappeChildValue(v))).filter(Boolean).join(', ');
+          }
+          if (typeof val === 'object') return extractFrappeChildValue(val);
+          return '';
+        };
+
         const personalList = [];
         if (record.any_allergy === "Yes") personalList.push("Allergies");
         if (record.any_surgeries === "Yes") personalList.push("Surgeries" + (record.if_yes_please_describe ? ` (${record.if_yes_please_describe})` : ""));
-        if (record.any_hospitalization === "Yes") personalList.push("Recent Hospitalisation");
-        if (record.oral_health) personalList.push(`Oral Health: ${record.oral_health}`);
-        if (record.vision) personalList.push(`Vision: ${record.vision}`);
-        if (record.hearing_impairment === "Yes") personalList.push("Hearing Impairment");
+        if (record.any_hospitalization === "Yes") {
+          let hospText = "Recent Hospitalisation";
+          const hospReason = toStr(record.reason_for_hospitalisation);
+          if (hospReason) hospText += ` (Reason: ${hospReason})`;
+          personalList.push(hospText);
+        }
+        const oralHealthVal = toStr(record.oral_health);
+        if (oralHealthVal) personalList.push(`<b>Oral Health:</b> ${oralHealthVal}`);
+        const visionVal = toStr(record.vision);
+        if (visionVal) {
+          let visionText = `<b>Vision:</b> ${visionVal}`;
+          const visionOthersVal = toStr(record.vision_others);
+          if (visionOthersVal) visionText += ` (${visionOthersVal})`;
+          personalList.push(visionText);
+        }
+        const hearingImpairmentVal = toStr(record.hearing_impairment);
+        if (hearingImpairmentVal) personalList.push(`<b>Hearing Impairment:</b> ${hearingImpairmentVal}`);
+        const othMention = toStr(record.if_others_please_mention);
+        if (othMention) personalList.push(`Others: ${othMention}`);
+        const othSpecify = toStr(record.if_others_please_specify);
+        if (othSpecify) personalList.push(`Others (specified): ${othSpecify}`);
+        const highRiskVal = toStr(record.high_risk);
+        if (highRiskVal) personalList.push(`<span style='color:red;font-weight:bold;'>High Risk: ${highRiskVal}</span>`);
         const personalText = personalList.length > 0 ? personalList.join(", ") : "None";
 
         const mentalHealthList = [];
@@ -952,7 +1070,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Nurse Interventions",
             fields: ["*"],
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -1037,7 +1155,7 @@ frappe.listview_settings["Nurse Interventions"] = {
               'peripheral_pulse', 'peripheral_edema', 'feet_fissures', 'toes_ulcers', 'skin_changes', 'oral_cavity',
               'hba1c', 'rft_lipid', 'urine_microalbumin'
             ],
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -1156,7 +1274,7 @@ frappe.listview_settings["Nurse Interventions"] = {
               'other_medicines', 'check_nbrf', 'hba1c_done', 'lipid_profile',
               'micro_albumin', 'lab_reports'
             ],
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -1309,7 +1427,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Screening for Hypertension",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -1468,7 +1586,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Hypertension Follow up",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -1624,7 +1742,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Abdominal pain Gastrointestinal",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -1838,7 +1956,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Diarrhea",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -1988,7 +2106,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Vomiting",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -2159,7 +2277,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Fatigue",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -2325,7 +2443,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Eye problem",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -2499,7 +2617,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Back and Neck Pain",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -2684,7 +2802,7 @@ frappe.listview_settings["Nurse Interventions"] = {
 
           let validFields = [...allFields];
 
-          const args = { doctype, fields: validFields, limit_page_length: 0 };
+          const args = { doctype, fields: validFields, limit_page_length: 10 };
 
           const or_filters = [];
           if (patient_id) or_filters.push(["patient_id", "=", patient_id]);
@@ -2853,7 +2971,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: doctype,
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -3063,7 +3181,7 @@ frappe.listview_settings["Nurse Interventions"] = {
               'how_much_water_do_you_drink_everyday', 'check_offh', 'look_for_lymphnodes_in_the_neck_lt_supra_clavicular',
               'check_owzn', 'lymphnodes', 'previous_lab_reports', 'check_vkrm', 'if_yes_please_upload'
             ],
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -3238,7 +3356,7 @@ frappe.listview_settings["Nurse Interventions"] = {
               'are_you_involves_in_tailoringor_in_garment_factory', 'gym_frequently', 'check_yujn', 'family_issues',
               'arthritis_history', 'posture_gait', 'previous_labreports', 'upload_report'
             ],
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -3415,7 +3533,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Anemia - adults",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -3575,7 +3693,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Anemia- Children",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -3740,7 +3858,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Headache",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -3922,7 +4040,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Pregnancy Care",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -4145,7 +4263,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Postnatal Care",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -4362,7 +4480,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Jaundice",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -4538,7 +4656,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Thyroid Problem",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -4731,7 +4849,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Skin Problem",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -4912,7 +5030,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: doctype,
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
           const or_filters = [];
           if (patient_id) or_filters.push(["patient_id", "=", patient_id]);
@@ -5063,7 +5181,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Chest Pain",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -5278,7 +5396,7 @@ frappe.listview_settings["Nurse Interventions"] = {
           const args = {
             doctype: "Constipation",
             fields: validFields,
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -5452,7 +5570,7 @@ frappe.listview_settings["Nurse Interventions"] = {
               'any_history_of_allergy', 'past_symptoms', 'select_ffsm', 'history_asthma', 'allergy_history', 'throat_examination',
               'sinus_tenderness', 'lab_previous', 'if_yes_please_upload'
             ],
-            limit_page_length: 0
+            limit_page_length: 10
           };
 
           const or_filters = [];
@@ -5991,23 +6109,11 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Diabetes Followup – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Diabetes Followup Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.lab_reports && rec.lab_reports !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.lab_reports}" target="_blank">
-      Lab Report for Diabetes Followup Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtml6 = (rec.lab_reports && rec.lab_reports !== "0") ? `
+  <ul style="margin:0;padding-left:20px;">
+    <li><a class="pdf-link" href="${rec.lab_reports}" target="_blank">Lab Report for Diabetes Followup Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li>
+  </ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Diabetes Followup Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtml6}</li>`;
       });
 
 
@@ -6019,21 +6125,11 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Screening for Hypertension – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Screening for Hypertension Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.lab_scanning && rec.lab_scanning !== "0") {
-          fullRecordsHtml += `
-<ul><li>
-  <a class="pdf-link" href="${rec.lab_scanning}" target="_blank">
-    Lab Report for Screening for Hypertension Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-  </a>
-</li></ul>`;
-        }
+        const labHtml7 = (rec.lab_scanning && rec.lab_scanning !== "0") ? `
+  <ul style="margin:0;padding-left:20px;">
+    <li><a class="pdf-link" href="${rec.lab_scanning}" target="_blank">Lab Report for Screening for Hypertension Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li>
+  </ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Screening for Hypertension Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtml7}</li>`;
       });
 
 
@@ -6045,23 +6141,11 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Hypertension Follow up – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Hypertension Follow up Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.lab_reports && rec.lab_reports !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.lab_reports}" target="_blank">
-      Lab Report for Hypertension Follow up Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtml8 = (rec.lab_reports && rec.lab_reports !== "0") ? `
+  <ul style="margin:0;padding-left:20px;">
+    <li><a class="pdf-link" href="${rec.lab_reports}" target="_blank">Lab Report for Hypertension Follow up Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li>
+  </ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Hypertension Follow up Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtml8}</li>`;
       });
 
 
@@ -6073,23 +6157,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Abdominal pain Gastrointestinal – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Abdominal pain Gastrointestinal Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.yes_upload && rec.yes_upload !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.yes_upload}" target="_blank">
-      Lab Report for Abdominal pain Gastrointestinal Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtmlAb = (rec.yes_upload && rec.yes_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.yes_upload}" target="_blank">Lab Report for Abdominal pain Gastrointestinal Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Abdominal pain Gastrointestinal Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlAb}</li>`;
       });
 
 
@@ -6101,21 +6170,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Diarrhea – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Diarrhea Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.report_upload && rec.report_upload !== "0") {
-          fullRecordsHtml += `
-<ul><li>
-  <a class="pdf-link" href="${rec.report_upload}" target="_blank">
-    Lab Report for Diarrhea Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-  </a>
-</li></ul>`;
-        }
+        const labHtmlDi = (rec.report_upload && rec.report_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.report_upload}" target="_blank">Lab Report for Diarrhea Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Diarrhea Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlDi}</li>`;
       });
 
 
@@ -6127,23 +6183,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Vomiting – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Vomiting Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.upload_report && rec.upload_report !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.upload_report}" target="_blank">
-      Lab Report for Vomiting Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtmlVo = (rec.upload_report && rec.upload_report !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.upload_report}" target="_blank">Lab Report for Vomiting Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Vomiting Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlVo}</li>`;
       });
 
 
@@ -6155,23 +6196,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Fatigue – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Fatigue Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.if_yes_please_upload && rec.if_yes_please_upload !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.if_yes_please_upload}" target="_blank">
-      Lab Report for Fatigue Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtmlFa = (rec.if_yes_please_upload && rec.if_yes_please_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.if_yes_please_upload}" target="_blank">Lab Report for Fatigue Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Fatigue Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlFa}</li>`;
       });
 
       eyeProblemRecords.forEach(rec => {
@@ -6182,21 +6208,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Eye problem – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Eye Problem Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.if_yes_please_upload && rec.if_yes_please_upload !== "0") {
-          fullRecordsHtml += `
-<ul><li>
-  <a class="pdf-link" href="${rec.if_yes_please_upload}" target="_blank">
-    Lab Report for Eye Problem Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-  </a>
-</li></ul>`;
-        }
+        const labHtmlEy = (rec.if_yes_please_upload && rec.if_yes_please_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.if_yes_please_upload}" target="_blank">Lab Report for Eye Problem Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Eye Problem Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlEy}</li>`;
       });
 
 
@@ -6209,24 +6222,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Back and Neck Pain – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Back and Neck Pain Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.upload_report && rec.upload_report !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.upload_report}" target="_blank">
-      Lab Report for Back and Neck Pain Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
-
+        const labHtmlBN = (rec.upload_report && rec.upload_report !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.upload_report}" target="_blank">Lab Report for Back and Neck Pain Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Back and Neck Pain Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlBN}</li>`;
       });
 
 
@@ -6238,21 +6235,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Shoulder and Hand Pain – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Shoulder and Hand Pain Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.upload_report && rec.upload_report !== "0") {
-          fullRecordsHtml += `
-<ul><li>
-  <a class="pdf-link" href="${rec.upload_report}" target="_blank">
-    Lab Report for Shoulder and Hand Pain Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-  </a>
-</li></ul>`;
-        }
+        const labHtmlSH = (rec.upload_report && rec.upload_report !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.upload_report}" target="_blank">Lab Report for Shoulder and Hand Pain Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Shoulder and Hand Pain Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlSH}</li>`;
       });
 
 
@@ -6264,21 +6248,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Leg or Knee or Hip pain – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Leg or Knee or Hip Pain Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.upload_report && rec.upload_report !== "0") {
-          fullRecordsHtml += `
-<ul><li>
-  <a class="pdf-link" href="${rec.upload_report}" target="_blank">
-    Lab Report for Leg or Knee or Hip Pain Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-  </a>
-</li></ul>`;
-        }
+        const labHtmlLK = (rec.upload_report && rec.upload_report !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.upload_report}" target="_blank">Lab Report for Leg or Knee or Hip Pain Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Leg or Knee or Hip Pain Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlLK}</li>`;
       });
 
       dyspepsiaAcidityRecords.forEach(rec => {
@@ -6289,21 +6260,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Dyspepsia_Acidity – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Dyspepsia/Acidity Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.if_yes_please_upload && rec.if_yes_please_upload !== "0") {
-          fullRecordsHtml += `
-<ul><li>
-  <a class="pdf-link" href="${rec.if_yes_please_upload}" target="_blank">
-    Dyspepsia/Acidity Lab Report for Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-  </a>
-</li></ul>`;
-        }
+        const labHtmlDy = (rec.if_yes_please_upload && rec.if_yes_please_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.if_yes_please_upload}" target="_blank">Dyspepsia/Acidity Lab Report for Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Dyspepsia/Acidity Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlDy}</li>`;
       });
 
 
@@ -6315,23 +6273,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Foot and Ankle Pain – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Foot and Ankle Pain Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.upload_report && rec.upload_report !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.upload_report}" target="_blank">
-      Foot and Ankle Pain Lab Report for Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtmlFt = (rec.upload_report && rec.upload_report !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.upload_report}" target="_blank">Foot and Ankle Pain Lab Report for Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Foot and Ankle Pain Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlFt}</li>`;
       });
 
 
@@ -6343,23 +6286,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Anemia-Adult – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Anemia - adults Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.please_upload && rec.please_upload !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.please_upload}" target="_blank">
-      Lab Report for Anemia - adults Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtmlAA = (rec.please_upload && rec.please_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.please_upload}" target="_blank">Lab Report for Anemia - adults Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Anemia - adults Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlAA}</li>`;
       });
 
       anemiaChildrenRecords.forEach(rec => {
@@ -6370,23 +6298,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Anemia – Children – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Anemia-Children Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.please_upload && rec.please_upload !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.please_upload}" target="_blank">
-      Lab Report for Anemia-Children Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtmlAC = (rec.please_upload && rec.please_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.please_upload}" target="_blank">Lab Report for Anemia-Children Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Anemia-Children Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlAC}</li>`;
       });
 
       headacheRecords.forEach(rec => {
@@ -6397,23 +6310,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Headache – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Headache Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.if_yes_please_upload && rec.if_yes_please_upload !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.if_yes_please_upload}" target="_blank">
-      Lab Report for Headache Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtmlHa = (rec.if_yes_please_upload && rec.if_yes_please_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.if_yes_please_upload}" target="_blank">Lab Report for Headache Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Headache Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlHa}</li>`;
       });
 
       pregnancyCareRecords.forEach(rec => {
@@ -6424,23 +6322,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Pregnancy Care – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Pregnancy Care Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.please_upload && rec.please_upload !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.please_upload}" target="_blank">
-      Lab Report for Pregnancy Care Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtmlPr = (rec.please_upload && rec.please_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.please_upload}" target="_blank">Lab Report for Pregnancy Care Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Pregnancy Care Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlPr}</li>`;
       });
 
 
@@ -6452,23 +6335,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Postnatal Care – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Postnatal Care Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.please_upload && rec.please_upload !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.please_upload}" target="_blank">
-      Lab Report for Postnatal Care Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtmlPo = (rec.please_upload && rec.please_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.please_upload}" target="_blank">Lab Report for Postnatal Care Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Postnatal Care Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlPo}</li>`;
       });
 
 
@@ -6481,24 +6349,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Jaundice – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Jaundice Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.if_yes_please_upload && rec.if_yes_please_upload !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.if_yes_please_upload}" target="_blank">
-      Lab Report for Jaundice Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
-
+        const labHtmlJa = (rec.if_yes_please_upload && rec.if_yes_please_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.if_yes_please_upload}" target="_blank">Lab Report for Jaundice Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Jaundice Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlJa}</li>`;
       });
 
 
@@ -6510,23 +6362,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Thyroid Problem – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Thyroid Problem Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.please_upload && rec.please_upload !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.please_upload}" target="_blank">
-      Lab Report for Thyroid Problem Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtmlTh = (rec.please_upload && rec.please_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.please_upload}" target="_blank">Lab Report for Thyroid Problem Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Thyroid Problem Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlTh}</li>`;
       });
 
 
@@ -6539,23 +6376,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Skin Problem – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Skin Problem Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.please_upload && rec.please_upload !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.please_upload}" target="_blank">
-      Lab Report for Skin Problem Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtmlSk = (rec.please_upload && rec.please_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.please_upload}" target="_blank">Lab Report for Skin Problem Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Skin Problem Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlSk}</li>`;
       });
 
       lymphNodeEnlargementRecords.forEach(rec => {
@@ -6566,23 +6388,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Lymph Node Enlargement – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Lymph Node Enlargement Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.please_upload && rec.please_upload !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.please_upload}" target="_blank">
-      Lab Report for Lymph Node Enlargement Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtmlLy = (rec.please_upload && rec.please_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.please_upload}" target="_blank">Lab Report for Lymph Node Enlargement Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Lymph Node Enlargement Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlLy}</li>`;
       });
 
 
@@ -6594,23 +6401,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Chest Pain – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Chest Pain Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.attach_photo && rec.attach_photo !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.attach_photo}" target="_blank">
-      Lab Report for Chest Pain Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtmlCh = (rec.attach_photo && rec.attach_photo !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.attach_photo}" target="_blank">Lab Report for Chest Pain Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Chest Pain Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlCh}</li>`;
       });
 
 
@@ -6622,23 +6414,8 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Constipation – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Constipation Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.upload_report && rec.upload_report !== "0") {
-          fullRecordsHtml += `
-<ul>
-  <li>
-    <a class="pdf-link" href="${rec.upload_report}" target="_blank">
-      Lab Report for Constipation Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-    </a>
-  </li>
-</ul>`;
-        }
+        const labHtmlCo = (rec.upload_report && rec.upload_report !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.upload_report}" target="_blank">Lab Report for Constipation Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Constipation Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlCo}</li>`;
       });
 
 
@@ -6650,26 +6427,13 @@ frappe.listview_settings["Nurse Interventions"] = {
           + "&format=" + encodeURIComponent("Respiratory Issue – Full Record")
           + "&no_letterhead=0";
 
-        fullRecordsHtml += `
-<li>
-  <a class="pdf-link" href="${pdfUrl}" target="_blank">
-    Full Respiratory Issue Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})
-  </a>
-</li>`;
-
-        if (rec.if_yes_please_upload && rec.if_yes_please_upload !== "0") {
-          fullRecordsHtml += `
-<ul><li>
-  <a class="pdf-link" href="${rec.if_yes_please_upload}" target="_blank">
-    Respiratory Issue Lab Report for Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})
-  </a>
-</li></ul>`;
-        }
+        const labHtmlRe = (rec.if_yes_please_upload && rec.if_yes_please_upload !== "0") ? `<ul style="margin:0;padding-left:20px;"><li><a class="pdf-link" href="${rec.if_yes_please_upload}" target="_blank">Respiratory Issue Lab Report for Record ${rec.recordNumber} (Date: ${formatDate(rec.creation)})</a></li></ul>` : "";
+        fullRecordsHtml += `<li><a class="pdf-link" href="${pdfUrl}" target="_blank">Full Respiratory Issue Record ${rec.recordNumber} PDF (Date: ${formatDate(rec.creation)})</a>${labHtmlRe}</li>`;
       });
 
 
 
-      fullRecordsHtml += `</ul></ul></div>`;
+      fullRecordsHtml += `</ul></div>`;
 
 
 
@@ -6702,7 +6466,7 @@ frappe.listview_settings["Nurse Interventions"] = {
     ${vitalSignsHtml}
     ${currentSymptomsHtml}
     ${historyHtml}
-    
+
     <table class="summary-table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 12px;">
       <tr>
         <th style="background-color: #f0f0f0; padding: 5px; border: 1px solid #ccc; text-align: left;">5. Clinical Template Details</th>
@@ -6735,62 +6499,79 @@ frappe.listview_settings["Nurse Interventions"] = {
           const loader = document.getElementById("pdf-loader");
           if (loader) loader.style.display = "flex";
 
+          const setLoaderText = (msg) => {
+            const el = document.getElementById("pdf-loader-text");
+            if (el) el.textContent = msg;
+          };
+
+          // Fast path: pre-built blob is ready — download is instant
+          if (typeof _pdfBlob !== "undefined" && _pdfBlob && _pdfBlobFlagState === showRedFlags) {
+            setLoaderText("Downloading...");
+            const filename = `${currentRecord.patient_name || "Patient"}_Summary_${doc.name}.pdf`;
+            const url = URL.createObjectURL(_pdfBlob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+            if (loader) loader.style.display = "none";
+            frappe.show_alert({ message: __("PDF Downloaded"), indicator: "green" });
+            _pdfBlob = null;
+            setTimeout(_buildPdfBlob, 300);
+            return;
+          }
+
           const pdfRedFlagContent = showRedFlags ? redFlagContent : "";
           let pdfRedFlagAlertHtml = "";
+          // Build fully inline-styled alert (CSS classes don't work in detached pdfElement)
           if (hasRedFlags) {
-            pdfRedFlagAlertHtml = `<div class="custom-alert red">
-              <ul class="summary-bullet-points"><li>⚠️ <strong>Red Flags Detected for patient: ${currentRecord.patient_name || "Unknown"}</strong></li></ul>
-            </div>`;
+            pdfRedFlagAlertHtml = `<div style="padding:10px 14px;border-radius:4px;background:#ffe5e5;border:2px solid #dc3545;color:#870404;font-weight:bold;font-size:12px;margin-bottom:10px;">⚠️ Red Flags Detected for patient: ${currentRecord.patient_name || "Unknown"}</div>`;
             if (!showRedFlags) {
-              pdfRedFlagAlertHtml += `<div class="custom-alert red">
-                <ul class="summary-bullet-points"><li>⚠️ <strong>Note: Red Flags are hidden in this report.</strong></li></ul>
-              </div>`;
+              pdfRedFlagAlertHtml += `<div style="padding:10px 14px;border-radius:4px;background:#ffe5e5;border:2px solid #dc3545;color:#870404;font-weight:bold;font-size:12px;margin-bottom:10px;">⚠️ Note: Red Flags are hidden in this report.</div>`;
             }
           } else {
-            pdfRedFlagAlertHtml = `<div class="custom-alert green">
-              <ul class="summary-bullet-points"><li>✅ <strong>No red flags detected for patient: ${currentRecord.patient_name || "Unknown"}</strong></li></ul>
-            </div>`;
+            pdfRedFlagAlertHtml = `<div style="padding:10px 14px;border-radius:4px;background:#e3ffe5;border:2px solid #13c467;color:#176637;font-weight:bold;font-size:12px;margin-bottom:10px;">✅ No red flags detected for patient: ${currentRecord.patient_name || "Unknown"}</div>`;
           }
 
           const opt = {
-            margin: [0.5, 0.5, 0.5, 0.5],
+            margin: [0.4, 0.4, 0.4, 0.4],
             filename: `${currentRecord.patient_name || "Patient"}_Summary_${doc.name}.pdf`,
-            image: { type: "jpeg", quality: 0.98 },
-            html2pdf: { scale: 2 },
+            image: { type: "jpeg", quality: 0.82 },
+            html2canvas: { scale: 1, useCORS: true, logging: false },
             jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
-            pagebreak: { mode: ['css', 'legacy'] }
+            pagebreak: { mode: [] }
           };
 
           const generatePDF = () => {
             try {
+              setLoaderText("Building report content...");
               const pdfElement = document.createElement('div');
+              // Build inline-styled Full Records (class attributes won't resolve in detached element)
+              const inlineFullRecordsHtml = fullRecordsHtml
+                .replace(/class="full-records"/g, 'style="background:#f0f4f8;border:1px solid #c8d6e5;border-radius:4px;padding:10px 14px;font-size:12px;margin-bottom:10px;"')
+                .replace(/class="pdf-link"/g, 'style="color:#1a73e8;text-decoration:none;"')
+                .replace(/class="summary-bullet-points"/g, 'style="margin:4px 0 0 16px;padding:0;"');
+
               let pdfContent = `
-      <div style="padding: 20px; font-family: sans-serif;">
+      <div style="padding:16px;font-family:Arial,sans-serif;font-size:12px;color:#333;line-height:1.5;">
         ${patientDetailsHtml}
         ${vitalSignsHtml}
         ${currentSymptomsHtml}
         ${historyHtml}
-
-        <table class="summary-table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 12px;">
-          <tr>
-            <th style="background-color: #f0f0f0; padding: 5px; border: 1px solid #ccc; text-align: left;">5. Clinical Template Details</th>
-          </tr>
-          <tr>
-            <td style="border: 1px solid #ccc; padding: 10px;">
-              ${clinicalTemplatesHtml}
-            </td>
-          </tr>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:12px;font-size:12px;">
+          <tr><th style="background:#f0f0f0;padding:5px 8px;border:1px solid #ccc;text-align:left;font-size:12px;">5. Clinical Template Details</th></tr>
+          <tr><td style="border:1px solid #ccc;padding:8px;">${clinicalTemplatesHtml}</td></tr>
         </table>
-
         ${pdfRedFlagContent}
-        <div style="margin-top: 10px;">
-            ${fullRecordsHtml}
-        </div>
         ${pdfRedFlagAlertHtml}
+        ${inlineFullRecordsHtml}
       </div>
     `;
               pdfElement.innerHTML = pdfContent;
 
+              setLoaderText("Rendering pages...");
               html2pdf().set(opt).from(pdfElement).save().then(() => {
                 if (loader) loader.style.display = "none";
                 frappe.show_alert({ message: __("PDF Downloaded"), indicator: "green" });
@@ -6803,22 +6584,97 @@ frappe.listview_settings["Nurse Interventions"] = {
             }
           };
 
-          if (typeof html2pdf === "undefined") {
-            const script = document.createElement("script");
-            script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js";
-            script.onload = generatePDF;
-            script.onerror = () => {
-              if (loader) loader.style.display = "none";
-              frappe.show_alert({ message: __("Failed to load html2pdf library"), indicator: "red" });
-            };
-            document.head.appendChild(script);
-          } else {
-            generatePDF();
-          }
+          // Defer so the browser paints the loader before any blocking work starts
+          const startGeneration = () => {
+            if (typeof html2pdf === "undefined") {
+              setLoaderText("Loading PDF engine...");
+              const script = document.createElement("script");
+              script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js";
+              script.onload = () => requestAnimationFrame(() => requestAnimationFrame(generatePDF));
+              script.onerror = () => {
+                if (loader) loader.style.display = "none";
+                frappe.show_alert({ message: __("Failed to load PDF engine. Please check your internet connection."), indicator: "red" });
+              };
+              document.head.appendChild(script);
+            } else {
+              requestAnimationFrame(() => requestAnimationFrame(generatePDF));
+            }
+          };
+
+          setTimeout(startGeneration, 0);
         }
       });
 
       dialog.show();
+
+      // Pre-generation state — build the PDF blob in the background while user reads the summary
+      let _pdfBlob = null;
+      let _pdfBlobFlagState = null;
+      let _pdfBlobBuilding = false;
+
+      const _buildPdfBlob = () => {
+        if (_pdfBlobBuilding || typeof html2pdf === "undefined") return;
+        _pdfBlobBuilding = true;
+        _pdfBlob = null;
+        const flagSnapshot = showRedFlags;
+        _pdfBlobFlagState = flagSnapshot;
+
+        const flagContent = flagSnapshot ? redFlagContent : "";
+        let flagAlertHtml = "";
+        if (hasRedFlags) {
+          flagAlertHtml = `<div style="padding:10px 14px;border-radius:4px;background:#ffe5e5;border:2px solid #dc3545;color:#870404;font-weight:bold;font-size:12px;margin-bottom:10px;">⚠️ Red Flags Detected for patient: ${currentRecord.patient_name || "Unknown"}</div>`;
+          if (!flagSnapshot) {
+            flagAlertHtml += `<div style="padding:10px 14px;border-radius:4px;background:#ffe5e5;border:2px solid #dc3545;color:#870404;font-weight:bold;font-size:12px;margin-bottom:10px;">⚠️ Note: Red Flags are hidden in this report.</div>`;
+          }
+        } else {
+          flagAlertHtml = `<div style="padding:10px 14px;border-radius:4px;background:#e3ffe5;border:2px solid #13c467;color:#176637;font-weight:bold;font-size:12px;margin-bottom:10px;">✅ No red flags detected for patient: ${currentRecord.patient_name || "Unknown"}</div>`;
+        }
+
+        const preOpt = {
+          margin: [0.4, 0.4, 0.4, 0.4],
+          image: { type: "jpeg", quality: 0.82 },
+          html2canvas: { scale: 1, useCORS: true, logging: false },
+          jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+          pagebreak: { mode: [] }
+        };
+
+        const pdfEl = document.createElement('div');
+        const inlineHtml = fullRecordsHtml
+          .replace(/class="full-records"/g, 'style="background:#f0f4f8;border:1px solid #c8d6e5;border-radius:4px;padding:10px 14px;font-size:12px;margin-bottom:10px;"')
+          .replace(/class="pdf-link"/g, 'style="color:#1a73e8;text-decoration:none;"')
+          .replace(/class="summary-bullet-points"/g, 'style="margin:4px 0 0 16px;padding:0;"');
+
+        pdfEl.innerHTML = `
+          <div style="padding:16px;font-family:Arial,sans-serif;font-size:12px;color:#333;line-height:1.5;">
+            ${patientDetailsHtml}
+            ${vitalSignsHtml}
+            ${currentSymptomsHtml}
+            ${historyHtml}
+            <table style="width:100%;border-collapse:collapse;margin-bottom:12px;font-size:12px;">
+              <tr><th style="background:#f0f0f0;padding:5px 8px;border:1px solid #ccc;text-align:left;font-size:12px;">5. Clinical Template Details</th></tr>
+              <tr><td style="border:1px solid #ccc;padding:8px;">${clinicalTemplatesHtml}</td></tr>
+            </table>
+            ${flagContent}
+            ${flagAlertHtml}
+            ${inlineHtml}
+          </div>
+        `;
+
+        html2pdf().set(preOpt).from(pdfEl).output('blob').then(blob => {
+          if (_pdfBlobFlagState === showRedFlags) {
+            _pdfBlob = blob;
+          }
+          _pdfBlobBuilding = false;
+        }).catch(() => {
+          _pdfBlobBuilding = false;
+        });
+      };
+
+      // NOTE: PDF pre-generation is intentionally NOT auto-triggered here.
+      // html2canvas rasterizes the whole summary synchronously on the main thread,
+      // which was blocking dialog/modal close clicks (e.g. Red Flag Warning) for
+      // a second or more right after opening. The PDF is now only built lazily,
+      // on-demand, inside the "Download as PDF" primary_action handler.
 
       function updateDialogContent() {
         dialog.fields_dict.summary_content.$wrapper.empty().html(buildDialogContent());
@@ -6827,6 +6683,7 @@ frappe.listview_settings["Nurse Interventions"] = {
         if (redFlagButton) {
           redFlagButton.addEventListener('click', () => {
             showRedFlags = !showRedFlags;
+            _pdfBlob = null;
             updateDialogContent();
           });
         }

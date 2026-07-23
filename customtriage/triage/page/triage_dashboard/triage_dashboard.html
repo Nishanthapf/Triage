@@ -1,0 +1,168 @@
+<div id="td-app">
+
+  <!-- ═══════════════════════════════ HEADER ════════════════════════════════ -->
+  <div class="td-header">
+    <div class="td-header-left">
+      <div class="td-header-icon">🏥</div>
+      <div>
+        <h1 class="td-header-title">Triage Dashboard</h1>
+        <p class="td-header-sub">Community Health Monitoring · APF</p>
+      </div>
+    </div>
+    <div class="td-header-right">
+      <span id="td-role-badge" class="td-role-badge">Loading…</span>
+      <span id="td-updated"    class="td-updated"></span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ FILTERS ══════════════════════════════ -->
+  <div class="td-filters-wrap">
+    <div class="td-filters">
+      <div class="td-fgroup">
+        <label>From Date</label>
+        <input type="date" id="td-from">
+      </div>
+      <div class="td-fgroup">
+        <label>To Date</label>
+        <input type="date" id="td-to">
+      </div>
+      <div class="td-fgroup">
+        <label>Community</label>
+        <select id="td-community"><option value="">All Communities</option></select>
+      </div>
+      <div class="td-fgroup">
+        <label>Gender</label>
+        <select id="td-gender">
+          <option value="">All Genders</option>
+          <option>Male</option><option>Female</option><option>Other</option>
+        </select>
+      </div>
+      <div class="td-fgroup" id="td-nurse-wrap" style="display:none">
+        <label>Nurse</label>
+        <select id="td-nurse"><option value="">All Nurses</option></select>
+      </div>
+      <div class="td-fgroup">
+        <label>Trend Period</label>
+        <select id="td-days">
+          <option value="7">Last 7 days</option>
+          <option value="30" selected>Last 30 days</option>
+          <option value="90">Last 90 days</option>
+        </select>
+      </div>
+      <div class="td-fgroup td-factions">
+        <button class="td-btn td-btn-apply" onclick="TD.load()">⚡ Apply</button>
+        <button class="td-btn td-btn-reset" onclick="TD.reset()">↺ Reset</button>
+      </div>
+    </div>
+    <div id="td-chips" class="td-chips"></div>
+  </div>
+
+  <!-- ERROR -->
+  <div id="td-error"></div>
+
+  <!-- ════════════════════════ SUMMARY CARDS ══════════════════════════════ -->
+  <div class="td-section-wrap">
+    <div class="td-cards" id="td-cards">
+      <div class="td-card-skel"></div><div class="td-card-skel"></div>
+      <div class="td-card-skel"></div><div class="td-card-skel"></div>
+      <div class="td-card-skel"></div><div class="td-card-skel"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ CONDITION DISTRIBUTION ═══════════════════════ -->
+  <div class="td-sec-hdr"><span>📊</span> Condition Distribution</div>
+  <div class="td-panel td-full-panel">
+    <div class="td-panel-title">Patients by Condition (Top 15)</div>
+    <div id="td-cond-chart" class="td-chart-body"><div class="td-spinner-wrap"><div class="td-spinner"></div></div></div>
+  </div>
+
+  <!-- ════════════════════════ GENDER + AGE ═══════════════════════════════ -->
+  <div class="td-grid-2">
+    <div class="td-panel">
+      <div class="td-panel-title">Gender Distribution</div>
+      <div id="td-gender-chart" class="td-chart-body"><div class="td-spinner-wrap"><div class="td-spinner"></div></div></div>
+    </div>
+    <div class="td-panel">
+      <div class="td-panel-title">Age Group Breakdown</div>
+      <div id="td-age-chart" class="td-chart-body"><div class="td-spinner-wrap"><div class="td-spinner"></div></div></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ BMI + COMORBIDITIES ═════════════════════════ -->
+  <div class="td-grid-2">
+    <div class="td-panel">
+      <div class="td-panel-title">BMI Category</div>
+      <div id="td-bmi-chart" class="td-chart-body"><div class="td-spinner-wrap"><div class="td-spinner"></div></div></div>
+    </div>
+    <div class="td-panel">
+      <div class="td-panel-title">Comorbidities</div>
+      <div id="td-comorbid-chart" class="td-chart-body"><div class="td-spinner-wrap"><div class="td-spinner"></div></div></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ DAILY TREND ════════════════════════════════ -->
+  <div class="td-sec-hdr"><span>📈</span> Daily Trend</div>
+  <div class="td-panel td-full-panel">
+    <div class="td-panel-title">Daily Patient Visits</div>
+    <div id="td-trend-chart" class="td-chart-body" style="min-height:220px"><div class="td-spinner-wrap"><div class="td-spinner"></div></div></div>
+  </div>
+
+  <!-- ════════════════════════ COMMUNITY ══════════════════════════════════ -->
+  <div class="td-sec-hdr"><span>🏘️</span> Community Breakdown</div>
+  <div class="td-panel td-full-panel">
+    <div class="td-panel-title">Patients by Community</div>
+    <div id="td-comm-chart" class="td-chart-body"><div class="td-spinner-wrap"><div class="td-spinner"></div></div></div>
+  </div>
+
+  <!-- ════════════════════════ NURSE PERFORMANCE ══════════════════════════ -->
+  <div id="td-nurse-section" style="display:none">
+    <div class="td-sec-hdr"><span>👩‍⚕️</span> Nurse-wise Performance</div>
+    <div class="td-nurse-grid" id="td-nurse-cards"></div>
+  </div>
+
+  <!-- ════════════════════════ RECENT PATIENTS ════════════════════════════ -->
+  <div class="td-sec-hdr"><span>🕒</span> Recent Patients</div>
+  <div class="td-panel td-full-panel td-table-panel">
+    <div class="td-table-scroll">
+      <table class="td-table">
+        <thead>
+          <tr>
+            <th>Patient ID</th><th>Name</th><th>Age</th><th>Gender</th>
+            <th>Community</th><th>Visit Date</th><th>Nurse</th>
+            <th>BMI</th><th>Diagnosis</th><th>Conditions</th>
+          </tr>
+        </thead>
+        <tbody id="td-tbody">
+          <tr><td colspan="10" class="td-spinner-wrap"><div class="td-spinner"></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- #td-app -->
+
+<!-- ══════════════════════════ DRILL-DOWN DRAWER ════════════════════════════ -->
+<div id="td-overlay" onclick="TD.closeDrawer()"></div>
+<div id="td-drawer">
+  <div class="td-drawer-hdr">
+    <div>
+      <div class="td-drawer-title" id="td-drawer-title">Details</div>
+      <div class="td-drawer-sub"   id="td-drawer-sub"></div>
+    </div>
+    <button class="td-drawer-close" onclick="TD.closeDrawer()">✕</button>
+  </div>
+  <div class="td-drawer-stats-row" id="td-drawer-stats"></div>
+  <div class="td-drawer-body">
+    <div class="td-table-scroll">
+      <table class="td-table">
+        <thead>
+          <tr>
+            <th>ID</th><th>Name</th><th>Age</th><th>Gender</th>
+            <th>Community</th><th>Visit Date</th><th>Nurse</th><th>BMI</th>
+          </tr>
+        </thead>
+        <tbody id="td-drawer-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"COkymFnZYP\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Triage Home</span>\",\"col\":12}},{\"id\":\"yH6W4OrqX6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Nurse Interventions\",\"col\":3}}]",
+ "content": "[{\"id\":\"XuL2145clM\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Triage Home</span>\",\"col\":12}},{\"id\":\"37yvJXiT8f\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Nurse Interventions\",\"col\":3}},{\"id\":\"7XVVT2buTn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Triage Dashboard\",\"col\":3}},{\"id\":\"j5oGS7Alup\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4 bold\\\">Diagnosis</span>\",\"col\":12}},{\"id\":\"vT4CAzLkIY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Screening for Hypertension\",\"col\":3}},{\"id\":\"5mWV8o2lva\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Diabetes Followup\",\"col\":3}},{\"id\":\"SCtN7cw5Zj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Screening for Diabetes\",\"col\":3}},{\"id\":\"GAEoU6VdX1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Hypertension Follow up\",\"col\":3}},{\"id\":\"OjlSc0p1IP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Respiratory Issue\",\"col\":3}},{\"id\":\"9GoPjCaJo5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Abdominal pain Gastrointestinal\",\"col\":3}},{\"id\":\"wv9UjGkG4u\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Diarrhea\",\"col\":3}},{\"id\":\"GYjMtsUCgX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vomiting\",\"col\":3}},{\"id\":\"BuoBmzswnn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fatigue\",\"col\":3}},{\"id\":\"9RwX7tEhiM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Eye problem\",\"col\":3}},{\"id\":\"ih2bz7nssi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Back and Neck Pain\",\"col\":3}},{\"id\":\"bwaZQziPXC\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Shoulder and Hand Pain\",\"col\":3}},{\"id\":\"JXf45FWfD2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leg or Knee or Hip pain\",\"col\":3}},{\"id\":\"0IlKJA3w4E\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dyspepsia Acidity\",\"col\":3}},{\"id\":\"YNg4cWXfDK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Foot and Ankle Pain\",\"col\":3}},{\"id\":\"tNsqbzmYH5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Anemia - Adults\",\"col\":3}},{\"id\":\"DCebmFavzx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Anemia - Children\",\"col\":3}},{\"id\":\"mFUiXPWJ3Y\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Headache\",\"col\":3}},{\"id\":\"7Iojx6zOwb\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pregnancy Care\",\"col\":3}},{\"id\":\"g1K9VErmKX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Postnatal Care\",\"col\":3}},{\"id\":\"5HkjNBxllc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Jaundice\",\"col\":3}},{\"id\":\"hqUIsrTaa3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Thyroid Problem\",\"col\":3}},{\"id\":\"qMkg78AIlX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Skin Problem\",\"col\":3}},{\"id\":\"9NttYLrXB4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lymph node Enlargement\",\"col\":3}},{\"id\":\"viaeY14hH4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Chest Pain\",\"col\":3}},{\"id\":\"pBb95B936I\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Constipation\",\"col\":3}}]",
  "creation": "2026-02-11 20:16:33.728289",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Triage Home",
  "links": [],
- "modified": "2026-02-11 20:17:54.980499",
+ "modified": "2026-06-29 00:00:00.000000",
  "modified_by": "Administrator",
  "module": "Triage",
  "name": "Triage Home",
@@ -30,6 +30,222 @@
    "doc_view": "List",
    "label": "Nurse Interventions",
    "link_to": "Nurse Interventions",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Triage Dashboard",
+   "link_to": "triage-dashboard",
+   "stats_filter": "[]",
+   "type": "Page"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Screening for Hypertension",
+   "link_to": "Screening for Hypertension",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Diabetes Followup",
+   "link_to": "Diabetes Followup",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Screening for Diabetes",
+   "link_to": "Screening for Diabetes",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Hypertension Follow up",
+   "link_to": "Hypertension Follow up",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Respiratory Issue",
+   "link_to": "Respiratory Issue",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Abdominal pain Gastrointestinal",
+   "link_to": "Abdominal pain Gastrointestinal",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Diarrhea",
+   "link_to": "Diarrhea",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Vomiting",
+   "link_to": "Vomiting",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Fatigue",
+   "link_to": "Fatigue",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Eye problem",
+   "link_to": "Eye problem",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Back and Neck Pain",
+   "link_to": "Back and Neck Pain",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Shoulder and Hand Pain",
+   "link_to": "Shoulder and Hand Pain",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Leg or Knee or Hip pain",
+   "link_to": "Leg or Knee or Hip pain",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Dyspepsia Acidity",
+   "link_to": "Dyspepsia_Acidity",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Foot and Ankle Pain",
+   "link_to": "Foot and Ankle Pain",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Anemia - Adults",
+   "link_to": "Anemia-Adolescents",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Anemia - Children",
+   "link_to": "Anemia- Children",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Headache",
+   "link_to": "Headache",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Pregnancy Care",
+   "link_to": "Pregnancy Care",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Postnatal Care",
+   "link_to": "Postnatal Care",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Jaundice",
+   "link_to": "Jaundice",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Thyroid Problem",
+   "link_to": "Thyroid Problem",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Skin Problem",
+   "link_to": "Skin Problem",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Lymph node Enlargement",
+   "link_to": "Lymph node Enlargement",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Chest Pain",
+   "link_to": "Chest Pain",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Constipation",
+   "link_to": "Constipation",
    "stats_filter": "[]",
    "type": "DocType"
   }
