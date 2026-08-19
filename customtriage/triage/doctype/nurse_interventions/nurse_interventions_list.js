@@ -1209,9 +1209,20 @@ frappe.listview_settings["Nurse Interventions"] = {
             if (rec.pcod_diagnosis && (rec.pcod_diagnosis === "Yes" || rec.pcod_diagnosis === true)) conditions.push("is diagnosed with PCOD");
             if (rec.gestational_diabetes && (rec.gestational_diabetes === "Yes" || rec.gestational_diabetes === true)) conditions.push("has <span class='danger'>gestational diabetes</span>");
             if (rec.large_baby && (rec.large_baby === "Yes" || rec.large_baby === true)) conditions.push("had a large baby");
-            if (rec.hba1c && (rec.hba1c === "Yes" || rec.hba1c === true)) conditions.push("has an abnormal HbA1c level");
-            if (rec.rft_lipid && (rec.rft_lipid === "Yes" || rec.rft_lipid === true)) conditions.push("has abnormal RFT or lipid levels");
-            if (rec.urine_microalbumin && (rec.urine_microalbumin === "Yes" || rec.urine_microalbumin === true)) conditions.push("has microalbumin in urine");
+            if (rec.peripheral_pulse === "Absent") conditions.push("has <span class='danger'>absent peripheral pulses</span>");
+            if (rec.peripheral_edema === "Present") conditions.push("has <span class='danger'>peripheral edema</span>");
+            if (rec.feet_fissures === "Present") conditions.push("has <span class='danger'>feet fissures</span>");
+            if (rec.toes_ulcers === "Present") conditions.push("has <span class='danger'>ulcers between the toes</span>");
+            if (rec.skin_changes === "Skin Changes") conditions.push("has <span class='danger'>skin changes</span>");
+            if (rec.oral_cavity === "Present") conditions.push("has oral cavity findings (caries or gingivitis)");
+            if (rec.hba1c && (rec.hba1c === "Yes" || rec.hba1c === true)) conditions.push("has previous lab reports");
+
+            // --- LAB REPORT LOGIC ---
+            if (rec.rft_lipid && rec.rft_lipid !== "0" && rec.rft_lipid !== "") {
+              conditions.push("has uploaded a lab report");
+            } else if (rec.urine_microalbumin && rec.urine_microalbumin.trim && rec.urine_microalbumin.trim() !== "") {
+              conditions.push(`Note (No lab report): ${rec.urine_microalbumin.trim()}`);
+            }
 
             // NEW: Safe sentence construction with fallback
             let sentence = "The patient is a healthy individual with no notable conditions.";
@@ -1271,8 +1282,8 @@ frappe.listview_settings["Nurse Interventions"] = {
               'peripheral_edemas', 'feet_for_fissures', 'body_skinchanges', 'gingivitis',
               'feet_fissures_photo', 'check_fvvg', 'stopped_sugar', 'stopped_junks',
               'exercise_30mins', 'check_azac', 'medicines_regularly', 'no_medicine',
-              'other_medicines', 'check_nbrf', 'hba1c_done', 'lipid_profile',
-              'micro_albumin', 'lab_reports'
+              'other_medicines', 'check_nbrf', 'hba1c_done',
+              'lab_reports', 'if_no_please_update'
             ],
             limit_page_length: 10
           };
@@ -1327,8 +1338,8 @@ frappe.listview_settings["Nurse Interventions"] = {
             if (rec.breathing_difficultyon && (rec.breathing_difficultyon === "Yes" || rec.breathing_difficultyon === true)) conditions.push("experiences <span class='danger'>breathing difficulty</span>");
             if (rec.swelling_legs && (rec.swelling_legs === "Yes" || rec.swelling_legs === true)) conditions.push("has <span class='danger'>swelling of legs</span>");
             if (rec.tingling_sensation && (rec.tingling_sensation === "Yes" || rec.tingling_sensation === true)) conditions.push("experiences <span class='danger'>tingling sensation</span>");
-            if (rec.peripheral_pulses && (rec.peripheral_pulses === "Yes" || rec.peripheral_pulses === true)) conditions.push("has abnormal peripheral pulses");
-            if (rec.peripheral_edemas && (rec.peripheral_edemas === "Yes" || rec.peripheral_edemas === true)) conditions.push("has <span class='danger'>peripheral edema</span>");
+            if (rec.peripheral_pulses === "Absent") conditions.push("has <span class='danger'>absent peripheral pulses</span>");
+            if (rec.peripheral_edemas === "Present") conditions.push("has <span class='danger'>peripheral edema</span>");
             if (rec.feet_for_fissures && (rec.feet_for_fissures === "Yes" || rec.feet_for_fissures === true)) conditions.push("has <span class='danger'>feet fissures</span>");
             if (rec.body_skinchanges && (rec.body_skinchanges === "Yes" || rec.body_skinchanges === true)) conditions.push("has <span class='danger'>body skin changes</span>");
             if (rec.gingivitis && (rec.gingivitis === "Yes" || rec.gingivitis === true)) conditions.push("has <span class='danger'>gingivitis</span>");
@@ -1339,8 +1350,6 @@ frappe.listview_settings["Nurse Interventions"] = {
             if (rec.no_medicine && (rec.no_medicine === "Yes" || rec.no_medicine === true)) conditions.push("is not taking any medicine");
             if (rec.other_medicines && rec.other_medicines !== "0" && rec.other_medicines !== "") conditions.push(`takes other medicines: ${rec.other_medicines}`);
             if (rec.hba1c_done && (rec.hba1c_done === "Yes" || rec.hba1c_done === true)) conditions.push("has HbA1c test done");
-            if (rec.lipid_profile && (rec.lipid_profile === "Yes" || rec.lipid_profile === true)) conditions.push("has lipid profile done");
-            if (rec.micro_albumin && (rec.micro_albumin === "Yes" || rec.micro_albumin === true)) conditions.push("has micro albumin test done");
 
             // --- LAB REPORT LOGIC ---
             if (rec.lab_reports && rec.lab_reports !== "0" && rec.lab_reports !== "") {
@@ -1400,33 +1409,20 @@ frappe.listview_settings["Nurse Interventions"] = {
           const patient_id = currentRecord.patient_id || currentRecord.patient_unique_id || null;
           const patient_name = currentRecord.patient_name || null;
 
-          // Define all fields, including lab_scanning
-          const allFields = [
-            'name', 'creation', 'patient_id', 'created_by',
-            'new_hypertensive', 'sudden_swelling_of_legs', 'any_history_of_fainting_or_fall',
-            'severe_headache_sudden_onset', 'chest_pain_sudden_onset', 'breathlessness_sudden_onset',
-            'any_nausea_vomiting_sudden_onset', 'drowsy', 'any_slurrred_speech', 'any_change_in_gaitimbalance', 'none',
-            'screening_for_hypertension', 'headache_6months', 'feel_giddy_6months', 'feel_giddy',
-            'chest_painmonths', 'blurred_vision6', 'palpitation', 'often_getting_angry', 'breathing_while_walking',
-            'ifyes_chestpain', 'check_dtvk', 'check_ytyo', 'heart_disease_history', 'kidney_history',
-            'stroke_history', 'bp_sugar_history', 'bp_other_complaints', 'check_lgdm', 'high_bp',
-            'lbw', 'regular_exercise', 'consume_fried', 'long_periods', 'feel_stressed', 'check_bmgb',
-            'peripheral_pulsefeet', 'for_peripheral_edema', 'rft_last_oneyear', 'urine_albumin6', 'lab_scanning'
-          ];
-
-          let validFields = [...allFields];
-
-          try {
-            if (!validFields.includes('any_slurrred_speech')) {
-              console.warn("Field 'any_slurrred_speech' not found in Screening for Hypertension doctype. Excluding from query.");
-            }
-          } catch (metaErr) {
-            console.warn(`Could not validate fields for Screening for Hypertension: ${metaErr.message}`);
-          }
-
           const args = {
             doctype: "Screening for Hypertension",
-            fields: validFields,
+            fields: [
+              'name', 'creation', 'patient_id', 'created_by',
+              'new_hypertensive', 'sudden_swelling_of_legs', 'any_history_of_fainting_or_fall',
+              'severe_headache_sudden_onset', 'chest_pain_sudden_onset', 'breathlessness_sudden_onset',
+              'any_nausea_vomiting_sudden_onset', 'drowsy', 'any_slurrred_speech', 'any_change_in_gaitimbalance', 'none',
+              'screening_for_hypertension', 'headache_6months', 'feel_giddy_6months', 'feel_giddy',
+              'chest_painmonths', 'blurred_vision6', 'palpitation', 'often_getting_angry', 'breathing_while_walking',
+              'ifyes_chestpain', 'check_dtvk', 'check_ytyo', 'heart_disease_history', 'kidney_history',
+              'stroke_history', 'bp_sugar_history', 'bp_other_complaints', 'check_lgdm', 'high_bp',
+              'lbw', 'regular_exercise', 'consume_fried', 'long_periods', 'feel_stressed', 'check_bmgb',
+              'peripheral_pulsefeet', 'for_peripheral_edema', 'rft_last_oneyear', 'lab_scanning', 'if_no_please_update'
+            ],
             limit_page_length: 10
           };
 
@@ -1499,12 +1495,10 @@ frappe.listview_settings["Nurse Interventions"] = {
             if (rec.feel_stressed && (rec.feel_stressed === "Yes" || rec.feel_stressed === true)) conditions.push("feels stressed");
             if (rec.check_bmgb && (rec.check_bmgb === "1" || rec.check_bmgb === true)) conditions.push("has physical examination findings");
             if (rec.peripheral_pulsefeet && rec.peripheral_pulsefeet !== "0" && rec.peripheral_pulsefeet !== "") conditions.push(`peripheral pulse (feet): ${rec.peripheral_pulsefeet}`);
-            if (rec.for_peripheral_edema && (rec.for_peripheral_edema === "Yes" || rec.for_peripheral_edema === true)) conditions.push("has <span class='danger'>peripheral edema</span>");
+            if (rec.for_peripheral_edema === "Present") conditions.push("has <span class='danger'>peripheral edema</span>");
             if (rec.rft_last_oneyear && (rec.rft_last_oneyear === "Yes" || rec.rft_last_oneyear === true)) conditions.push("had RFT test in the last year");
-            if (rec.urine_albumin6 && (rec.urine_albumin6 === "Yes" || rec.urine_albumin6 === true)) conditions.push("has albumin in urine");
-            if (rec.lab_scanning && rec.lab_scanning !== "0" && rec.lab_scanning !== "") conditions.push("has uploaded a lab report");
 
-            // --- LAB REPORT LOGIC (duplicate removed, kept for clarity) ---
+            // --- LAB REPORT LOGIC ---
             if (rec.lab_scanning && rec.lab_scanning !== "0" && rec.lab_scanning !== "") {
               conditions.push("has uploaded a lab report");
             } else if (rec.if_no_please_update && rec.if_no_please_update.trim() !== "") {
@@ -1560,32 +1554,20 @@ frappe.listview_settings["Nurse Interventions"] = {
           const patient_id = currentRecord.patient_id || currentRecord.patient_unique_id || null;
           const patient_name = currentRecord.patient_name || null;
 
-          const allFields = [
-            'name', 'creation', 'patient_id', 'created_by', 'patient_name',
-            'new_hypertensive', 'sudden_swelling_of_legs', 'any_history_of_fainting_or_fall',
-            'severe_headache_sudden_onset', 'chest_pain_sudden_onset', 'breathlessness_sudden_onset',
-            'any_nausea_vomiting_sudden_onset', 'drowsy', 'any_slurrred_speech',
-            'any_change_in_gaitimbalance', 'none', 'hypertension_follow_up',
-            'blurring_of_vision', 'anychest_pain', 'breathing_difficultyon', 'swelling_legs',
-            'tingling_sensation', 'heavy_breathing', 'peripheral_edemas', 'peripheral_pulses',
-            'check_kpry', 'check_dgyi', 'stopped_junks', 'medicines_regularly',
-            'exercise_30mins', 'bp_medicinereason', 'provide_explanation', 'check_xdfn',
-            'lipid_profile', 'micro_albumin', 'lab_reports'
-          ];
-
-          let validFields = [...allFields];
-
-          try {
-            if (!validFields.includes('any_slurrred_speech')) {
-              console.warn("Field 'any_slurrred_speech' not found in Hypertension Follow up doctype. Excluding from query.");
-            }
-          } catch (metaErr) {
-            console.warn(`Could not validate fields for Hypertension Follow up: ${metaErr.message}`);
-          }
-
           const args = {
             doctype: "Hypertension Follow up",
-            fields: validFields,
+            fields: [
+              'name', 'creation', 'patient_id', 'created_by', 'patient_name',
+              'new_hypertensive', 'sudden_swelling_of_legs', 'any_history_of_fainting_or_fall',
+              'severe_headache_sudden_onset', 'chest_pain_sudden_onset', 'breathlessness_sudden_onset',
+              'any_nausea_vomiting_sudden_onset', 'drowsy', 'any_slurrred_speech',
+              'any_change_in_gaitimbalance', 'none', 'hypertension_follow_up',
+              'blurring_of_vision', 'anychest_pain', 'breathing_difficultyon', 'swelling_legs',
+              'tingling_sensation', 'heavy_breathing', 'peripheral_edemas', 'peripheral_pulses',
+              'check_kpry', 'check_dgyi', 'stopped_junks', 'medicines_regularly',
+              'exercise_30mins', 'bp_medicinereason', 'provide_explanation', 'check_xdfn',
+              'lipid_profile', 'lab_reports', 'if_no_please_update'
+            ],
             limit_page_length: 10
           };
 
@@ -1640,8 +1622,8 @@ frappe.listview_settings["Nurse Interventions"] = {
             if (rec.breathing_difficultyon && (rec.breathing_difficultyon === "Yes" || rec.breathing_difficultyon === true)) conditions.push("experiences <span class='danger'>breathing difficulty</span>");
             if (rec.swelling_legs && (rec.swelling_legs === "Yes" || rec.swelling_legs === true)) conditions.push("has <span class='danger'>swelling of legs</span>");
             if (rec.tingling_sensation && (rec.tingling_sensation === "Yes" || rec.tingling_sensation === true)) conditions.push("experiences <span class='danger'>tingling sensation</span>");
-            if (rec.heavy_breathing && (rec.heavy_breathing === "Yes" || rec.heavy_breathing === true)) conditions.push("has <span class='danger'>heavy breathing</span>");
-            if (rec.peripheral_edemas && (rec.peripheral_edemas === "Yes" || rec.peripheral_edemas === true)) conditions.push("has <span class='danger'>peripheral edema</span>");
+            if (rec.heavy_breathing === "Present") conditions.push("has <span class='danger'>heavy breathing</span>");
+            if (rec.peripheral_edemas === "Present") conditions.push("has <span class='danger'>peripheral edema</span>");
             if (rec.peripheral_pulses && rec.peripheral_pulses !== "0" && rec.peripheral_pulses !== "") conditions.push(`peripheral pulses: ${rec.peripheral_pulses}`);
             if (rec.check_kpry && (rec.check_kpry === "1" || rec.check_kpry === true)) conditions.push("has specific physical exam findings");
             if (rec.check_dgyi && (rec.check_dgyi === "1" || rec.check_dgyi === true)) conditions.push("has specific lifestyle history noted");
@@ -1652,7 +1634,6 @@ frappe.listview_settings["Nurse Interventions"] = {
             if (rec.provide_explanation && rec.provide_explanation !== "0" && rec.provide_explanation !== "") conditions.push(`medical history explanation: ${rec.provide_explanation}`);
             if (rec.check_xdfn && (rec.check_xdfn === "1" || rec.check_xdfn === true)) conditions.push("has laboratory test findings");
             if (rec.lipid_profile && (rec.lipid_profile === "Yes" || rec.lipid_profile === true)) conditions.push("has lipid profile done");
-            if (rec.micro_albumin && (rec.micro_albumin === "Yes" || rec.micro_albumin === true)) conditions.push("has micro albumin test done");
 
             // --- LAB REPORT LOGIC ---
             if (rec.lab_reports && rec.lab_reports !== "0" && rec.lab_reports !== "") {
@@ -1728,7 +1709,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'others', 'other_symptoms', 'tired_easily', 'acidity_reflux', 'check_slhq', 'spicy_food',
             'food_ontime', 'food_outside', 'check_lkxh', 'last_menstruation_period', 'menstrual_cycle',
             'any_white_discharge', 'discharge_character', 'foul_smelling', 'check_gtte', 'stomach_cancer',
-            'yes_upload'
+            'yes_upload', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -1942,7 +1923,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'diarrhea', 'suffering_diarrhea', 'stool_type', 'food_outside', 'travel_recently',
             'diarrhea_episodes', 'since_howlong', 'times_aday', 'yes_outsidefood', 'what_outsidefood',
             'check_zpwe', 'vomiting', 'fever', 'abdominal_pain_with_diarrhea', 'none', 'pain_bowl',
-            'recurrent_diarrhea', 'check_jspw', 'dehydration_degree', 'bloodprevious', 'report_upload'
+            'recurrent_diarrhea', 'check_jspw', 'dehydration_degree', 'bloodprevious', 'report_upload', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -2088,14 +2069,14 @@ frappe.listview_settings["Nurse Interventions"] = {
           const allFields = [
             'name', 'creation', 'patient_id', 'created_by', 'patient_name',
             'dehydration', 'sever_dehydration', 'none_vomiting_child', 'if_vomiting_with_mild_dehydration',
-            'blood_in_the_vomit', 'none_vomiting',
+            'if_vomiting_with_sever_dehydration_and_drowsiness', 'blood_in_the_vomit', 'none_vomiting',
             'vomiting', 'suffering_vomiting', 'happen_shortly', 'sudden_vomit', 'outside_food',
             'travelled_anywhere', 'jatra_functions', 'pregnant_women', 'since_howlong', 'vomit_colour',
             'check_mflx', 'cough', 'abdominal_pain', 'diarrhoea', 'acidity', 'fever', 'headache',
             'change_in_vision', 'giddiness', 'ringing_in_ears', 'none', 'relived_vomiting', 'acidity_relieved',
             'check_vdwf', 'spicy_oily', 'food_on_time', 'history_past', 'migrane_diagnose',
             'acidity_diagnose', 'noise_factory', 'check_auuw', 'check_gycf', 'degree_dehydration',
-            'oral_cavity', 'previous_report', 'upload_report'
+            'oral_cavity', 'previous_report', 'upload_report', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -2263,7 +2244,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'any_history_of_heart_diseases', 'any_history_of_diabetes', 'any_history_of_thyroid_issues',
             'any_history_of_lung_disease', 'excessive_bleeding_after_delivery',
             'are_you_breastfeeding_your_child_now', 'regularly_fasting',
-            'is_your_work_involves_night_shift', 'previous_lab_reports', 'if_yes_please_upload'
+            'is_your_work_involves_night_shift', 'previous_lab_reports', 'if_yes_please_upload', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -2429,7 +2410,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'any_history_of_hypertension', 'any_history_of_heart_diseases', 'any_history_of_diabetes',
             'any_history_of_thyroid_issues', 'any_history_of_trauma_to_the_eye', 'any_history_of_eye_surgery',
             'check_eqhu', 'involved_usage_of_laptop', 'are_you_doing_any_welding_work', 'check_emcp',
-            'upload_the_photo', 'check_rskd', 'previous_lab_reports', 'if_yes_please_upload'
+            'upload_the_photo', 'check_rskd', 'previous_lab_reports', 'if_yes_please_upload', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -2603,7 +2584,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'other_neckpain', 'postural_change', 'sneezing', 'activities', 'pain_worse_at_rest', 'none',
             'unsure', 'since_when_symptom', 'since_when', 'abdomen_part', 'descrive_ifother',
             'yes_describe_mattress', 'other_backpain', 'check_mtyy', 'family_issues',
-            'arthritis_history', 'previous_labreports', 'posture_gait', 'upload_report'
+            'arthritis_history', 'previous_labreports', 'posture_gait', 'upload_report', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -2797,7 +2778,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'affected_part', 'any_surgery', 'scan_report', 'accident_history', 'standing_hours', 'lifting_heavy',
             'stressful_job', 'gym_frequently', 'family_issues', 'arthritis_history', 'previous_labreports',
             'since_when_symptoms', 'shoulder_pain', 'pain_other', 'stiffness_time', 'if_yes_describe',
-            'if_other', 'posture_gait', 'upload_report'
+            'if_other', 'posture_gait', 'upload_report', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -2963,7 +2944,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'using_stairs', 'rest', 'other', 'none', 'none2', 'ifother', 'check_ymqq', 'any_surgery',
             'scan_report', 'accident_history', 'bp_sugar', 'gym_frequently', 'standing_hours', 'lifting_heavy',
             'stressful_job', 'family_issues', 'arthritis_history', 'previous_labreports', 'posture_gait',
-            'upload_report'
+            'upload_report', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -3179,7 +3160,7 @@ frappe.listview_settings["Nurse Interventions"] = {
               'have_you_done_any_endoscopy_in_the_past', 'check_qwyi', 'do_you_take_your_meal_on_time',
               'do_you_take_more_spicy_and_oily_food', 'do_you_drink_a_lot_of_coffee_or_tea', 'check_qdyk',
               'how_much_water_do_you_drink_everyday', 'check_offh', 'look_for_lymphnodes_in_the_neck_lt_supra_clavicular',
-              'check_owzn', 'lymphnodes', 'previous_lab_reports', 'check_vkrm', 'if_yes_please_upload'
+              'check_owzn', 'lymphnodes', 'previous_lab_reports', 'check_vkrm', 'if_yes_please_upload', 'if_no_please_update'
             ],
             limit_page_length: 10
           };
@@ -3275,8 +3256,8 @@ frappe.listview_settings["Nurse Interventions"] = {
             if (rec.do_you_take_more_spicy_and_oily_food && rec.do_you_take_more_spicy_and_oily_food !== "0" && rec.do_you_take_more_spicy_and_oily_food !== "No" && rec.do_you_take_more_spicy_and_oily_food !== "") conditions.push(`consumes spicy or oily food ${rec.do_you_take_more_spicy_and_oily_food.toLowerCase()}`);
             if (rec.do_you_drink_a_lot_of_coffee_or_tea && rec.do_you_drink_a_lot_of_coffee_or_tea !== "0" && rec.do_you_drink_a_lot_of_coffee_or_tea !== "No" && rec.do_you_drink_a_lot_of_coffee_or_tea !== "") conditions.push(`drinks coffee or tea ${rec.do_you_drink_a_lot_of_coffee_or_tea.toLowerCase()}`);
             if (rec.how_much_water_do_you_drink_everyday && rec.how_much_water_do_you_drink_everyday !== "0" && rec.how_much_water_do_you_drink_everyday !== "") conditions.push(`drinks ${rec.how_much_water_do_you_drink_everyday} of water daily`);
-            if (rec.look_for_lymphnodes_in_the_neck_lt_supra_clavicular && rec.look_for_lymphnodes_in_the_neck_lt_supra_clavicular !== "0" && rec.look_for_lymphnodes_in_the_neck_lt_supra_clavicular !== "") conditions.push(`reports lymph node findings as ${rec.look_for_lymphnodes_in_the_neck_lt_supra_clavicular.toLowerCase()}`);
-            if (rec.lymphnodes && rec.lymphnodes !== "0" && rec.lymphnodes !== "Not Present" && rec.lymphnodes !== "") conditions.push(`has <span class='danger'>lymph nodes present</span>`);
+            if (rec.look_for_lymphnodes_in_the_neck_lt_supra_clavicular && rec.look_for_lymphnodes_in_the_neck_lt_supra_clavicular !== "0" && rec.look_for_lymphnodes_in_the_neck_lt_supra_clavicular !== "") conditions.push(`occupation: ${rec.look_for_lymphnodes_in_the_neck_lt_supra_clavicular.toLowerCase()}`);
+            if (rec.lymphnodes === "Present") conditions.push(`has <span class='danger'>lymph nodes present in the neck</span>`);
             if (rec.previous_lab_reports && rec.previous_lab_reports !== "0" && rec.previous_lab_reports !== "No" && rec.previous_lab_reports !== "") conditions.push(`has previous lab reports`);
 
             // --- LAB REPORT LOGIC ---
@@ -3354,7 +3335,7 @@ frappe.listview_settings["Nurse Interventions"] = {
               'by_movement', 'using_stairs', 'rest', 'other', 'none2', 'ifother', 'any_surgery', 'scan_report',
               'accident_history', 'sugar_bp_history', 'check_ndgt', 'standing_hours', 'lifting_heavy', 'stressful_job',
               'are_you_involves_in_tailoringor_in_garment_factory', 'gym_frequently', 'check_yujn', 'family_issues',
-              'arthritis_history', 'posture_gait', 'previous_labreports', 'upload_report'
+              'arthritis_history', 'posture_gait', 'previous_labreports', 'upload_report', 'if_no_please_update'
             ],
             limit_page_length: 10
           };
@@ -3525,7 +3506,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'having_children', 'please_decribe_the_age_of_the_children', 'which_method', 'yes_complication',
             'fp_methods', 'delivery_blood_transfusion', 'afterdelivery_complication', 'recently_abortion',
             'menstrual_bleeding', 'check_wfpc', 'check_xfez', 'regular_diet', 'please_upload',
-            'toiletin_home', 'slippers_regularly', 'any_previous_lab'
+            'toiletin_home', 'slippers_regularly', 'any_previous_lab', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -3685,7 +3666,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'surgery_bloodloss', 'jaundice_afterbirth', 'breastfeeding_child', 'toiletat_home', 'wearing_slipper',
             'family_issue', 'family_anemia', 'family_blood', 'check_rcks', 'menstrual_history', 'days_admitted',
             'did_childtalk', 'did_childwalk', 'childsit_support', 'daily_milk', 'daily_diet', 'complementary_feeding',
-            'no_breastfeed', 'check_znsu', 'observe_the_developmental_milestones', 'any_previous_lab', 'please_upload'
+            'no_breastfeed', 'check_znsu', 'observe_the_developmental_milestones', 'any_previous_lab', 'please_upload', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -3850,7 +3831,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'any_past_history_of_vision_problem', 'any_history_of_fall_in_the_past_6_months', 'any_history_of_head_injury',
             'check_mrai', 'does_your_work_involved_very_loud_sound', 'do_you_have_very_long_working_hours',
             'does_your_work_involved_lots_of_stress', 'check_reps', 'check_dwfp', 'check_vision_with_snellens_chart',
-            'previous_lab_reports', 'check_vojh', 'if_yes_please_upload'
+            'previous_lab_reports', 'check_vojh', 'if_yes_please_upload', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -4029,10 +4010,10 @@ frappe.listview_settings["Nurse Interventions"] = {
             'scanning_report', 'tablets_pic', 'number_of_living_children', 'pregnancy_complication', 'baby_weight',
             'post_delivery_issue', 'contraception_pregnancies', 'reason_for_abortion', 'mode_of_previous_delivery',
             'any_preterm_delivery', 'lbw_baby', 'defects_congenital', 'any_abortion', 'if_yes_which_trimister',
-            'type_of_abortion', 'stillbirth_history', 'history_iron_injection', 'twin_pregnancies', 'ectopic_pregnancy',
+            'type_of_abortion', 'stillbirth_history', 'history_iron_injection', 'twin_prehnancy', 'ectopic_pregnancy',
             'check_wbmb', 'hypertension', 'diabetes', 'heart_diseases', 'thyroid_issues', 'none', 'check_cquo',
             'fundal_height', 'fetal_heart_rate', 'breast_examination', 'twin_pregnancies', 'any_previous_lab',
-            'please_upload'
+            'please_upload', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -4167,12 +4148,13 @@ frappe.listview_settings["Nurse Interventions"] = {
             if (rec.type_of_abortion && rec.type_of_abortion !== "0" && rec.type_of_abortion !== "") conditions.push(`abortion type: ${rec.type_of_abortion}`);
             if (rec.stillbirth_history && (rec.stillbirth_history === "Yes" || rec.stillbirth_history === true)) conditions.push("has <span class='danger'>a history of stillbirth</span>");
             if (rec.history_iron_injection && (rec.history_iron_injection === "Yes" || rec.history_iron_injection === true)) conditions.push("has a history of iron injections");
-            if (rec.twin_pregnancies && (rec.twin_pregnancies === "Yes" || rec.twin_pregnancies === true)) conditions.push("has <span class='danger'>a history of twin pregnancy</span>");
+            if (rec.twin_prehnancy && (rec.twin_prehnancy === "Yes" || rec.twin_prehnancy === true)) conditions.push("has <span class='danger'>a history of twin pregnancy</span>");
             if (rec.ectopic_pregnancy && (rec.ectopic_pregnancy === "Yes" || rec.ectopic_pregnancy === true)) conditions.push("has <span class='danger'>a history of ectopic pregnancy</span>");
             if (rec.hypertension && (rec.hypertension === "Yes" || rec.hypertension === true)) conditions.push("has <span class='danger'>a history of hypertension</span>");
             if (rec.diabetes && (rec.diabetes === "Yes" || rec.diabetes === true)) conditions.push("has <span class='danger'>a history of diabetes</span>");
             if (rec.heart_diseases && (rec.heart_diseases === "Yes" || rec.heart_diseases === true)) conditions.push("has <span class='danger'>a history of heart diseases</span>");
             if (rec.thyroid_issues && (rec.thyroid_issues === "Yes" || rec.thyroid_issues === true)) conditions.push("has <span class='danger'>a history of thyroid issues</span>");
+            if (rec.twin_pregnancies && (rec.twin_pregnancies === "Yes" || rec.twin_pregnancies === true)) conditions.push("has a family history of twin pregnancies");
             if (rec.any_previous_lab && (rec.any_previous_lab === "Yes" || rec.any_previous_lab === true)) conditions.push("has previous lab reports");
 
             // --- MULTIPLE REPORT UPLOAD FIELDS HANDLED ---
@@ -4255,7 +4237,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'baby_condition', 'breastfeed_baby', 'pregnancy_issue', 'family_planning', 'specific_vaccination',
             'ifa_calcium', 'pain_killer', 'prescription', 'check_fddd', 'hypertension', 'heart_diseases',
             'diabetes', 'thyroid_issues', 'describe_daily_diet', 'check_qzoy', 'breast_examination',
-            'abdomen_examination', 'episiotomy_assesment', 'any_previous_lab', 'please_upload'
+            'abdomen_examination', 'episiotomy_assesment', 'any_previous_lab', 'please_upload', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -4459,7 +4441,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'name', 'creation', 'patient_id', 'created_by', 'patient_name',
             'severe_abdominal_pain_or_tenderness', 'patient_is_confusedagitated_or_drowsy',
             'high_fever', 'vomiting_blood', 'blood_in_stool_or_black_stoolnot_passing_urine', 'any_painful_lymphnode',
-            'none', 'jaundice', 'abdominal', 'child_is_confusedagitated_or_drowsy', 'fever_jaundice',
+            'none', 'jaundices', 'jaundice', 'abdominal', 'child_is_confusedagitated_or_drowsy', 'fever_jaundice',
             'excessive_vomiting', 'not_passing_urine', 'none_jaundice', 'check_iepj', 'do_you_have_jaundice',
             'onset', 'onset_copyhave_you_eaten_outside_recently', 'have_you_travelled_recently', 'since_when',
             'check_uheh', 'any_fever', 'any_chills', 'do_you_have_itchy_skin', 'have_you_lost_weight',
@@ -4472,7 +4454,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'how_many_years_have_been_drinking', 'how_often_do_you_drink', 'do_you_have_tatoos_on_your_body',
             'check_ylws', 'any_family_history_of_jaundice', 'check_rvmy', 'skin_changes_in_on_the_abdomen',
             'look_for_hepatic_flap_and_tremor', 'abdominal_examination', 'check_wkjy', 'previous_lab_reports',
-            'if_yes_please_upload'
+            'if_yes_please_upload', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -4538,6 +4520,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             if (rec.fever_jaundice && (rec.fever_jaundice === "Yes" || rec.fever_jaundice === true)) conditions.push("has <span class='danger'>fever with jaundice</span>");
             if (rec.excessive_vomiting && (rec.excessive_vomiting === "Yes" || rec.excessive_vomiting === true)) conditions.push("has <span class='danger'>excessive vomiting</span>");
             if (rec.not_passing_urine && (rec.not_passing_urine === "Yes" || rec.not_passing_urine === true)) conditions.push("has <span class='danger'>not passing urine</span>");
+            if (rec.jaundices && (rec.jaundices === "Yes" || rec.jaundices === true)) conditions.push("has <span class='danger'>jaundice</span>");
             if (rec.do_you_have_jaundice && (rec.do_you_have_jaundice === "Yes" || rec.do_you_have_jaundice === true)) conditions.push("has <span class='danger'>jaundice symptoms</span>");
             if (rec.onset && rec.onset !== "0" && rec.onset !== "") conditions.push(`jaundice onset: ${rec.onset}`);
             if (rec.onset_copyhave_you_eaten_outside_recently && (rec.onset_copyhave_you_eaten_outside_recently === "Yes" || rec.onset_copyhave_you_eaten_outside_recently === true)) conditions.push("has eaten outside recently");
@@ -4648,7 +4631,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'thyroid_hypertension', 'thyroid_diabetes', 'heart_diseases', 'thyroid_issues',
             'thyroid_surgery', 'thyroid_pregnancy', 'thyroid_none', 'skin_texture',
             'generalized_edema', 'eye_examination', 'neck_swelling', 'any_previous_lab',
-            'please_upload'
+            'please_upload', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -4760,9 +4743,9 @@ frappe.listview_settings["Nurse Interventions"] = {
             if (rec.thyroid_surgery && (rec.thyroid_surgery === "Yes" || rec.thyroid_surgery === true)) conditions.push("has <span class='danger'>undergone thyroid surgery</span>");
             if (rec.thyroid_pregnancy && (rec.thyroid_pregnancy === "Yes" || rec.thyroid_pregnancy === true)) conditions.push("has <span class='danger'>thyroid issues related to pregnancy</span>");
             if (rec.skin_texture && rec.skin_texture !== "0" && rec.skin_texture !== "") conditions.push(`skin texture: ${rec.skin_texture}`);
-            if (rec.generalized_edema && (rec.generalized_edema === "Yes" || rec.generalized_edema === true)) conditions.push("has <span class='danger'>generalized edema</span>");
+            if (rec.generalized_edema === "Present") conditions.push("has <span class='danger'>generalized edema</span>");
             if (rec.eye_examination && rec.eye_examination !== "0" && rec.eye_examination !== "") conditions.push(`eye examination findings: ${rec.eye_examination}`);
-            if (rec.neck_swelling && (rec.neck_swelling === "Yes" || rec.neck_swelling === true)) conditions.push("has <span class='danger'>neck swelling</span>");
+            if (rec.neck_swelling === "Present") conditions.push("has <span class='danger'>neck swelling</span>");
             if (rec.any_previous_lab && (rec.any_previous_lab === "Yes" || rec.any_previous_lab === true)) conditions.push("has previous lab reports");
 
             // LAB REPORT LOGIC
@@ -4835,13 +4818,13 @@ frappe.listview_settings["Nurse Interventions"] = {
             'any_rash_which_is_extensive_on_the_body', 'sudden_oset', 'none_skin', 'skin_problem',
             'check_cbvu', 'itchy_skin', 'skin_rash', 'bullae', 'skin_burn', 'bumps', 'not_applicable',
             'skin_other', 'skin_otherdescibe', 'face', 'scalp', 'hands', 'feet', 'palms', 'groin_region',
-            'legs', 'skin_creases', 'trunk', 'no_lesions', 'lesion_symptoms', 'get_worse', 'same_problem',
+            'legs', 'skin_creases', 'trunk', 'fingers_toes', 'no_lesions', 'lesion_symptoms', 'get_worse', 'same_problem',
             'hair_colors', 'any_associated_symptoms', 'discharge_from_the_lesion', 'pain_in_the_lesions',
             'itching_in_the_lesions', 'skin_fever', 'runny_nose', 'wheezing', 'any_joint_pain',
             'dandruff_issue', 'other_skin', 'none', 'describe_skinother', 'hypertension_history',
             'any_heart_diseases', 'any_diabetes', 'any_thyroid', 'any_asthma', 'any_skin_lesions',
             'repeated_sneezing', 'check_hgfb', 'chemical_exposure', 'family_skin_allergy',
-            'family_asthma_history', 'lesion_present', 'lesion_photo', 'any_previous_lab', 'please_upload'
+            'family_asthma_history', 'lesion_present', 'lesion_photo', 'any_previous_lab', 'please_upload', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -4920,6 +4903,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             if (rec.legs && (rec.legs === "Yes" || rec.legs === true)) conditions.push("has skin issues on the legs");
             if (rec.skin_creases && (rec.skin_creases === "Yes" || rec.skin_creases === true)) conditions.push("has skin issues in skin creases");
             if (rec.trunk && (rec.trunk === "Yes" || rec.trunk === true)) conditions.push("has skin issues on the trunk");
+            if (rec.fingers_toes && (rec.fingers_toes === "Yes" || rec.fingers_toes === true)) conditions.push("has skin issues on the fingers and toes");
             if (rec.no_lesions && rec.no_lesions !== "0" && rec.no_lesions !== "") conditions.push(`number of lesions: ${rec.no_lesions}`);
             if (rec.lesion_symptoms && rec.lesion_symptoms !== "0" && rec.lesion_symptoms !== "") conditions.push(`lesion symptoms: ${rec.lesion_symptoms}`);
             if (rec.get_worse && rec.get_worse !== "0" && rec.get_worse !== "") conditions.push(`skin condition worsens with: ${rec.get_worse}`);
@@ -5023,7 +5007,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'check_fdcu', 'any_fever', 'any_cough', 'sputum', 'any_sore_throat', 'any_loose_stools', 'any_joint_pain',
             'animal_bite', 'limb_injury', 'if_yes_please_describe', 'check_rkua', 'bp_history', 'heart_diseases',
             'diabetes_history', 'thyroid_issues', 'similar_lump', 'breast_lumps', 'diagnosed_tb', 'cancer_treatment',
-            'check_lyvk', 'lymph_node', 'any_previous_lab', 'please_upload'
+            'check_lyvk', 'lymph_node', 'any_previous_lab', 'please_upload', 'if_no_please_update'
           ];
           let validFields = [...allFields];
 
@@ -5173,7 +5157,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'rest', 'chest_sittingup', 'leaning_forward', 'medications', 'none_situation', 'unsure_situation',
             'situation_other', 'please_describeother', 'check_uoln', 'chestpain_bp', 'chestpain_heart',
             'chestpain_diabetes', 'chestpain_asthma', 'acidity_and_reflux', 'spicy_oily', 'food_ontime',
-            'previous_test', 'attach_photo'
+            'previous_test', 'attach_photo', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -5388,7 +5372,7 @@ frappe.listview_settings["Nurse Interventions"] = {
             'heavyness_in_the_abdomen', 'blood_in_the_stool', 'recent_loss_of_weight', 'recent_loss_of_appetite',
             'lower_back_pain', 'able_to_pass_gas', 'vomiting', 'none', 'check_inid', 'water_intake', 'recent_dietory',
             'regular_exercise', 'undergone_surgery', 'if_yes_specify', 'check_qeqi', 'toilet_facility', 'sitting_jobs',
-            'safe_drinking_water', 'previous_report', 'upload_report'
+            'safe_drinking_water', 'previous_report', 'upload_report', 'if_no_please_update'
           ];
 
           let validFields = [...allFields];
@@ -5568,7 +5552,7 @@ frappe.listview_settings["Nurse Interventions"] = {
               'nasal_congestion', 'select_beav', 'since_headache', 'headache_other', 'severity', 'when_feelpain',
               'throbbing', 'stabbing', 'pounding', 'dull_continuous', 'headache_others', 'select_zfpp', 'any_history_of_asthama',
               'any_history_of_allergy', 'past_symptoms', 'select_ffsm', 'history_asthma', 'allergy_history', 'throat_examination',
-              'sinus_tenderness', 'lab_previous', 'if_yes_please_upload'
+              'sinus_tenderness', 'lab_previous', 'if_yes_please_upload', 'if_no_please_update'
             ],
             limit_page_length: 10
           };
@@ -5679,6 +5663,8 @@ frappe.listview_settings["Nurse Interventions"] = {
             if (rec.any_history_of_allergy === "Yes") conditions.push(`has <span class='danger'>history of allergy</span>`);
             if (rec.history_asthma === "Yes") conditions.push(`has <span class='danger'>family history of asthma</span>`);
             if (rec.allergy_history === "Yes") conditions.push(`has <span class='danger'>family history of allergies</span>`);
+            if (rec.throat_examination && rec.throat_examination.trim() && rec.throat_examination !== "0") conditions.push(`throat examination: ${rec.throat_examination.trim()}`);
+            if (rec.sinus_tenderness === "Present") conditions.push(`has <span class='danger'>sinus tenderness</span>`);
 
             // Lab reports
             if (rec.lab_previous === "Yes") conditions.push("has previous lab reports");
